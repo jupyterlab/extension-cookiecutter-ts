@@ -1,0 +1,22 @@
+{
+  "name": "{{ cookiecutter.npm_package_name}}",
+  "version": "0.0.1",
+  "description": "{{ cookiecutter.project_short_description }}",
+  "author": "{{ cookiecutter.author_name }}",
+  "main": "lib/plugin.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/{{ cookiecutter.github_organization_name }}/{{ cookiecutter.github_project_name }}.git"
+  },
+  "keywords": [
+    "jupyter",
+    "jupyterlab"
+  ],
+  "scripts": {
+    "build": "node build_extension.js"
+  },
+  "devDependencies": {
+    "rimraf": "^2.5.4",
+    "jupyterlab-extension-builder": "^0.6.2"
+  }
+}
