@@ -22,6 +22,7 @@ if not os.path.exists('node_modules'):
 
 setup_args = dict(
     name                 = '{{ cookiecutter.extension_name }}',
+    version              = '0.1.0',
     packages             = ['{{ cookiecutter.extension_name }}'],
     author               = '{{ cookiecutter.author_name }}',
     author_email         = '{{ cookiecutter.author_email }}',
