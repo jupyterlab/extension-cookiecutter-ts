@@ -28,6 +28,6 @@ This cookiecutter template creates a JupyterLab extension composed of a Python p
 
 - The *Python package* is published to PyPI, the Python package repository, and contains the generated JupyterLab extension JavaScript bundle.
 
-To lessen confusion between the different packages, this recipe uses the same name for the extension, the python package, the python module, and the npm package. As a consequence, the extension name should be a valid python module name (e.g., it cannot contain dashes).
+To lessen confusion between the different packages, this recipe uses the same name for the extension, the Python package, the Python module, and the npm package. As a consequence, the extension name should be a valid Python module name (e.g., it cannot contain dashes).
 
 We suggest that simple extension names start with `jupyterlab_` and use underscores if needed to improve readability, such as `jupyterlab_myextension`.
