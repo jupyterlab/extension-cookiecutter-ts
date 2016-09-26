@@ -1,5 +1,6 @@
 {
-  "name": "{{ cookiecutter.npm_package_name}}",
+  "private": true,
+  "name": "{{ cookiecutter.extension_name }}",
   "version": "0.0.1",
   "description": "{{ cookiecutter.project_short_description }}",
   "author": "{{ cookiecutter.author_name }}",
