@@ -5,10 +5,6 @@
   "description": "{{ cookiecutter.project_short_description }}",
   "author": "{{ cookiecutter.author_name }}",
   "main": "lib/plugin.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/{{ cookiecutter.github_user_name }}/{{ cookiecutter.github_project_name }}.git"
-  },
   "keywords": [
     "jupyter",
     "jupyterlab"
