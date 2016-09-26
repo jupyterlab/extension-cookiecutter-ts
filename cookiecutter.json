@@ -1,8 +1,6 @@
 {
     "author_name": "",
     "author_email": "",
-    "github_project_name": "jupyterlab_extensionexample",
-    "github_user_name": "",
-    "extension_name": "{{ cookiecutter.github_project_name | replace('-', '_') }}",
+    "extension_name": "{{ jupyterlab_myextension }}",
     "project_short_description": "A Custom JupyterLab Extension"
 }
