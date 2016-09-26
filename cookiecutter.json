@@ -1,6 +1,6 @@
 {
     "author_name": "",
     "author_email": "",
-    "extension_name": "{{ jupyterlab_myextension }}",
+    "extension_name": "jupyterlab_myextension",
     "project_short_description": "A Custom JupyterLab Extension"
 }
