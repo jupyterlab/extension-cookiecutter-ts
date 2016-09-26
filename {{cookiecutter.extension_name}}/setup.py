@@ -15,10 +15,10 @@ if 'develop' in sys.argv or any(a.startswith('bdist') for a in sys.argv):
 # are update to date. In the future we might do a more expensive check
 # involving file hashes, but only on sdist and bdist builds.
 if not os.path.exists('node_modules'):
-    raise NodeModulesMissing("Before Python package can be installed, "
-                             "JavaScript components must be build using npm. "
+    raise NodeModulesMissing("Before Python package can be installed or built, "
+                             "JavaScript components must be built using npm. "
                              "Run the following and then retry: "
-                             "\nnpm install\nnpm run build")
+                             "\nnpm install")
 
 setup_args = dict(
     name                 = '{{ cookiecutter.extension_name }}',
