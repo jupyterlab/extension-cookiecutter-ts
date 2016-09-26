@@ -1,10 +1,10 @@
 {
     "author_name": "",
     "author_email": "",
-    "github_project_name": "jupyterlab-extension-example",
-    "github_organization_name": "jupyter",
-    "python_package_name": "jupyterlab_extension_example",
-    "npm_package_name": "jupyterlab-extension-example",
-    "extension_name": "jupyterlab-extension-example",
-    "project_short_description": "A Custom Jupyter Lab Extension Library"
+    "github_project_name": "jupyterlab_extension_example",
+    "github_user_name": "",
+    "extension_name": "{{ cookiecutter.github_project_name | replace('-', '_') }}",
+    "python_package_name": "{{ cookiecutter.extension_name }}",
+    "npm_package_name": "{{ cookiecutter.extension_name }}",
+    "project_short_description": "A Custom JupyterLab Extension"
 }
