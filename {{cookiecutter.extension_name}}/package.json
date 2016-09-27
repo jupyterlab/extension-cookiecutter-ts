@@ -10,12 +10,19 @@
     "jupyterlab"
   ],
   "scripts": {
-    "build": "node build_extension.js",
-    "clean": "rimraf {{ cookiecutter.extension_name }}/static",
+    "build:src": "tsc --project src && node scripts/copyfiles.js",
+    "build:extension": "node scripts/build_extension.js",
+    "build": "npm run build:src && npm run build:extension",
+    "clean": "rimraf lib && rimraf {{ cookiecutter.extension_name }}/static",
     "prepublish": "npm run build"
   },
+  "dependencies": {
+    "jupyterlab": "^0.3.0"
+  },
   "devDependencies": {
+    "fs-extra": "^0.30.0",
     "rimraf": "^2.5.4",
-    "jupyterlab-extension-builder": "^0.6.2"
+    "jupyterlab-extension-builder": "^0.6.2",
+    "typescript": "^2.0.3"
   }
 }
