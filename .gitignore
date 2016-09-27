@@ -1,0 +1,3 @@
+node_modules/
+lib/
+{{ cookiecutter.extension_name }}/static/
