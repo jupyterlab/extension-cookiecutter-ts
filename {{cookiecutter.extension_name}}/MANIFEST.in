@@ -1,0 +1,3 @@
+graft {{ cookiecutter.extension_name }}/static
+graft src
+include package.json
