@@ -22,7 +22,7 @@
   "devDependencies": {
     "fs-extra": "^0.30.0",
     "rimraf": "^2.5.4",
-    "jupyterlab-extension-builder": "^0.6.2",
+    "@jupyterlab/extension-builder": "^0.6.2",
     "typescript": "^2.0.3"
   }
 }
