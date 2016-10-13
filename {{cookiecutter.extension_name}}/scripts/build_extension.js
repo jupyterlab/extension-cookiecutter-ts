@@ -1,4 +1,4 @@
-var buildExtension = require('jupyterlab-extension-builder').buildExtension;
+var buildExtension = require('@jupyterlab/extension-builder').buildExtension;
 
 buildExtension({
         name: '{{ cookiecutter.extension_name }}',
