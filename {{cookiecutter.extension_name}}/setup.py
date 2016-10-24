@@ -26,6 +26,7 @@ setup_args = dict(
     packages             = ['{{ cookiecutter.extension_name }}'],
     author               = '{{ cookiecutter.author_name }}',
     author_email         = '{{ cookiecutter.author_email }}',
+    keywords             = ['jupyterlab', 'jupyterlab extension'],
     include_package_data = True,
     install_requires = [
         'jupyterlab>=0.3.0',
