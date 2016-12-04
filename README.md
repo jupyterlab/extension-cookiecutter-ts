@@ -2,7 +2,7 @@
 
 A [cookiecutter](https://github.com/audreyr/cookiecutter) template for creating
 a JupyterLab extension in TypeScript. (See also
-[jupyterlab-extension-cookiecutter-js](https://github.com/jupyter/jupyter-extension-cookiecutter-js)
+[extension-cookiecutter-js](https://github.com/jupyterlab/extension-cookiecutter-js)
 for an extension in CommonJS.)
 
 ## Use the template to create package
