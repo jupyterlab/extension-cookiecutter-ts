@@ -17,12 +17,12 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
-    "jupyterlab": "^0.3.0"
+    "jupyterlab": "^0.11.2"
   },
   "devDependencies": {
     "fs-extra": "^0.30.0",
     "rimraf": "^2.5.4",
-    "@jupyterlab/extension-builder": "^0.7.0",
+    "@jupyterlab/extension-builder": "^0.10.0",
     "typescript": "^2.0.3"
   }
 }
