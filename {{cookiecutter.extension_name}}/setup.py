@@ -11,7 +11,7 @@ class NodeModulesMissing(Exception):
 if 'develop' in sys.argv or any(a.startswith('bdist') for a in sys.argv):
     import setuptools
 
-# Ensure that js has been built. This does not guaruntee that the packages
+# Ensure that js has been built. This does not guarantee that the packages
 # are update to date. In the future we might do a more expensive check
 # involving file hashes, but only on sdist and bdist builds.
 if not os.path.exists('node_modules'):
