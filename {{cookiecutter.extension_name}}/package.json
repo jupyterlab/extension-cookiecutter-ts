@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "{{ cookiecutter.project_short_description }}",
   "author": "{{ cookiecutter.author_name }}",
-  "main": "lib/plugin.js",
+  "main": "lib/index.js",
   "keywords": [
     "jupyter",
     "jupyterlab"
