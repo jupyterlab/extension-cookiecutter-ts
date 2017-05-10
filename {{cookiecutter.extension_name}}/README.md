@@ -5,16 +5,12 @@
 
 ## Prerequisites
 
-* JupyterLab 0.3.0 or later
+* JupyterLab 0.21.0 or later
 
 ## Installation
 
-To install using pip:
-
 ```bash
-pip install {{ cookiecutter.extension_name }}
-jupyter labextension install --py --sys-prefix {{ cookiecutter.extension_name }}
-jupyter labextension enable --py --sys-prefix {{ cookiecutter.extension_name }}
+jupyter labextension unstall {{ cookiecutter.extension_name }}
 ```
 
 ## Development
@@ -23,14 +19,13 @@ For a development install (requires npm version 4 or later), do the following in
 
 ```bash
 npm install
-pip install -e .
-jupyter labextension install --symlink --py --sys-prefix {{ cookiecutter.extension_name }}
-jupyter labextension enable --py --sys-prefix {{ cookiecutter.extension_name }}
+jupyter labextension link .
 ```
 
-To rebuild the extension bundle:
+To rebuild the package and the JupyterLab app:
 
 ```bash
 npm run build
+jupyter lab build
 ```
 
