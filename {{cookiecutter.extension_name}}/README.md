@@ -10,7 +10,7 @@
 ## Installation
 
 ```bash
-jupyter labextension unstall {{ cookiecutter.extension_name }}
+jupyter labextension install {{ cookiecutter.extension_name }}
 ```
 
 ## Development
