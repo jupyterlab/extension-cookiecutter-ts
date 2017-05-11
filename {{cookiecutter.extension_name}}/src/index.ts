@@ -1,6 +1,6 @@
 import {
   JupyterLabPlugin
-} from 'jupyterlab/lib/application';
+} from '@jupyterlab/application';
 
 /**
  * Initialization data for the {{ cookiecutter.extension_name }} extension.
