@@ -23,6 +23,6 @@ cookiecutter https://github.com/jupyterlab/extension-cookiecutter-ts
 
 The ``src/`` directory of your new extension includes a very simple example of a working extension, written in TypeScript. Use this example as a guide to build your own extension.
 
-## Package names
+## Package name
 
 We suggest that simple extension names start with `jupyterlab_` and use underscores if needed to improve readability, such as `jupyterlab_myextension`.
