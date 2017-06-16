@@ -7,8 +7,8 @@ install:
 - conda config --set always_yes yes --set changeps1 no
 - conda update -q conda
 - conda info -a
-- conda install cookiecutter nodejs
-- pip install jupyterlab
+- conda install nodejs
+- pip install cookiecutter jupyterlab
 script:
 - cookiecutter . --no-input
 - jupyter labextension install jupyterlab_myextension
