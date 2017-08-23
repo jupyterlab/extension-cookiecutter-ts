@@ -20,7 +20,7 @@
     "extension": true
   },
   "dependencies": {
-    "@jupyterlab/application": "^0.9.0"
+    "@jupyterlab/application": "^0.10.0"
   },
   "devDependencies": {
     "rimraf": "^2.6.1",
