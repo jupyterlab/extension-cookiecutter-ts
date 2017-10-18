@@ -28,6 +28,7 @@ script:
 - cookiecutter . --no-input
 - cd jupyterlab_myextension
 - npm install
-- jupyter labextension install . --no-build
+- jupyter labextension install .
+- jupyter lab clean
 - jupyter labextension link .
 - python -m jupyterlab.selenium_check
