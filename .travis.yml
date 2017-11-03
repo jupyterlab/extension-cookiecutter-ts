@@ -32,3 +32,4 @@ script:
 - jupyter lab clean
 - jupyter labextension link .
 - python -m jupyterlab.selenium_check --NotebookApp.ip=0.0.0.0
+- echo 'hi'
