@@ -29,5 +29,5 @@ script:
 - cd jupyterlab_myextension
 - npm install
 - jupyter labextension install .
-- python -m jupyterlab.selenium_check --NotebookApp.ip=0.0.0.0
+- python -m jupyterlab.selenium_check --NotebookApp.ip=127.0.0.1
 - echo 'hi'
