@@ -31,4 +31,4 @@ script:
 - jupyter labextension install .
 - jupyter lab clean
 - jupyter labextension link .
-- python -m jupyterlab.selenium_check --NotebookApp.ip=127.0.0.1
+- python -m jupyterlab.selenium_check

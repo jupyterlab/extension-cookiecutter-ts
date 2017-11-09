@@ -11,7 +11,7 @@
   "scripts": {
     "build": "tsc",
     "clean": "rimraf lib",
-    "prepack": "npm run clean && npm run build",
+    "prepare": "npm run build",
     "watch": "tsc -w"
   },
   "files": [
@@ -22,7 +22,7 @@
     "extension": true
   },
   "dependencies": {
-    "@jupyterlab/application": "^0.11.0"
+    "@jupyterlab/application": "^0.12.0"
   },
   "devDependencies": {
     "rimraf": "^2.6.1",
