@@ -28,6 +28,7 @@ script:
 - cookiecutter . --no-input
 - cd jupyterlab_myextension
 - npm install
+- npm run build
 - jupyter labextension install .
 - jupyter lab clean
 - jupyter labextension link .
