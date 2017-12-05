@@ -7,9 +7,9 @@
     "jupyter",
     "jupyterlab"
   ],
-  "homepage": "{{repository}}",
+  "homepage": "{{ cookiecutter.repository }}",
   "bugs": {
-    "url": "{{repository}}/issues"
+    "url": "{{ cookiecutter.repository }}/issues"
   },
   "license": "BSD-3-Clause",
   "author": "{{ cookiecutter.author_name }}",
@@ -21,7 +21,7 @@
   "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "{{repository}}"
+    "url": "{{ cookiecutter.repository }}"
   },
   "scripts": {
     "build": "tsc",
