@@ -1,5 +1,5 @@
 import {
-  JupyterLabPlugin
+  JupyterLab, JupyterLabPlugin
 } from '@jupyterlab/application';
 
 import '../style/index.css';
@@ -11,7 +11,7 @@ import '../style/index.css';
 const extension: JupyterLabPlugin<void> = {
   id: '{{ cookiecutter.extension_name }}',
   autoStart: true,
-  activate: (app) => {
+  activate: (app: JupyterLab) => {
     console.log('JupyterLab extension {{ cookiecutter.extension_name }} is activated!');
   }
 };
