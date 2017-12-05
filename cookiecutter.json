@@ -1,6 +1,6 @@
 {
     "author_name": "",
-    "author_email": "",
     "extension_name": "jupyterlab_myextension",
-    "project_short_description": "A JupyterLab extension."
+    "project_short_description": "A JupyterLab extension.",
+    "repository": "https://github.com/my_name/jupyterlab_myextension"
 }
