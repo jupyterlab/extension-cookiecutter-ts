@@ -19,6 +19,7 @@ For a development install (requires npm version 4 or later), do the following in
 
 ```bash
 npm install
+npm run build
 jupyter labextension link .
 ```
 
