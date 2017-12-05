@@ -21,7 +21,7 @@
   "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "{{ cookiecutter.repository }}"
+    "url": "{{ cookiecutter.repository }}.git"
   },
   "scripts": {
     "build": "tsc",
