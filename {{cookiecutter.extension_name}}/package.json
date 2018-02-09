@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "description": "{{ cookiecutter.project_short_description }}",
   "keywords": [
-    "extension",
     "jupyter",
-    "jupyterlab"
+    "jupyterlab",
+    "jupyterlab-extension"
   ],
   "homepage": "{{ cookiecutter.repository }}",
   "bugs": {
