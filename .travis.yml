@@ -23,7 +23,7 @@ install:
 - conda info -a
 - conda install nodejs notebook
 - pip install selenium cookiecutter
-- pip install --pre jupyterlab
+- pip install jupyterlab
 script:
 - cookiecutter . --no-input
 - cd jupyterlab_myextension
