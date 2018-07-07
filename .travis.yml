@@ -26,9 +26,8 @@ install:
 - pip install jupyterlab
 script:
 - cookiecutter . --no-input
-- cd jupyterlab_myextension
+- cd myextension
 - npm install
-- npm run build
 - jupyter labextension install .
 - jupyter lab clean
 - jupyter labextension link .
