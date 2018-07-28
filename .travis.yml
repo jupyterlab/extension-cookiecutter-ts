@@ -31,4 +31,4 @@ script:
 - jupyter labextension install .
 - jupyter lab clean
 - jupyter labextension link .
-- python -m jupyterlab.selenium_check
+- python -m jupyterlab.browser_check
