@@ -9,7 +9,7 @@ install:
 - pip install -U -q pip
 - pip install notebook
 - pip install cookiecutter
-- pip install --pre jupyterlab
+- pip install jupyterlab==0.34.0rc2
 script:
 - cookiecutter . --no-input
 - cd myextension
