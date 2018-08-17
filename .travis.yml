@@ -6,7 +6,7 @@ cache:
   directories:
     - $HOME/.npm
 install:
-- pip install -U -q pip
+- curl https://bootstrap.pypa.io/get-pip.py | python
 - pip install notebook
 - pip install cookiecutter
 - pip install jupyterlab==0.34.0rc2
