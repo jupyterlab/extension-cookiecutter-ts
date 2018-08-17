@@ -8,10 +8,10 @@ cache:
   directories:
     - $HOME/.npm
 install:
-- python -m pip install -U pip
+- python -m pip install -q -U pip
 - pip install notebook
 - pip install cookiecutter
-- pip install --pre jupyterlab
+- pip install --pre -U jupyterlab
 script:
 - cookiecutter . --no-input
 - cd myextension
