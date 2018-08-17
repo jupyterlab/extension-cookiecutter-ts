@@ -1,4 +1,6 @@
 language: python
+python:
+  - "3.6"
 sudo: false
 dist: trusty
 cache:
@@ -6,7 +8,7 @@ cache:
   directories:
     - $HOME/.npm
 install:
-- curl https://bootstrap.pypa.io/get-pip.py | python
+- python -m pip install -U pip
 - pip install notebook
 - pip install cookiecutter
 - pip install jupyterlab==0.34.0rc2
