@@ -1,4 +1,6 @@
 language: python
+python:
+  - "3.6"
 sudo: false
 dist: trusty
 cache:
@@ -6,10 +8,10 @@ cache:
   directories:
     - $HOME/.npm
 install:
-- pip install -U -q pip
+- python -m pip install -q -U pip
 - pip install notebook
 - pip install cookiecutter
-- pip install jupyterlab
+- pip install --pre -U jupyterlab
 script:
 - cookiecutter . --no-input
 - cd myextension
