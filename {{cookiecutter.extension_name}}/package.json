@@ -30,11 +30,11 @@
     "prepare": "npm run clean && npm run build"
   },
   "dependencies": {
-    "@jupyterlab/application": "^0.18.0"
+    "@jupyterlab/application": "^0.19.0"
   },
   "devDependencies": {
     "rimraf": "^2.6.1",
-    "typescript": "~2.9.2"
+    "typescript": "~3.1.1"
   },
   "jupyterlab": {
     "extension": true
