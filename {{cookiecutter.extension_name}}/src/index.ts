@@ -1,5 +1,5 @@
 import {
-  JupyterLab, JupyterLabPlugin
+  JupyterFrontEnd, JupyterFrontEndPlugin
 } from '@jupyterlab/application';
 
 import '../style/index.css';
@@ -8,10 +8,10 @@ import '../style/index.css';
 /**
  * Initialization data for the {{ cookiecutter.extension_name }} extension.
  */
-const extension: JupyterLabPlugin<void> = {
+const extension: JupyterFrontEndPlugin<void> = {
   id: '{{ cookiecutter.extension_name }}',
   autoStart: true,
-  activate: (app: JupyterLab) => {
+  activate: (app: JupyterFrontEnd) => {
     console.log('JupyterLab extension {{ cookiecutter.extension_name }} is activated!');
   }
 };
