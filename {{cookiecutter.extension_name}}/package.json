@@ -37,6 +37,9 @@
     "rimraf": "^2.6.1",
     "typescript": "~3.5.2"
   },
+  "sideEffects": [
+    "style/*.css"
+  ],
   "jupyterlab": {
     "extension": true
   }
