@@ -1,6 +1,8 @@
 language: python
 python:
   - "3.6"
+node_js:
+  - "12"
 sudo: false
 dist: trusty
 cache:
@@ -11,7 +13,7 @@ install:
 - python -m pip install -q -U pip
 - pip install notebook
 - pip install cookiecutter
-- pip install --pre -U jupyterlab
+- pip install jupyterlab
 script:
 - cookiecutter . --no-input
 - cd myextension
