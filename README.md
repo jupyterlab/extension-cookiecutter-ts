@@ -1,5 +1,7 @@
 # JupyterLab extension-cookiecutter-ts
 
+![Github Actions Status](https://github.com/jupyterlab/extension-cookiecutter-ts/workflows/CI/badge.svg)
+
 A [cookiecutter](https://github.com/audreyr/cookiecutter) template for creating
 a JupyterLab extension in TypeScript. (See also
 [extension-cookiecutter-js](https://github.com/jupyterlab/extension-cookiecutter-js)
