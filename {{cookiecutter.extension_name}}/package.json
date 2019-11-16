@@ -26,8 +26,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "clean": "rimraf lib && rimraf tsconfig.tsbuildinfo",
-    "prepare": "npm run clean && npm run build",
+    "clean": "rimraf lib tsconfig.tsbuildinfo",
+    "prepare": "jlpm run clean && jlpm run build",
     "watch": "tsc -w"
   },
   "dependencies": {
