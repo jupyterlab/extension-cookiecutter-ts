@@ -1,5 +1,7 @@
 # {{ cookiecutter.extension_name }}
 
+![Github Actions Status]({{ cookiecutter.repository }}/workflows/Build/badge.svg)
+
 {{ cookiecutter.project_short_description }}
 
 
