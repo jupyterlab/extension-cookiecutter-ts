@@ -24,7 +24,7 @@ cookiecutter https://github.com/jupyterlab/extension-cookiecutter-ts
 If you'd like to generate a package for a specific JupyterLab release, use the `--checkout` option and give a tag or commit from this repository.
 
 ```
-cookiecutter https://github.com/jupyterlab/extension-cookiecutter-ts --checkout v0.34
+cookiecutter https://github.com/jupyterlab/extension-cookiecutter-ts --checkout v2.0
 ```
 
 ## A simple example
