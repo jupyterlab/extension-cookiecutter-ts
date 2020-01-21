@@ -99,23 +99,23 @@ def run_test(app, func):
 
     app.log.addHandler(handler)
     pool = ThreadPoolExecutor()
-    future = pool.submit(func, url)
+    future = pool.submit(func, url, app.log)
     IOLoop.current().add_future(future, finished)
 
 
-def run_browser(url):
+def run_browser(url, log):
     """Run the browser test and return an exit code.
     """
     target = osp.join(get_app_dir(), 'browser_test')
     if not osp.exists(osp.join(target, 'node_modules')):
         os.makedirs(target)
-        print('***jlpm running')
+        log.info('***jlpm running')
         subprocess.call(["jlpm"], cwd=target)
-        print('***adding puppeteer')
+        plog.info('***adding puppeteer')
         subprocess.call(["jlpm", "add", "puppeteer"], cwd=target)
-    print('***chrome test copying')
+    log.info('***chrome test copying')
     shutil.copy(osp.join(here, 'chrome-test.js'), osp.join(target, 'chrome-test.js'))
-    print('***chrome test running')
+    log.info('***chrome test running')
     return subprocess.check_call(["node", "chrome-test.js", url], cwd=target)
 
 
@@ -140,6 +140,7 @@ class BrowserApp(LabApp):
 
 
 if __name__ == '__main__':
+    print('***local browser check')
     skip_option = "--no-chrome-test"
     if skip_option in sys.argv:
         BrowserApp.test_browser = False
