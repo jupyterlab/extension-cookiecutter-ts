@@ -11,6 +11,7 @@ import os
 import shutil
 import sys
 import subprocess
+from tempfile import TemporaryDirectory
 
 from tornado.ioloop import IOLoop
 from notebook.notebookapp import flags, aliases
@@ -109,10 +110,12 @@ def run_browser(url, log):
     target = osp.join(get_app_dir(), 'browser_test')
     if not osp.exists(osp.join(target, 'node_modules')):
         os.makedirs(target)
-        log.info('***jlpm running in %s', target)
-        subprocess.call(["jlpm", "--no-lockfile"], cwd=target)
-        log.info('***adding puppeteer')
-        subprocess.call(["jlpm", "add", "puppeteer"], cwd=target)
+        with TemporaryDirectory() as tdname:
+          log.info('***jlpm running in %s', tdname)
+          subprocess.call(["jlpm"], cwd=tdname)
+          log.info('***adding puppeteer')
+          subprocess.call(["jlpm", "add", "puppeteer"], cwd=tdname)
+          shutil.copytree(osp.join(tdname, 'node_modules'), osp.join(target, 'node_modules'))
     log.info('***chrome test copying')
     shutil.copy(osp.join(here, 'chrome-test.js'), osp.join(target, 'chrome-test.js'))
     log.info('***chrome test running')
