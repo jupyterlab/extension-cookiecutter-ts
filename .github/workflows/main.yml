@@ -30,4 +30,6 @@ jobs:
         python -m pip install jupyterlab==1.2.4
     - name: Run tests
       run: |
-        python browser_check.py
+        cd /opt/hostedtoolcache/Python/3.7.6/x64/share/jupyter/lab/browser_test
+        ls
+        jlpm
