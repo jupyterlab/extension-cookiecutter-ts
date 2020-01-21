@@ -109,7 +109,7 @@ def run_browser(url, log):
     target = osp.join(get_app_dir(), 'browser_test')
     if not osp.exists(osp.join(target, 'node_modules')):
         os.makedirs(target)
-        log.info('***jlpm running')
+        log.info('***jlpm running in %s', target)
         subprocess.call(["jlpm"], cwd=target)
         log.info('***adding puppeteer')
         subprocess.call(["jlpm", "add", "puppeteer"], cwd=target)
