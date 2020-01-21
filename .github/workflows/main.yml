@@ -35,4 +35,5 @@ jobs:
         cd myextension
         jlpm && jlpm run build
         jupyter labextension install .
+        cd ..
         python browser_check.py
