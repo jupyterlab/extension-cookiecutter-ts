@@ -30,4 +30,4 @@ jobs:
         python -m pip install jupyterlab==1.2.4
     - name: Run tests
       run: |
-        python browser_check.py
+        jlpm
