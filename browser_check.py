@@ -110,9 +110,9 @@ def run_browser(url, log):
     if not osp.exists(osp.join(target, 'node_modules')):
         os.makedirs(target)
         log.info('***jlpm running')
-        subprocess.call(["yarn"], cwd=target)
+        #subprocess.call(["yarn", "install"], cwd=target)
         log.info('***adding puppeteer')
-        subprocess.call(["yarn", "add", "puppeteer"], cwd=target)
+        subprocess.call(["jlpm", "add", "puppeteer"], cwd=target)
     log.info('***chrome test copying')
     shutil.copy(osp.join(here, 'chrome-test.js'), osp.join(target, 'chrome-test.js'))
     log.info('***chrome test running')
