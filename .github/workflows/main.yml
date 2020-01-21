@@ -36,4 +36,5 @@ jobs:
         jlpm && jlpm run build
         jupyter labextension install .
         cd ..
+        conda install -y yarn
         python browser_check.py
