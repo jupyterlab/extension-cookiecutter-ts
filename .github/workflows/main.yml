@@ -31,7 +31,7 @@ jobs:
     - name: Run tests
       run: |
         mkdir -p /opt/hostedtoolcache/Python/3.7.6/x64/share/jupyter/lab/browser_test
-        cd /opt/hostedtoolcache/Python/3.7.6/x64/share/jupyter/lab/browser_test
+        pushd /opt/hostedtoolcache/Python/3.7.6/x64/share/jupyter/lab/browser_test
         ls
-        conda install -c conda-forge yarn
-        yarn
+        popd
+        jlpm
