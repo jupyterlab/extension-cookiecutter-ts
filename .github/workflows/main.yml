@@ -32,6 +32,7 @@ jobs:
     - name: Run tests
       run: |
         cookiecutter . --no-input
+        pip install jupyterlab==1.2.4
         cd myextension
         jlpm && jlpm run build
         jupyter labextension install .
