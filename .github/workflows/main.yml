@@ -37,4 +37,5 @@ jobs:
         cd temp
         yarn
         cd /opt/hostedtoolcache/Python/3.7.6/x64/
-        yarn --verbose --no-lockfile
+        yarn config get registry
+        yarn
