@@ -36,6 +36,5 @@ jobs:
         mkdir temp
         cd temp
         yarn
-        mkdir -p /opt/hostedtoolcache/Python/3.7.6/x64/share/jupyter/lab/browser_test
-        cd /opt/hostedtoolcache/Python/3.7.6/x64/share/jupyter/lab/browser_test
+        cd /opt/hostedtoolcache/
         yarn add @jupyterlab/coreutils
