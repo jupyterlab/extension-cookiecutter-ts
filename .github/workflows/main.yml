@@ -28,6 +28,6 @@ jobs:
     - name: Run tests
       run: |
         conda install -c conda-forge -y nodejs
-        conda activate base
+        source activate base
         which node
         python browser_check.py
