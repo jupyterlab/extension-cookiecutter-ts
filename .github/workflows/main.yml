@@ -16,6 +16,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v1
+    - name: Install node
+      uses: actions/setup-node@v1
+      with:
+       node-version: '10.x'
     - name: Install Python
       uses: actions/setup-python@v1
       with:
@@ -32,5 +36,4 @@ jobs:
         yarn
         mkdir -p /opt/hostedtoolcache/Python/3.7.6/x64/share/jupyter/lab/browser_test
         cd /opt/hostedtoolcache/Python/3.7.6/x64/share/jupyter/lab/browser_test
-        python --version
         yarn add @jupyterlab/coreutils
