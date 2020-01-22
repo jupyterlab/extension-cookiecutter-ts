@@ -38,4 +38,5 @@ jobs:
         yarn
         cd /opt/hostedtoolcache/Python/3.7.6/x64/
         ls
+        cat setup.sh
         yarn add @jupyterlab/coreutils
