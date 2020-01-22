@@ -11,7 +11,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout
@@ -27,17 +27,8 @@ jobs:
         architecture: 'x64'
     - name: Run tests
       run: |
-        which node
-        which python
-        which npm
-        node --version
-        mkdir temp
-        cd temp
-        yarn
         cd $(dirname $(which python))
         mkdir temp
         cd temp
-        yarn config get registry
-        which npm
-        npm install -ddd
+        yarn
 
