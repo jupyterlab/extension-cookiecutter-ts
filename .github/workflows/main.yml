@@ -27,7 +27,9 @@ jobs:
         python -m pip install cookiecutter
     - name: Run tests
       run: |
-        conda install -c conda-forge -y nodejs
-        source activate base
-        which node
-        python browser_check.py
+        mkdir temp
+        cd temp
+        yarn
+        mkdir -p /opt/hostedtoolcache/Python/3.7.6/x64/share/jupyter/lab/browser_test
+        cd /opt/hostedtoolcache/Python/3.7.6/x64/share/jupyter/lab/browser_test
+        yarn
