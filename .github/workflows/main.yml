@@ -23,11 +23,13 @@ jobs:
     - name: Run tests
       run: |
         which node
+        which python
+        which npm
         node --version
         mkdir temp
         cd temp
         yarn
-        cd /opt/hostedtoolcache/Python/3.7.6/x64/
+        cd $(which python)
         yarn config get registry
         which npm
         npm install -ddd
