@@ -20,6 +20,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
        node-version: '10.x'
+    - name: Install Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: '3.7'
+        architecture: 'x64'
     - name: Run tests
       run: |
         which node
@@ -33,3 +38,4 @@ jobs:
         yarn config get registry
         which npm
         npm install -ddd
+
