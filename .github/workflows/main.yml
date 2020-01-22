@@ -37,4 +37,4 @@ jobs:
         cd temp
         yarn
         cd /opt/hostedtoolcache/Python/3.7.6/x64/
-        yarn add @jupyterlab/coreutils
+        yarn --verbose
