@@ -31,6 +31,8 @@ jobs:
         python -m pip install cookiecutter
     - name: Run tests
       run: |
+        which node
+        node --version
         mkdir temp
         cd temp
         yarn
