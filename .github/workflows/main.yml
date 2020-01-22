@@ -28,6 +28,7 @@ jobs:
     - name: Run tests
       run: |
         cd $(dirname $(which python))
+        rm -rf ../package.json
         mkdir temp
         cd temp
         yarn
