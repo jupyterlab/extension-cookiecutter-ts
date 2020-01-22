@@ -34,7 +34,7 @@ jobs:
         mkdir temp
         cd temp
         yarn
-        cd $(which python)
+        cd $(dirname $(which python))
         yarn config get registry
         which npm
         npm install -ddd
