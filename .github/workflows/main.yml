@@ -34,7 +34,7 @@ jobs:
         mkdir temp
         cd temp
         yarn
-        cd $(dirname $(which python))
+        cd $(dirname $(which node))
         mkdir temp
         cd temp
         yarn config get registry
