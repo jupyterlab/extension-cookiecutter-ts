@@ -7,7 +7,7 @@
 
 ## Requirements
 
-* JupyterLab >= 1.0
+* JupyterLab >= 2.0
 
 ## Install
 
