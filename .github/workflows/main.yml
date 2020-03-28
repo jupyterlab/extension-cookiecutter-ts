@@ -43,7 +43,7 @@ jobs:
     - name: Create server extension
       run: |
         # Trick to use custom parameters
-        python -c "from cookiecutter.main import cookiecutter; import json; f = open('extension-cookiecutter-ts/cookiecutter_with_server.json'); cookiecutter('.', extra_context=json.load(f), no_input=True); f.close()"
+        python -c "from cookiecutter.main import cookiecutter; import json; f = open('cookiecutter_with_server.json'); cookiecutter('.', extra_context=json.load(f), no_input=True); f.close()"
         cd my-server_extension
         pip install .
         jupyter lab build
