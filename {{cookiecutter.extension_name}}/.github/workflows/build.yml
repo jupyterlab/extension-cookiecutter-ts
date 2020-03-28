@@ -27,6 +27,12 @@ jobs:
       run: |
         jlpm
         jlpm run eslint:check
-        jlpm run build
+{% if cookiecutter.has_server_extension.lower().startswith('y') %}
+        pip install .
+        jupyter lab build
+        jupyter serverextension list
+        jupyter labextension list
+{% else %}
         jupyter labextension install .
+{% endif %}
         python -m jupyterlab.browser_check
