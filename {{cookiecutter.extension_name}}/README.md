@@ -16,7 +16,7 @@ for the frontend extension.
 
 ## Install
 {% if cookiecutter.has_server_extension.lower().startswith('y') %}
-Note: You will need NodeJS to installed the extension.
+Note: You will need NodeJS to install the extension.
 
 ```bash
 pip install {{ cookiecutter.extension_name|replace("-", "_") }}
@@ -25,14 +25,14 @@ jupyter lab build
 
 ## Troubleshoot
 
-If you are see the frontend extension but it is not working, check
+If you are seeing the frontend extension but it is not working, check
 that the server extension is enabled:
 
 ```bash
 jupyter serverextension list
 ```
 
-If the server extension is installed and enabled but your not seeing
+If the server extension is installed and enabled but you are not seeing
 the frontend, check the frontend is installed:
 
 ```bash

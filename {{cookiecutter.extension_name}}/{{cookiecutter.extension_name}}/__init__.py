@@ -4,16 +4,17 @@ from .handlers import setup_handlers
 
 def _jupyter_server_extension_paths():
     return [{
-        'module': '{{ cookiecutter.extension_name|replace("-", "_") }}'
+        "module": "{{ cookiecutter.extension_name|replace("-", "_") }}"
     }]
 
 
-def load_jupyter_server_extension(nb_app):
+def load_jupyter_server_extension(lab_app):
     """Registers the API handler to receive HTTP requests from the frontend extension.
+
     Parameters
     ----------
-    nb_app: notebook.notebookapp.NotebookApp
-        Notebook application instance
+    lab_app: jupyterlab.labapp.LabApp
+        JupyterLab application instance
     """
-    setup_handlers(nb_app.web_app)
-    nb_app.log.info(f'Registered HelloWorld extension at URL path /{{ cookiecutter.extension_name }}')
+    setup_handlers(lab_app.web_app)
+    lab_app.log.info("Registered HelloWorld extension at URL path /{{ cookiecutter.extension_name }}")

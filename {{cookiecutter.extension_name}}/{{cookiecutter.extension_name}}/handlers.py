@@ -11,14 +11,14 @@ class RouteHandler(APIHandler):
     @tornado.web.authenticated
     def get(self):
         self.finish(json.dumps({
-            'data': 'This is /{{ cookiecutter.extension_name }}/get_example endpoint!'
+            "data": "This is /{{ cookiecutter.extension_name }}/get_example endpoint!"
         }))
 
 
 def setup_handlers(web_app):
-    host_pattern = '.*$'
+    host_pattern = ".*$"
     
-    base_url = web_app.settings['base_url']
-    route_pattern = url_path_join(base_url, '{{ cookiecutter.extension_name }}', 'get_example')
+    base_url = web_app.settings["base_url"]
+    route_pattern = url_path_join(base_url, "{{ cookiecutter.extension_name }}", "get_example")
     handlers = [(route_pattern, RouteHandler)]
     web_app.add_handlers(host_pattern, handlers)

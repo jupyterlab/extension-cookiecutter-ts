@@ -3,7 +3,7 @@ Setup Module to setup Python Handlers for the {{ cookiecutter.extension_name }} 
 """
 import os
 
-from setupbase import (
+from jupyter_packaging import (
     create_cmdclass, install_npm, ensure_targets,
     combine_commands, ensure_python, get_version,
 )
@@ -15,7 +15,7 @@ HERE = os.path.abspath(os.path.dirname(__file__))
 name="{{ cookiecutter.extension_name|replace("-", "_") }}"
 
 # Ensure a valid python version
-ensure_python(">=3.6")
+ensure_python(">=3.5")
 
 # Get our version
 version = get_version(os.path.join(name, "_version.py"))
@@ -74,6 +74,7 @@ setup_args = dict(
         "License :: OSI Approved :: BSD License",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
@@ -82,5 +83,5 @@ setup_args = dict(
 )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     setuptools.setup(**setup_args)
