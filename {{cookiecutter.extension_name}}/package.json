@@ -1,5 +1,5 @@
 {
-  "name": "{{ cookiecutter.extension_name }}",
+  "name": "{{ cookiecutter.extension_name|replace("_", "-") }}",
   "version": "0.1.0",
   "description": "{{ cookiecutter.project_short_description }}",
   "keywords": [
@@ -25,15 +25,29 @@
     "url": "{{ cookiecutter.repository }}.git"
   },
   "scripts": {
+{% if cookiecutter.has_server_extension.lower().startswith('y') %}
+    "build": "jlpm run build:lib",
+    "build:labextension": "cd {{ cookiecutter.extension_name|replace("-", "_") }} && rimraf labextension && mkdirp labextension && cd labextension && npm pack ../..",
+    "build:lib": "tsc",
+    "build:all": "jlpm run build:labextension",
+    "clean": "jlpm run clean:lib",
+    "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
+    "clean:labextension": "rimraf {{ cookiecutter.extension_name|replace("-", "_") }}/labextension",
+    "clean:all": "jlpm run clean:lib && jlpm run clean:labextension",
+{% else %}
     "build": "tsc",
     "clean": "rimraf lib tsconfig.tsbuildinfo",
+{% endif %}
     "eslint": "eslint . --ext .ts,.tsx --fix",
     "eslint:check": "eslint . --ext .ts,.tsx",
     "prepare": "jlpm run clean && jlpm run build",
     "watch": "tsc -w"
   },
   "dependencies": {
-    "@jupyterlab/application": "^2.0.0"
+    "@jupyterlab/application": "^2.0.0"{% if cookiecutter.has_server_extension.lower().startswith('y') %},
+    "@jupyterlab/coreutils": "^4.0.0",
+    "@jupyterlab/services": "^5.0.0"
+{% endif %}
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.25.0",
@@ -41,6 +55,9 @@
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-prettier": "^3.1.2",
+{% if cookiecutter.has_server_extension.lower().startswith('y') %}
+    "mkdirp": "^0.5.1",
+{% endif %}
     "prettier": "1.16.4",
     "rimraf": "^2.6.1",
     "typescript": "~3.7.0"
@@ -49,6 +66,18 @@
     "style/*.css"
   ],
   "jupyterlab": {
+{% if cookiecutter.has_server_extension.lower().startswith('y') %}
+    "discovery": {
+        "server": {
+          "managers": [
+            "pip"
+          ],
+          "base": {
+            "name": "{{ cookiecutter.extension_name|replace("-", "_") }}"
+          }
+        }
+      },
+{% endif %}
     "extension": true
   }
 }
