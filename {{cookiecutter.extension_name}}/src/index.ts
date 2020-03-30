@@ -1,7 +1,7 @@
 import {
-  JupyterFrontEnd, JupyterFrontEndPlugin
+  JupyterFrontEnd,
+  JupyterFrontEndPlugin
 } from '@jupyterlab/application';
-
 
 /**
  * Initialization data for the {{ cookiecutter.extension_name }} extension.
