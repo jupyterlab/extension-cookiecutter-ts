@@ -33,7 +33,9 @@ jobs:
       run: |
         cookiecutter . --no-input
         cd myextension
-        jlpm && jlpm run build
+        jlpm
+        jlpm run eslint:check
+        jlpm run build
         jupyter labextension install .
         jupyter lab clean
         jupyter labextension link .
