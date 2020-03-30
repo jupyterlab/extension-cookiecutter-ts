@@ -1,8 +1,8 @@
 import {
   JupyterFrontEnd,
   JupyterFrontEndPlugin
-} from '@jupyterlab/application';
-{% if cookiecutter.has_server_extension.lower().startswith('y') %}
+} from '@jupyterlab/application';{% if cookiecutter.has_server_extension.lower().startswith('y') %}
+
 import { requestAPI } from './{{ cookiecutter.extension_name|replace("_", "") }}';{% endif %}
 
 /**
@@ -12,8 +12,8 @@ const extension: JupyterFrontEndPlugin<void> = {
   id: '{{ cookiecutter.extension_name|replace("_", "-") }}',
   autoStart: true,
   activate: (app: JupyterFrontEnd) => {
-    console.log('JupyterLab extension {{ cookiecutter.extension_name|replace("_", "-") }} is activated!');
-{% if cookiecutter.has_server_extension.lower().startswith('y') %}
+    console.log('JupyterLab extension {{ cookiecutter.extension_name|replace("_", "-") }} is activated!');{% if cookiecutter.has_server_extension.lower().startswith('y') %}
+
     requestAPI<any>('get_example')
       .then(data => {
         console.log(data);
