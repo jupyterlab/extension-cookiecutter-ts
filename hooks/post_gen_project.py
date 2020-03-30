@@ -29,7 +29,7 @@ if __name__ == "__main__":
     else:
         if "-" in "{{ cookiecutter.extension_name }}":
             for f in (
-                "{{ cookiecutter.extension_name }}", 
+                "{{ cookiecutter.extension_name }}",
                 "jupyter-config/{{ cookiecutter.extension_name }}.json",
             ):
                 absolute_f = PROJECT_DIRECTORY / f
