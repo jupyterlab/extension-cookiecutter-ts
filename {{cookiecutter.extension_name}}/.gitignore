@@ -4,8 +4,8 @@ node_modules/
 *.egg-info/
 .ipynb_checkpoints
 *.tsbuildinfo
-
 {% if cookiecutter.has_server_extension.lower().startswith('y') %}
+*/labextension/*.tgz
 # Created by https://www.gitignore.io/api/python
 # Edit at https://www.gitignore.io/?templates=python
 
