@@ -91,8 +91,6 @@ jupyter lab --watch
 ### Uninstall
 
 ```bash
-{% if cookiecutter.has_server_extension.lower().startswith('y') %}
-pip uninstall {{ cookiecutter.extension_name|replace("-", "_") }}
-{% endif %}
+{% if cookiecutter.has_server_extension.lower().startswith('y') %}pip uninstall {{ cookiecutter.extension_name|replace("-", "_") }}{% endif %}
 jupyter labextension uninstall {{ cookiecutter.extension_name|replace("_", "-") }}
 ```

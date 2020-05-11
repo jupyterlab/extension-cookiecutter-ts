@@ -24,8 +24,7 @@
     "type": "git",
     "url": "{{ cookiecutter.repository }}.git"
   },
-  "scripts": {
-{% if cookiecutter.has_server_extension.lower().startswith('y') %}
+  "scripts": { {% if cookiecutter.has_server_extension.lower().startswith('y') %}
     "build": "jlpm run build:lib",
     "build:labextension": "cd {{ cookiecutter.extension_name|replace("-", "_") }} && rimraf labextension && mkdirp labextension && cd labextension && npm pack ../..",
     "build:lib": "tsc",
@@ -36,8 +35,7 @@
     "clean:all": "jlpm run clean:lib && jlpm run clean:labextension",
 {% else %}
     "build": "tsc",
-    "clean": "rimraf lib tsconfig.tsbuildinfo",
-{% endif %}
+    "clean": "rimraf lib tsconfig.tsbuildinfo", {% endif %}
     "eslint": "eslint . --ext .ts,.tsx --fix",
     "eslint:check": "eslint . --ext .ts,.tsx",
     "prepare": "jlpm run clean && jlpm run build",
@@ -54,10 +52,8 @@
     "@typescript-eslint/parser": "^2.25.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
-    "eslint-plugin-prettier": "^3.1.2",
-{% if cookiecutter.has_server_extension.lower().startswith('y') %}
-    "mkdirp": "^1.0.3",
-{% endif %}
+    "eslint-plugin-prettier": "^3.1.2", {% if cookiecutter.has_server_extension.lower().startswith('y') %}
+    "mkdirp": "^1.0.3", {% endif %}
     "prettier": "1.16.4",
     "rimraf": "^2.6.1",
     "typescript": "~3.7.0"
@@ -65,8 +61,7 @@
   "sideEffects": [
     "style/*.css"
   ],
-  "jupyterlab": {
-{% if cookiecutter.has_server_extension.lower().startswith('y') %}
+  "jupyterlab": { {% if cookiecutter.has_server_extension.lower().startswith('y') %}
     "discovery": {
         "server": {
           "managers": [
@@ -76,8 +71,7 @@
             "name": "{{ cookiecutter.extension_name|replace("-", "_") }}"
           }
         }
-      },
-{% endif %}
+    }, {% endif %}
     "extension": true
   }
 }
