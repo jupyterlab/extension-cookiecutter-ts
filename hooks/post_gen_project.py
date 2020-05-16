@@ -38,3 +38,6 @@ if __name__ == "__main__":
             for f in ("src/{{ cookiecutter.extension_name }}.ts", ):
                 absolute_f = PROJECT_DIRECTORY / f
                 absolute_f.rename(absolute_f.parent / absolute_f.name.replace("_", ""))
+
+    if not "{{ cookiecutter.has_binder }}".lower().startswith("y"):
+        remove_path(PROJECT_DIRECTORY / "binder")

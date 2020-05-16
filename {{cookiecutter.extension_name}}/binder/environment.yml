@@ -1,0 +1,25 @@
+# a mybinder.org-ready environment for demoing {{ cookiecutter.extension_name }}
+# this environment may also be used locally on Linux/MacOS/Windows, e.g.
+#
+#   conda env update --file binder/environment.yml
+#   conda activate {{ cookiecutter.extension_name }}-demo
+#
+name: {{ cookiecutter.extension_name }}-demo
+
+channels:
+  - conda-forge
+
+dependencies:
+  # runtime dependencies
+  - python >=3.8,<3.9.0a0
+  - jupyterlab >=2,<3.0.0a0
+  # labextension build dependencies
+  - nodejs >=12,<13.0.0a0
+  {%- if cookiecutter.has_server_extension.lower().startswith('y') %}
+  # serverextension build dependencies
+  - jupyter-packaging >=0.4.0,<0.5.0a0
+  - pip
+  - wheel
+  {% endif %}
+  # additional packages for demos, may require modifying `labextensions.txt`
+  # - ipywidgets
