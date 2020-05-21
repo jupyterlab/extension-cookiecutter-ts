@@ -68,7 +68,7 @@ The `jlpm` command is JupyterLab's pinned version of
 # Install server extension
 pip install -e .
 # Register server extension
-jupyter serverextension enable --py {{ cookiecutter.extension_name|replace("-", "_") }}
+jupyter serverextension enable --py {{ cookiecutter.extension_name|replace("-", "_") }} --sys-prefix
 {% endif %}
 # Install dependencies
 jlpm
