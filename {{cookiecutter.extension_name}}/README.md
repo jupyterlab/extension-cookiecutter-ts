@@ -75,7 +75,7 @@ jlpm
 # Build Typescript source
 jlpm build
 # Link your development version of the extension with JupyterLab
-jupyter labextension link .
+jupyter labextension install .
 # Rebuild Typescript source after making changes
 jlpm build
 # Rebuild JupyterLab after making any changes
@@ -90,6 +90,8 @@ jlpm watch
 # Run jupyterlab in watch mode in one terminal tab
 jupyter lab --watch
 ```
+
+Now every change will be built locally and bundled into JupyterLab. Be sure to refresh your browser page after saving file changes to reload the extension (note: you'll need to wait for webpack to finish, which can take 10s+ at times).
 
 ### Uninstall
 
