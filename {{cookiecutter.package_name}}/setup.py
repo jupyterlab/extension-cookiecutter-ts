@@ -20,11 +20,12 @@ ensure_python(">=3.5")
 # Get our version
 version = get_version(os.path.join(name, "_version.py"))
 
-lab_path = os.path.join(HERE, name, "labextension")
+lab_path = os.path.join(HERE, name, "static")
 
 # Representative files that should exist after a successful build
 jstargets = [
     os.path.join(HERE, "lib", "{{ cookiecutter.extension_name|replace("_", "") }}.js"),
+    os.path.join(HERE, name, "static", "package.orig.json"),
 ]
 
 package_data_spec = {
@@ -34,9 +35,11 @@ package_data_spec = {
 }
 
 data_files_spec = [
-    ("share/jupyter/lab/extensions", lab_path, "*.tgz"),
-    ("etc/jupyter/jupyter_notebook_config.d",
+    ("share/jupyter/labextensions/%s" % name, lab_path, "*.*"),
+    {%- if cookiecutter.has_server_extension == "y" -%}
+    ("etc/jupyter/jupyter_server_config.d",
      "jupyter-config", "{{ cookiecutter.extension_name|replace("-", "_") }}.json"),
+     {% endif %}
 ]
 
 cmdclass = create_cmdclass("jsdeps", 
@@ -63,7 +66,7 @@ setup_args = dict(
     cmdclass= cmdclass,
     packages=setuptools.find_packages(),
     install_requires=[
-        "jupyterlab~=2.0",
+        "jupyterlab~=3.0.0a13",
     ],
     zip_safe=False,
     include_package_data=True,

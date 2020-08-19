@@ -1,7 +1,0 @@
-{
-  "NotebookApp": {
-    "nbserver_extensions": {
-      "{{ cookiecutter.extension_name|replace("-", "_") }}": true
-    }
-  }
-}
