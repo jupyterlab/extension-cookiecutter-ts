@@ -22,7 +22,7 @@ from .handlers import setup_handlers
 
 def _jupyter_server_extension_paths():
     return [{
-        "module": "{{ cookiecutter.package_name|replace("-", "_") }}"
+        "module": "{{ cookiecutter.package_name }}"
     }]
 
 

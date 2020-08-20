@@ -1,5 +1,5 @@
 {
-  "name": "{{ cookiecutter.extension_name|replace("_", "-") }}",
+  "name": "{{ cookiecutter.extension_name }}",
   "version": "0.1.0",
   "description": "{{ cookiecutter.project_short_description }}",
   "keywords": [
@@ -31,7 +31,7 @@
     "build:all": "jlpm run build:lib && jlpm run build:labextension",
     "clean": "jlpm run clean:lib",
     "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
-    "clean:labextension": "rimraf {{ cookiecutter.extension_name|replace("-", "_") }}/static",
+    "clean:labextension": "rimraf {{ cookiecutter.package_name }}/static",
     "clean:all": "jlpm run clean:lib && jlpm run clean:labextension",
     "eslint": "eslint . --ext .ts,.tsx --fix",
     "eslint:check": "eslint . --ext .ts,.tsx",
@@ -69,7 +69,7 @@
             "pip"
           ],
           "base": {
-            "name": "{{ cookiecutter.extension_name|replace("-", "_") }}"
+            "name": "{{ cookiecutter.package_name }}"
           }
         }
     }, {% endif %}

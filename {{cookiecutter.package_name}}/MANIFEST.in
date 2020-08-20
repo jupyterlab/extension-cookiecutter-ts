@@ -3,13 +3,13 @@ include README.md
 include pyproject.toml
 
 {%- if cookiecutter.has_server_extension == "y" -%}
-include jupyter-config/{{ cookiecutter.package_name|replace("-", "_") }}.json
+include jupyter-config/{{ cookiecutter.package_name }}.json
 {% endif %}
 
 include package.json
 include ts*.json
 
-graft {{ cookiecutter.package_name|replace("-", "_") }}/static
+graft {{ cookiecutter.package_name }}/static
 
 # Javascript files
 graft src

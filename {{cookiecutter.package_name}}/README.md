@@ -8,8 +8,8 @@
 {{ cookiecutter.project_short_description }}
 
 {% if cookiecutter.has_server_extension.lower().startswith('y') %}
-This extension is composed of a Python package named `{{ cookiecutter.package_name|replace("-", "_") }}`
-for the server extension and a NPM package named `{{ cookiecutter.extension_name|replace("_", "-") }}`
+This extension is composed of a Python package named `{{ cookiecutter.package_name }}`
+for the server extension and a NPM package named `{{ cookiecutter.extension_name }}`
 for the frontend extension.
 {% endif %}
 
@@ -21,7 +21,7 @@ for the frontend extension.
 Note: You will need NodeJS to install the extension.
 
 ```bash
-pip install {{ cookiecutter.package_name|replace("-", "_") }}
+pip install {{ cookiecutter.package_name }}
 ```
 
 {% if cookiecutter.has_server_extension.lower().startswith('y') %}
@@ -75,6 +75,6 @@ Now every change will be built locally and bundled into JupyterLab. Be sure to r
 ### Uninstall
 
 ```bash
-pip uninstall {{ cookiecutter.package_name|replace("-", "_") }}
-jupyter labextension uninstall {{ cookiecutter.extension_name|replace("_", "-") }}
+pip uninstall {{ cookiecutter.package_name }}
+jupyter labextension uninstall {{ cookiecutter.extension_name }}
 ```
