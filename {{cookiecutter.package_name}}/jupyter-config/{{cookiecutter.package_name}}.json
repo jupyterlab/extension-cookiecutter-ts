@@ -1,7 +1,7 @@
 {
   "ServerApp": {
     "jpserver_extensions": {
-      "{{ cookiecutter.package_name }}": true
+      "{{ cookiecutter.python_name }}": true
     }
   }
 }

@@ -22,7 +22,7 @@ from .handlers import setup_handlers
 
 def _jupyter_server_extension_paths():
     return [{
-        "module": "{{ cookiecutter.package_name }}"
+        "module": "{{ cookiecutter.python_name }}"
     }]
 
 
@@ -35,5 +35,5 @@ def load_jupyter_server_extension(lab_app):
         JupyterLab application instance
     """
     setup_handlers(lab_app.web_app)
-    lab_app.log.info("Registered HelloWorld extension at URL path /{{ cookiecutter.package_name }}")
+    lab_app.log.info("Registered HelloWorld extension at URL path /{{ cookiecutter.python_name }}")
 {% endif %}

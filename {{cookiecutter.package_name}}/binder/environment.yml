@@ -1,10 +1,10 @@
-# a mybinder.org-ready environment for demoing {{ cookiecutter.package_name }}
+# a mybinder.org-ready environment for demoing {{ cookiecutter.python_name }}
 # this environment may also be used locally on Linux/MacOS/Windows, e.g.
 #
 #   conda env update --file binder/environment.yml
-#   conda activate {{ cookiecutter.package_name }}-demo
+#   conda activate {{ cookiecutter.python_name }}-demo
 #
-name: {{ cookiecutter.package_name }}-demo
+name: {{ cookiecutter.python_name }}-demo
 
 channels:
   - conda-forge

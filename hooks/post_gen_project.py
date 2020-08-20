@@ -18,7 +18,7 @@ if __name__ == "__main__":
 
     if not "{{ cookiecutter.has_server_extension }}".lower().startswith("y"):
         for f in (
-            "{{ cookiecutter.extension_name }}/handlers.py",
+            "{{ cookiecutter.labextension_name }}/handlers.py",
             "jupyter-config"
         ):
             remove_path(PROJECT_DIRECTORY / f)

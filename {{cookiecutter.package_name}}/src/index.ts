@@ -3,16 +3,16 @@ import {
   JupyterFrontEndPlugin
 } from '@jupyterlab/application';{% if cookiecutter.has_server_extension.lower().startswith('y') %}
 
-import { requestAPI } from './{{ cookiecutter.extension_name }}';{% endif %}
+import { requestAPI } from './{{ cookiecutter.labextension_name }}';{% endif %}
 
 /**
- * Initialization data for the {{ cookiecutter.extension_name }} extension.
+ * Initialization data for the {{ cookiecutter.labextension_name }} extension.
  */
 const extension: JupyterFrontEndPlugin<void> = {
-  id: '{{ cookiecutter.extension_name }}',
+  id: '{{ cookiecutter.labextension_name }}',
   autoStart: true,
   activate: (app: JupyterFrontEnd) => {
-    console.log('JupyterLab extension {{ cookiecutter.extension_name }} is activated!');{% if cookiecutter.has_server_extension.lower().startswith('y') %}
+    console.log('JupyterLab extension {{ cookiecutter.labextension_name }} is activated!');{% if cookiecutter.has_server_extension.lower().startswith('y') %}
 
     requestAPI<any>('get_example')
       .then(data => {
@@ -20,7 +20,7 @@ const extension: JupyterFrontEndPlugin<void> = {
       })
       .catch(reason => {
         console.error(
-          `The {{ cookiecutter.extension_name }} server extension appears to be missing.\n${reason}`
+          `The {{ cookiecutter.labextension_name }} server extension appears to be missing.\n${reason}`
         );
       });{% endif %}
   }

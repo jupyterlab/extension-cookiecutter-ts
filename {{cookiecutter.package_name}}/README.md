@@ -1,4 +1,4 @@
-# {{ cookiecutter.package_name }}
+# {{ cookiecutter.python_name }}
 
 ![Github Actions Status]({{ cookiecutter.repository }}/workflows/Build/badge.svg)
 {%- if cookiecutter.has_binder.lower().startswith('y') -%}
@@ -8,8 +8,8 @@
 {{ cookiecutter.project_short_description }}
 
 {% if cookiecutter.has_server_extension.lower().startswith('y') %}
-This extension is composed of a Python package named `{{ cookiecutter.package_name }}`
-for the server extension and a NPM package named `{{ cookiecutter.extension_name }}`
+This extension is composed of a Python package named `{{ cookiecutter.python_name }}`
+for the server extension and a NPM package named `{{ cookiecutter.labextension_name }}`
 for the frontend extension.
 {% endif %}
 
@@ -21,7 +21,7 @@ for the frontend extension.
 Note: You will need NodeJS to install the extension.
 
 ```bash
-pip install {{ cookiecutter.package_name }}
+pip install {{ cookiecutter.python_name }}
 ```
 
 {% if cookiecutter.has_server_extension.lower().startswith('y') %}
@@ -52,7 +52,7 @@ The `jlpm` command is JupyterLab's pinned version of
 
 ```bash
 # Clone the repo to your local environment
-# Move to {{ cookiecutter.package_name }} directory
+# Move to {{ cookiecutter.python_name }} directory
 # Install package
 pip install -e .
 # Link your development version of the extension with JupyterLab
@@ -75,6 +75,6 @@ Now every change will be built locally and bundled into JupyterLab. Be sure to r
 ### Uninstall
 
 ```bash
-pip uninstall {{ cookiecutter.package_name }}
-jupyter labextension uninstall {{ cookiecutter.extension_name }}
+pip uninstall {{ cookiecutter.python_name }}
+jupyter labextension uninstall {{ cookiecutter.labextension_name }}
 ```

@@ -1,5 +1,5 @@
 """
-{{ cookiecutter.package_name }} setup
+{{ cookiecutter.python_name }} setup
 """
 import os
 
@@ -12,7 +12,7 @@ import setuptools
 HERE = os.path.abspath(os.path.dirname(__file__))
 
 # The name of the project
-name="{{ cookiecutter.package_name }}"
+name="{{ cookiecutter.python_name }}"
 
 # Ensure a valid python version
 ensure_python(">=3.5")
@@ -24,7 +24,7 @@ lab_path = os.path.join(HERE, name, "static")
 
 # Representative files that should exist after a successful build
 jstargets = [
-    os.path.join(HERE, "lib", "{{ cookiecutter.extension_name }}.js"),
+    os.path.join(HERE, "lib", "{{ cookiecutter.labextension_name }}.js"),
     os.path.join(HERE, name, "static", "package.orig.json"),
 ]
 
@@ -34,13 +34,13 @@ package_data_spec = {
     ]
 }
 
-labext_name = "{{ cookiecutter.extension_name }}"
+labext_name = "{{ cookiecutter.labextension_name }}"
 
 data_files_spec = [
     ("share/jupyter/labextensions/%s" % labext_name, lab_path, "*.*"),
     {%- if cookiecutter.has_server_extension == "y" -%}
     ("etc/jupyter/jupyter_server_config.d",
-     "jupyter-config", "{{ cookiecutter.package_name }}.json"),
+     "jupyter-config", "{{ cookiecutter.python_name }}.json"),
      {% endif %}
 ]
 
