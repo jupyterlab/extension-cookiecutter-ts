@@ -20,7 +20,7 @@ const extension: JupyterFrontEndPlugin<void> = {
       })
       .catch(reason => {
         console.error(
-          `The {{ cookiecutter.labextension_name }} server extension appears to be missing.\n${reason}`
+          `The {{ cookiecutter.python_name }} server extension appears to be missing.\n${reason}`
         );
       });{% endif %}
   }
