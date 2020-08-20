@@ -57,15 +57,18 @@ jobs:
         python -m jupyterlab.browser_check
 
         pip uninstall -y my_extension
-        jupyter labextension uninstall my_lab_extension
         
-        pip install -e ./my_extension
-        jupyter labextension develop .
+        cd my_extension
+        pip install -e .
         jupyter server extension list 1>serverextensions 2>&1
         cat serverextensions | grep "my_extension.*OK"
         jupyter labextension list 1>labextensions 2>&1
         cat labextensions | grep "my_lab_extension.*OK"
         python -m jupyterlab.browser_check
+
+        jupyter labextension develop . --overwrite
+        jupyter labextension build .
+        jupyter labextension build .
 
         pip uninstall -y my_extension
         jupyter labextension uninstall my_lab_extension
@@ -84,4 +87,3 @@ jobs:
         python -m jupyterlab.browser_check
 
         pip uninstall -y my_extension
-        jupyter labextension uninstall my_lab_extension
