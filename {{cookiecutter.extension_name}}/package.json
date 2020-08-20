@@ -48,15 +48,15 @@
 {% endif %}
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.25.0",
-    "@typescript-eslint/parser": "^2.25.0",
-    "eslint": "^6.8.0",
+    "@typescript-eslint/eslint-plugin": "^2.27.0",
+    "@typescript-eslint/parser": "^2.27.0",
+    "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-prettier": "^3.1.2", {% if cookiecutter.has_server_extension.lower().startswith('y') %}
     "mkdirp": "^1.0.3", {% endif %}
-    "prettier": "1.16.4",
-    "rimraf": "^2.6.1",
-    "typescript": "~3.7.0"
+    "prettier": "^1.19.0",
+    "rimraf": "^3.0.2",
+    "typescript": "~3.9.0"
   },
   "sideEffects": [
     "style/*.css"
