@@ -45,7 +45,7 @@ jobs:
         pip uninstall -y myextension
         jupyter labextension uninstall myextension
 
-    - name: Create server extension
+    - name: Create server extension pip install
       run: |
         # Trick to use custom parameters
         python -c "from cookiecutter.main import cookiecutter; import json; f = open('cookiecutter_with_server.json'); cookiecutter('.', extra_context=json.load(f), no_input=True); f.close()"
@@ -57,7 +57,12 @@ jobs:
         python -m jupyterlab.browser_check
 
         pip uninstall -y my_extension
+        rm -rf my_extension
         
+    - name: Create server extension pip develop
+      run: |
+        # Trick to use custom parameters
+        python -c "from cookiecutter.main import cookiecutter; import json; f = open('cookiecutter_with_server.json'); cookiecutter('.', extra_context=json.load(f), no_input=True); f.close()"
         cd my_extension
         pip install -e .
         jupyter server extension list 1>serverextensions 2>&1
@@ -72,8 +77,9 @@ jobs:
 
         pip uninstall -y my_extension
         jupyter labextension uninstall my_lab_extension
+        rm -rf my_extension
 
-    - name: Install from a tarball
+    - name: Install server extension from a tarball
       run: |
         # Trick to use custom parameters
         python -c "from cookiecutter.main import cookiecutter; import json; f = open('cookiecutter_with_server.json'); cookiecutter('.', extra_context=json.load(f), no_input=True); f.close()"
@@ -87,3 +93,4 @@ jobs:
         python -m jupyterlab.browser_check
 
         pip uninstall -y my_extension
+        rm -rf my_extension
