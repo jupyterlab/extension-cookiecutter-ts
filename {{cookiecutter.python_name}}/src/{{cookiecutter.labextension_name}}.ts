@@ -17,7 +17,7 @@ export async function requestAPI<T>(
   const settings = ServerConnection.makeSettings();
   const requestUrl = URLExt.join(
     settings.baseUrl,
-    '{{ cookiecutter.extension_name }}', // API Namespace
+    '{{ cookiecutter.python_name }}', // API Namespace
     endPoint
   );
 

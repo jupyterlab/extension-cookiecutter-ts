@@ -1,6 +1,7 @@
 {
     "author_name": "",
-    "extension_name": "myextension",
+    "python_name": "myextension",
+    "labextension_name": "myextension",
     "project_short_description": "A JupyterLab extension.",
     "has_server_extension": "n",
     "has_binder": "n",

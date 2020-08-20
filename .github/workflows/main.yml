@@ -27,40 +27,73 @@ jobs:
         architecture: 'x64'
     - name: Install dependencies
       run: |
-        python -m pip install jupyterlab
+        python -m pip install jupyterlab~=3.0.0a11
         python -m pip install cookiecutter
+
     - name: Create pure frontend extension
       run: |
         cookiecutter . --no-input
         cd myextension
-        jlpm
+        pip install -e .
         jlpm run eslint:check
-        jlpm run build
-        jupyter labextension install .
-        jupyter lab clean
-        jupyter labextension link .
+        jupyter labextension list 1>labextensions 2>&1
+        cat labextensions | grep "myextension.*OK"
         python -m jupyterlab.browser_check
-    - name: Create server extension
+        jupyter labextension develop . --overwrite
+        jupyter labextension build .
+
+        jupyter labextension uninstall myextension
+        pip uninstall -y myextension jupyterlab
+
+    - name: Create server extension pip install
       run: |
         # Trick to use custom parameters
         python -c "from cookiecutter.main import cookiecutter; import json; f = open('cookiecutter_with_server.json'); cookiecutter('.', extra_context=json.load(f), no_input=True); f.close()"
-        cd my-server_extension
-        pip install .
-        jupyter lab build
-        jupyter serverextension list 1>serverextensions 2>&1
-        cat serverextensions | grep "my_server_extension.*OK"
+        pip install ./my_extension
+        jupyter server extension list 1>serverextensions 2>&1
+        cat serverextensions | grep "my_extension.*OK"
         jupyter labextension list 1>labextensions 2>&1
-        cat labextensions | grep "my-server-extension.*OK"
+        cat labextensions | grep "my_lab_extension.*OK"
         python -m jupyterlab.browser_check
-        
-        pip uninstall -y my_server_extension
-        jupyter lab clean
 
+        pip uninstall -y my_extension jupyterlab
+        rm -rf my_extension
+        
+    - name: Create server extension pip develop
+      run: |
+        # Trick to use custom parameters
+        python -c "from cookiecutter.main import cookiecutter; import json; f = open('cookiecutter_with_server.json'); cookiecutter('.', extra_context=json.load(f), no_input=True); f.close()"
+        cd my_extension
         pip install -e .
-        jupyter serverextension enable --py my_server_extension
-        jupyter labextension link .
-        jupyter serverextension list 1>serverextensions 2>&1
-        cat serverextensions | grep "my_server_extension.*OK"
+        jupyter server extension list 1>serverextensions 2>&1
+        cat serverextensions | grep "my_extension.*OK"
         jupyter labextension list 1>labextensions 2>&1
-        cat labextensions | grep "my-server-extension.*OK"
+        cat labextensions | grep "my_lab_extension.*OK"
         python -m jupyterlab.browser_check
+
+        jupyter labextension develop . --overwrite
+        jupyter labextension build .
+        jupyter labextension build .
+
+        jupyter labextension uninstall my_lab_extension
+        pip uninstall -y my_extension jupyterlab
+        cd ..
+        rm -rf my_extension
+
+    - name: Install server extension from a tarball
+      run: |
+        # Trick to use custom parameters
+        python -c "from cookiecutter.main import cookiecutter; import json; f = open('cookiecutter_with_server.json'); cookiecutter('.', extra_context=json.load(f), no_input=True); f.close()"
+        cd my_extension
+        pip install --pre jupyter_packaging jupyterlab
+        python setup.py sdist
+        pip install dist/*.tar.gz
+        jupyter labextension list 1>labextensions 2>&1
+        cat labextensions | grep "my_lab_extension.*OK"
+        jupyter server extension list 1>serverextensions 2>&1
+        cat serverextensions | grep "my_extension.*OK"
+        python -m jupyterlab.browser_check
+
+        pip uninstall -y my_extension jupyterlab
+        cd ..
+        rm -rf my_extension

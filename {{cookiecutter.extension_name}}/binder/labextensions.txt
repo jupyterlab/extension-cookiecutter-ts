@@ -1,6 +1,0 @@
-# development install of {{ cookiecutter.extension_name }}
-.
-
-# some additional recommended labextensions, uncomment to enable
-# @jupyter-widgets/jupyterlab-manager
-# @jupyterlab/toc

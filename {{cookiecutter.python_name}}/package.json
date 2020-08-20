@@ -1,5 +1,5 @@
 {
-  "name": "{{ cookiecutter.extension_name|replace("_", "-") }}",
+  "name": "{{ cookiecutter.labextension_name }}",
   "version": "0.1.0",
   "description": "{{ cookiecutter.project_short_description }}",
   "keywords": [
@@ -24,36 +24,37 @@
     "type": "git",
     "url": "{{ cookiecutter.repository }}.git"
   },
-  "scripts": { {% if cookiecutter.has_server_extension.lower().startswith('y') %}
+  "scripts": {
     "build": "jlpm run build:lib",
-    "build:labextension": "cd {{ cookiecutter.extension_name|replace("-", "_") }} && rimraf labextension && mkdirp labextension && cd labextension && npm pack ../..",
+    "build:labextension": "jupyter labextension build .",
     "build:lib": "tsc",
-    "build:all": "jlpm run build:labextension",
+    "build:all": "jlpm run build:lib && jlpm run build:labextension",
     "clean": "jlpm run clean:lib",
     "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
-    "clean:labextension": "rimraf {{ cookiecutter.extension_name|replace("-", "_") }}/labextension",
+    "clean:labextension": "rimraf {{ cookiecutter.python_name }}/static",
     "clean:all": "jlpm run clean:lib && jlpm run clean:labextension",
-{% else %}
-    "build": "tsc",
-    "clean": "rimraf lib tsconfig.tsbuildinfo", {% endif %}
     "eslint": "eslint . --ext .ts,.tsx --fix",
     "eslint:check": "eslint . --ext .ts,.tsx",
     "prepare": "jlpm run clean && jlpm run build",
-    "watch": "tsc -w"
+    "watch": "run-p watch:src watch:labextension",
+    "watch:src": "tsc -w",
+    "watch:labextension": "jupyter labextension watch ."
   },
   "dependencies": {
-    "@jupyterlab/application": "^2.0.0"{% if cookiecutter.has_server_extension.lower().startswith('y') %},
-    "@jupyterlab/coreutils": "^4.0.0",
-    "@jupyterlab/services": "^5.0.0"
+    "@jupyterlab/application": "^3.0.0-alpha.14"{% if cookiecutter.has_server_extension.lower().startswith('y') %},
+    "@jupyterlab/coreutils": "^5.0.0-alpha.14",
+    "@jupyterlab/services": "^6.0.0-alpha.14"
 {% endif %}
   },
   "devDependencies": {
+    "@jupyterlab/builder": "^3.0.0-alpha.14",
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",
     "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-prettier": "^3.1.2", {% if cookiecutter.has_server_extension.lower().startswith('y') %}
     "mkdirp": "^1.0.3", {% endif %}
+    "npm-run-all": "^4.1.5",    
     "prettier": "^1.19.0",
     "rimraf": "^3.0.2",
     "typescript": "~3.9.0"
@@ -68,10 +69,11 @@
             "pip"
           ],
           "base": {
-            "name": "{{ cookiecutter.extension_name|replace("-", "_") }}"
+            "name": "{{ cookiecutter.python_name }}"
           }
         }
     }, {% endif %}
-    "extension": true
+    "extension": true,
+    "outputDir": "{{cookiecutter.python_name}}/static"
   }
 }

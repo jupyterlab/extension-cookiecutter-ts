@@ -2,11 +2,14 @@ include LICENSE
 include README.md
 include pyproject.toml
 
-include jupyter-config/{{ cookiecutter.extension_name|replace("-", "_") }}.json
+{%- if cookiecutter.has_server_extension == "y" -%}
+include jupyter-config/{{ cookiecutter.python_name }}.json
+{% endif %}
 
 include package.json
 include ts*.json
-include {{ cookiecutter.extension_name|replace("-", "_") }}/labextension/*.tgz
+
+graft {{ cookiecutter.python_name }}/static
 
 # Javascript files
 graft src
