@@ -42,8 +42,8 @@ jobs:
         jupyter labextension develop . --overwrite
         jupyter labextension build .
 
-        pip uninstall -y my_extension
-        jupyter labextension uninstall my_lab_extension
+        pip uninstall -y myextension
+        jupyter labextension uninstall myextension
 
     - name: Create server extension
       run: |
