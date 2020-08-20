@@ -5,5 +5,5 @@
     "project_short_description": "A JupyterLab extension.",
     "has_server_extension": "y",
     "has_binder": "n",
-    "repository": "https://github.com/my_name/my_lab_extension"
+    "repository": "https://github.com/my_name/my_extension"
 }
