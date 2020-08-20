@@ -1,5 +1,5 @@
 """
-Setup Module to setup Python Handlers for the {{ cookiecutter.package_name }} extension.
+{{ cookiecutter.package_name }} setup
 """
 import os
 
