@@ -1,5 +1,5 @@
 """
-Setup Module to setup Python Handlers for the {{ cookiecutter.extension_name }} extension.
+Setup Module to setup Python Handlers for the {{ cookiecutter.package_name }} extension.
 """
 import os
 
@@ -12,7 +12,7 @@ import setuptools
 HERE = os.path.abspath(os.path.dirname(__file__))
 
 # The name of the project
-name="{{ cookiecutter.extension_name|replace("-", "_") }}"
+name="{{ cookiecutter.package_name|replace("-", "_") }}"
 
 # Ensure a valid python version
 ensure_python(">=3.5")
@@ -38,7 +38,7 @@ data_files_spec = [
     ("share/jupyter/labextensions/%s" % name, lab_path, "*.*"),
     {%- if cookiecutter.has_server_extension == "y" -%}
     ("etc/jupyter/jupyter_server_config.d",
-     "jupyter-config", "{{ cookiecutter.extension_name|replace("-", "_") }}.json"),
+     "jupyter-config", "{{ cookiecutter.package_name|replace("-", "_") }}.json"),
      {% endif %}
 ]
 
