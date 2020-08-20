@@ -30,6 +30,7 @@ if __name__ == "__main__":
         ):
             absolute_f = PROJECT_DIRECTORY / f
             absolute_f.rename(absolute_f.parent / absolute_f.name.replace("-", "_"))
+
     if "_" in "{{ cookiecutter.extension_name }}":
         for f in ("src/{{ cookiecutter.extension_name }}.ts", ):
             absolute_f = PROJECT_DIRECTORY / f
