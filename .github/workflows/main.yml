@@ -46,35 +46,35 @@ jobs:
       run: |
         # Trick to use custom parameters
         python -c "from cookiecutter.main import cookiecutter; import json; f = open('cookiecutter_with_server.json'); cookiecutter('.', extra_context=json.load(f), no_input=True); f.close()"
-        cd my_lab_extension
+        cd my_extension
         pip install .
         jupyter server extension list 1>serverextensions 2>&1
-        cat serverextensions | grep "my_lab_extension.*OK"
+        cat serverextensions | grep "my_extension.*OK"
         jupyter labextension list 1>labextensions 2>&1
-        cat labextensions | grep "my_lab-extension.*OK"
+        cat labextensions | grep "my_lab_extension.*OK"
         python -m jupyterlab.browser_check
         
-        pip uninstall -y my_lab_extension
+        pip uninstall -y my_extension
         jupyter labextension uninstall my_lab_extension
 
         pip install -e .
-        jupyter serverextension enable --py my_lab_extension
+        jupyter serverextension enable --py my_extension
         jupyter labextension develop .
         jupyter server extension list 1>serverextensions 2>&1
-        cat serverextensions | grep "my_lab_extension.*OK"
+        cat serverextensions | grep "my_extension.*OK"
         jupyter labextension list 1>labextensions 2>&1
-        cat labextensions | grep "my_lab-extension.*OK"
+        cat labextensions | grep "my_lab_extension.*OK"
         python -m jupyterlab.browser_check
 
     - name: Install from a tarball
       run: |
         # Trick to use custom parameters
         python -c "from cookiecutter.main import cookiecutter; import json; f = open('cookiecutter_with_server.json'); cookiecutter('.', extra_context=json.load(f), no_input=True); f.close()"
-        cd myextension
+        cd my_extension
         python setup.py sdist
         pip install dist/*
         jupyter labextension list 1>labextensions 2>&1
-        cat labextensions | grep "myextension.*OK"
+        cat labextensions | grep "my_lab_extension.*OK"
         jupyter server extension list 1>serverextensions 2>&1
-        cat serverextensions | grep "my_lab_extension.*OK"
+        cat serverextensions | grep "my_extension.*OK"
         python -m jupyterlab.browser_check
