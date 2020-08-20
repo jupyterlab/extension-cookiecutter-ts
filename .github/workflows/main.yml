@@ -82,3 +82,6 @@ jobs:
         jupyter server extension list 1>serverextensions 2>&1
         cat serverextensions | grep "my_extension.*OK"
         python -m jupyterlab.browser_check
+
+        pip uninstall -y my_extension
+        jupyter labextension uninstall my_lab_extension
