@@ -87,7 +87,7 @@ jobs:
         cd my_extension
         pip install jupyter_packaging
         python setup.py sdist
-        pip install dist/*
+        pip install dist/*.tar.gz
         jupyter labextension list 1>labextensions 2>&1
         cat labextensions | grep "my_lab_extension.*OK"
         jupyter server extension list 1>serverextensions 2>&1
