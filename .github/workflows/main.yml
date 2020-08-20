@@ -42,7 +42,7 @@ jobs:
         jupyter labextension develop . --overwrite
         jupyter labextension build .
 
-        pip uninstall -y myextension
+        pip uninstall -y myextension jupyterlab
         jupyter labextension uninstall myextension
 
     - name: Create server extension pip install
@@ -56,7 +56,7 @@ jobs:
         cat labextensions | grep "my_lab_extension.*OK"
         python -m jupyterlab.browser_check
 
-        pip uninstall -y my_extension
+        pip uninstall -y my_extension jupyterlab
         rm -rf my_extension
         
     - name: Create server extension pip develop
@@ -75,8 +75,8 @@ jobs:
         jupyter labextension build .
         jupyter labextension build .
 
-        pip uninstall -y my_extension
         jupyter labextension uninstall my_lab_extension
+        pip uninstall -y my_extension jupyterlab
         rm -rf my_extension
 
     - name: Install server extension from a tarball
@@ -92,5 +92,5 @@ jobs:
         cat serverextensions | grep "my_extension.*OK"
         python -m jupyterlab.browser_check
 
-        pip uninstall -y my_extension
+        pip uninstall -y my_extension jupyterlab
         rm -rf my_extension
