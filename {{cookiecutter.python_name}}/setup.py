@@ -15,7 +15,7 @@ HERE = os.path.abspath(os.path.dirname(__file__))
 name="{{ cookiecutter.python_name }}"
 
 # Ensure a valid python version
-ensure_python(">=3.5")
+ensure_python(">=3.6")
 
 # Get our version
 version = get_version(os.path.join(name, "_version.py"))
@@ -79,7 +79,6 @@ setup_args = dict(
         "License :: OSI Approved :: BSD License",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
