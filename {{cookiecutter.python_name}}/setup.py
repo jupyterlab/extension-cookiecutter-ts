@@ -24,7 +24,7 @@ lab_path = os.path.join(HERE, name, "static")
 
 # Representative files that should exist after a successful build
 jstargets = [
-    os.path.join(HERE, "lib", "{{ cookiecutter.labextension_name }}.js"),
+    os.path.join(HERE, "lib", "index.js"),
     os.path.join(HERE, name, "static", "package.orig.json"),
 ]
 
