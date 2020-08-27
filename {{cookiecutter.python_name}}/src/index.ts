@@ -3,7 +3,7 @@ import {
   JupyterFrontEndPlugin
 } from '@jupyterlab/application';{% if cookiecutter.has_server_extension.lower().startswith('y') %}
 
-import { requestAPI } from './{{ cookiecutter.labextension_name }}';{% endif %}
+import { requestAPI } from './handler';{% endif %}
 
 /**
  * Initialization data for the {{ cookiecutter.labextension_name }} extension.
