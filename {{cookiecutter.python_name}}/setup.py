@@ -25,7 +25,7 @@ lab_path = os.path.join(HERE, name, "static")
 # Representative files that should exist after a successful build
 jstargets = [
     os.path.join(HERE, "lib", "index.js"),
-    os.path.join(HERE, name, "static", "package.orig.json"),
+    os.path.join(HERE, name, "static", "package.json"),
 ]
 
 package_data_spec = {
@@ -68,7 +68,7 @@ setup_args = dict(
     cmdclass= cmdclass,
     packages=setuptools.find_packages(),
     install_requires=[
-        "jupyterlab~=3.0.0a14",
+        "jupyterlab~=3.0.0b1",
     ],
     zip_safe=False,
     include_package_data=True,
