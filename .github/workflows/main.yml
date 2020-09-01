@@ -39,7 +39,7 @@ jobs:
         jupyter labextension list 1>labextensions 2>&1
         cat labextensions | grep "myextension.*OK"
         python -m jupyterlab.browser_check
-        jlpm run install:extention
+        jlpm run install:extension
         jupyter labextension build .
 
         jupyter labextension uninstall myextension
