@@ -35,19 +35,20 @@
     "clean:all": "jlpm run clean:lib && jlpm run clean:labextension",
     "eslint": "eslint . --ext .ts,.tsx --fix",
     "eslint:check": "eslint . --ext .ts,.tsx",
+    "install:extension": "pip install -e . && jupyter labextension develop --overwrite .",
     "prepare": "jlpm run clean && jlpm run build",
     "watch": "run-p watch:src watch:labextension",
     "watch:src": "tsc -w",
     "watch:labextension": "jupyter labextension watch ."
   },
   "dependencies": {
-    "@jupyterlab/application": "^3.0.0-alpha.14"{% if cookiecutter.has_server_extension.lower().startswith('y') %},
-    "@jupyterlab/coreutils": "^5.0.0-alpha.14",
-    "@jupyterlab/services": "^6.0.0-alpha.14"
+    "@jupyterlab/application": "^3.0.0-beta.1"{% if cookiecutter.has_server_extension.lower().startswith('y') %},
+    "@jupyterlab/coreutils": "^5.0.0-beta.1",
+    "@jupyterlab/services": "^6.0.0-beta.1"
 {% endif %}
   },
   "devDependencies": {
-    "@jupyterlab/builder": "^3.0.0-alpha.14",
+    "@jupyterlab/builder": "^3.0.0-beta.1",
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",
     "eslint": "^7.5.0",
