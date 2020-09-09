@@ -39,7 +39,7 @@
     "prepare": "jlpm run clean && jlpm run build",
     "watch": "run-p watch:src watch:labextension",
     "watch:src": "tsc -w",
-    "watch:labextension": "jupyter labextension watch ."
+    "watch:labextension": "pip install -e . && jupyter labextension watch ."
   },
   "dependencies": {
     "@jupyterlab/application": "^3.0.0-beta.3"{% if cookiecutter.has_server_extension.lower().startswith('y') %},
