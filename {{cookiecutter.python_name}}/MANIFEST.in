@@ -1,10 +1,7 @@
 include LICENSE
 include README.md
 include pyproject.toml
-
-{%- if cookiecutter.has_server_extension == "y" -%}
 include jupyter-config/{{ cookiecutter.python_name }}.json
-{% endif %}
 
 include package.json
 include ts*.json
