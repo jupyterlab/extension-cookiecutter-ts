@@ -1,6 +1,0 @@
-node_modules/
-lib/
-{{ cookiecutter.labextension_name }}/static/
-.ipynb_checkpoints
-yarn.lock
-tsconfig.tsbuildinfo
