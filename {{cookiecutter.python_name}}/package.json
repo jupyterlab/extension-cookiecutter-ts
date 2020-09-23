@@ -42,20 +42,20 @@
     "watch:labextension": "jupyter labextension watch ."
   },
   "dependencies": {
-    "@jupyterlab/application": "^3.0.0-beta.6"{% if cookiecutter.has_server_extension.lower().startswith('y') %},
-    "@jupyterlab/coreutils": "^5.0.0-beta.6",
-    "@jupyterlab/services": "^6.0.0-beta.6"
+    "@jupyterlab/application": "^3.0.0-rc.0"{% if cookiecutter.has_server_extension.lower().startswith('y') %},
+    "@jupyterlab/coreutils": "^5.0.0-rc.0",
+    "@jupyterlab/services": "^6.0.0-rc.0"
 {% endif %}
   },
   "devDependencies": {
-    "@jupyterlab/builder": "^3.0.0-beta.6",
+    "@jupyterlab/builder": "^3.0.0-rc.0",
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",
     "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-prettier": "^3.1.2", {% if cookiecutter.has_server_extension.lower().startswith('y') %}
     "mkdirp": "^1.0.3", {% endif %}
-    "npm-run-all": "^4.1.5",    
+    "npm-run-all": "^4.1.5",
     "prettier": "^1.19.0",
     "rimraf": "^3.0.2",
     "typescript": "~3.9.0"
