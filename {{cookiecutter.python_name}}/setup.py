@@ -41,7 +41,7 @@ data_files_spec = [
      {% endif %}
 ]
 
-cmdclass = create_cmdclass("jsdeps", 
+cmdclass = create_cmdclass("jsdeps",
     package_data_spec=package_data_spec,
     data_files_spec=data_files_spec
 )
@@ -65,7 +65,7 @@ setup_args = dict(
     cmdclass= cmdclass,
     packages=setuptools.find_packages(),
     install_requires=[
-        "jupyterlab>=3.0.0b6,==3.*",
+        "jupyterlab>=3.0.0rc0,==3.*",
     ],
     zip_safe=False,
     include_package_data=True,
