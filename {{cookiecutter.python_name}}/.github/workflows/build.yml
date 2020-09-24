@@ -27,14 +27,9 @@ jobs:
       run: |
         jlpm
         jlpm run eslint:check
+        python -m pip install .
 {% if cookiecutter.has_server_extension.lower().startswith('y') %}
-        pip install .
-        jupyter lab build
-        jupyter serverextension list 1>serverextensions 2>&1
-        cat serverextensions | grep "{{ cookiecutter.labextension_name }}.*OK"
-        jupyter labextension list 1>labextensions 2>&1
-        cat labextensions | grep "{{ cookiecutter.labextension_name }}.*OK"
-{% else %}
-        jupyter labextension install .
+        jupyter serverextension list 2>&1 | grep -ie "{{ cookiecutter.python_name }}.*OK"
 {% endif %}
+        jupyter labextension list 2>&1 | grep -ie "{{ cookiecutter.labextension_name }}.*OK"
         python -m jupyterlab.browser_check
