@@ -42,13 +42,13 @@
     "watch:labextension": "jupyter labextension watch ."
   },
   "dependencies": {
-    "@jupyterlab/application": "^3.0.0-rc.1"{% if cookiecutter.has_server_extension.lower().startswith('y') %},
-    "@jupyterlab/coreutils": "^5.0.0-rc.1",
-    "@jupyterlab/services": "^6.0.0-rc.1"
+    "@jupyterlab/application": "^3.0.0-rc.2"{% if cookiecutter.has_server_extension.lower().startswith('y') %},
+    "@jupyterlab/coreutils": "^5.0.0-rc.2",
+    "@jupyterlab/services": "^6.0.0-rc.2"
 {% endif %}
   },
   "devDependencies": {
-    "@jupyterlab/builder": "^3.0.0-rc.1",
+    "@jupyterlab/builder": "^3.0.0-rc.2",
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",
     "eslint": "^7.5.0",
