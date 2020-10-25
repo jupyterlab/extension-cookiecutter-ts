@@ -4,6 +4,9 @@ import os.path as osp
 
 from ._version import __version__
 
+
+VERSION_INFO = __version__
+
 HERE = osp.abspath(osp.dirname(__file__))
 
 with open(osp.join(HERE, 'static', 'package.json')) as fid:

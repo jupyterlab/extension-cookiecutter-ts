@@ -1,13 +1,15 @@
 """
 {{ cookiecutter.python_name }} setup
 """
+import json
 import os
 
 from jupyter_packaging import (
     create_cmdclass, install_npm, ensure_targets,
-    combine_commands, get_version,
+    combine_commands,
 )
 import setuptools
+
 
 HERE = os.path.abspath(os.path.dirname(__file__))
 
@@ -15,7 +17,10 @@ HERE = os.path.abspath(os.path.dirname(__file__))
 name="{{ cookiecutter.python_name }}"
 
 # Get our version
-version = get_version(os.path.join(name, "_version.py"))
+# TODO use version = get_version(os.path.join(name, "_version.py")) 
+# from jupyter_packaging which fails with NameError: name '__file__' is not defined.
+with open('package.json') as f:
+    version = json.load(f)['version']
 
 lab_path = os.path.join(HERE, name, "static")
 
