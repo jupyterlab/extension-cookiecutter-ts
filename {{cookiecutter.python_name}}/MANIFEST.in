@@ -4,6 +4,7 @@ include pyproject.toml
 include jupyter-config/{{ cookiecutter.python_name }}.json
 
 include package.json
+include metadata.json
 include ts*.json
 
 graft {{ cookiecutter.python_name }}/labextension
