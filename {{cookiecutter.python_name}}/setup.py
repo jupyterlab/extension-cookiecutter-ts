@@ -19,12 +19,12 @@ name="{{ cookiecutter.python_name }}"
 with open(os.path.join(HERE, 'package.json')) as f:
     version = json.load(f)['version']
 
-lab_path = os.path.join(HERE, name, "static")
+lab_path = os.path.join(HERE, name, "labextension")
 
 # Representative files that should exist after a successful build
 jstargets = [
     os.path.join(HERE, "lib", "index.js"),
-    os.path.join(HERE, name, "static", "package.json"),
+    os.path.join(lab_path, "package.json"),
 ]
 
 package_data_spec = {
