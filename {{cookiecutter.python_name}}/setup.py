@@ -37,7 +37,7 @@ labext_name = "{{ cookiecutter.labextension_name }}"
 
 data_files_spec = [
     ("share/jupyter/labextensions/%s" % labext_name, lab_path, "**"),
-    ("share/jupyter/labextensions/%s" % labext_name, HERE, "metadata.json"),
+    ("share/jupyter/labextensions/%s" % labext_name, HERE, "install.json"),
     {%- if cookiecutter.has_server_extension == "y" -%}
     ("etc/jupyter/jupyter_server_config.d",
      "jupyter-config", "{{ cookiecutter.python_name }}.json"),
