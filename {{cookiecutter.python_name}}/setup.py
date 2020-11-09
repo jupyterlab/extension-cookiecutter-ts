@@ -19,8 +19,8 @@ HERE = Path(__file__).parent.resolve()
 name = "{{ cookiecutter.python_name }}"
 
 # Get our version
-with (HERE / "package.json").open() as f:
-    version = json.load(f)["version"]
+pkg_json = json.loads((HERE / "package.json").read_bytes())
+version = pkg_json["version"]
 
 lab_path = (HERE / name / "labextension")
 
@@ -30,9 +30,7 @@ jstargets = [
 ]
 
 package_data_spec = {
-    name: [
-        "*"
-    ]
+    name: ["*"],
 }
 
 labext_name = "{{ cookiecutter.labextension_name }}"
@@ -43,7 +41,7 @@ data_files_spec = [
     {%- if cookiecutter.has_server_extension == "y" -%}
     ("etc/jupyter/jupyter_server_config.d",
      "jupyter-config", "{{ cookiecutter.python_name }}.json"),
-     {% endif %}
+    {% endif %}
 ]
 
 cmdclass = create_cmdclass("jsdeps",
@@ -67,10 +65,11 @@ long_description = (HERE / "README.md").read_text()
 setup_args = dict(
     name=name,
     version=version,
-    url="{{ cookiecutter.repository }}",
-    author="{{ cookiecutter.author_name }}",
-    description="{{ cookiecutter.project_short_description }}",
-    long_description=(HERE / "README.md").read_text(),
+    url=pkg_json["homepage"],
+    author=pkg_json["author"],
+    description=pkg_json["description"],
+    license=pkg_json["license"],
+    long_description=long_description,
     long_description_content_type="text/markdown",
     cmdclass=cmdclass,
     packages=setuptools.find_packages(),
@@ -80,7 +79,6 @@ setup_args = dict(
     zip_safe=False,
     include_package_data=True,
     python_requires=">=3.6",
-    license="BSD-3-Clause",
     platforms="Linux, Mac OS X, Windows",
     keywords=["Jupyter", "JupyterLab", "JupyterLab3"],
     classifiers=[
