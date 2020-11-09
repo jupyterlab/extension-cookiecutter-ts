@@ -83,5 +83,4 @@ jupyter lab build --minimize=False
 
 ```bash
 pip uninstall {{ cookiecutter.python_name }}
-jupyter labextension uninstall {{ cookiecutter.labextension_name }}
 ```
