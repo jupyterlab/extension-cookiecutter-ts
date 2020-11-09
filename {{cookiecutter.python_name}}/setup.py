@@ -64,7 +64,7 @@ long_description = (HERE / "README.md").read_text()
 
 setup_args = dict(
     name=name,
-    version=version,
+    version=pkg_json["version"],
     url=pkg_json["homepage"],
     author=pkg_json["author"],
     description=pkg_json["description"],
