@@ -1,7 +1,6 @@
 """
 {{ cookiecutter.python_name }} setup
 """
-import json
 import os
 
 from jupyter_packaging import (
@@ -15,9 +14,7 @@ HERE = os.path.abspath(os.path.dirname(__file__))
 # The name of the project
 name="{{ cookiecutter.python_name }}"
 
-# Get our version
-with open(os.path.join(HERE, 'package.json')) as f:
-    version = json.load(f)['version']
+version = get_version(os.path.join(name, "_version.py"))
 
 lab_path = os.path.join(HERE, name, "labextension")
 
