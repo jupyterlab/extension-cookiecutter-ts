@@ -75,7 +75,7 @@ setup_args = dict(
     python_requires=">=3.6",
     license="BSD-3-Clause",
     platforms="Linux, Mac OS X, Windows",
-    keywords=["Jupyter", "JupyterLab"],
+    keywords=["Jupyter", "JupyterLab", "JupyterLab3"],
     classifiers=[
         "License :: OSI Approved :: BSD License",
         "Programming Language :: Python",
