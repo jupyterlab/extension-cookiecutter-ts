@@ -6,7 +6,7 @@ import os
 
 from jupyter_packaging import (
     create_cmdclass, install_npm, ensure_targets,
-    combine_commands, get_version,
+    combine_commands, skip_if_exists
 )
 import setuptools
 
@@ -49,10 +49,16 @@ cmdclass = create_cmdclass("jsdeps",
     data_files_spec=data_files_spec
 )
 
-cmdclass["jsdeps"] = combine_commands(
+js_command = combine_commands(
     install_npm(HERE, build_cmd="build:prod", npm=["jlpm"]),
     ensure_targets(jstargets),
 )
+
+is_repo = os.path.exists(os.path.join(HERE, ".git"))
+if is_repo:
+    cmdclass["jsdeps"] = js_command
+else:
+    cmdclass["jsdeps"] = skip_if_exists(jstargets, js_command)
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
