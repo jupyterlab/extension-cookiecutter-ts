@@ -34,8 +34,8 @@ jobs:
       run: |
         cookiecutter . --no-input
         cd myextension
+        jlpm install && jlpm run eslint:check
         pip install -e .
-        jlpm run eslint:check
         jupyter labextension list 1>labextensions 2>&1
         cat labextensions | grep "myextension.*OK"
         python -m jupyterlab.browser_check
