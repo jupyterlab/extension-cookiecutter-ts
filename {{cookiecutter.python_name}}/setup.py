@@ -1,6 +1,7 @@
 """
 {{ cookiecutter.python_name }} setup
 """
+import json
 from pathlib import Path
 
 from jupyter_packaging import (
