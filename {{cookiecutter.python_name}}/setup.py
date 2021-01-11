@@ -2,28 +2,31 @@
 {{ cookiecutter.python_name }} setup
 """
 import json
-import os
+from pathlib import Path
 
 from jupyter_packaging import (
-    create_cmdclass, install_npm, ensure_targets,
-    combine_commands, skip_if_exists
+    create_cmdclass,
+    install_npm,
+    ensure_targets,
+    combine_commands,
+    skip_if_exists
 )
 import setuptools
 
-HERE = os.path.abspath(os.path.dirname(__file__))
+HERE = Path(__file__).parent.resolve()
 
 # The name of the project
-name="{{ cookiecutter.python_name }}"
+name = "{{ cookiecutter.python_name }}"
 
 # Get our version
-with open(os.path.join(HERE, 'package.json')) as f:
-    version = json.load(f)['version']
+with (HERE / "package.json").open() as f:
+    version = json.load(f)["version"]
 
-lab_path = os.path.join(HERE, name, "labextension")
+lab_path = (HERE / name / "labextension")
 
 # Representative files that should exist after a successful build
 jstargets = [
-    os.path.join(lab_path, "package.json"),
+    str(lab_path / "package.json"),
 ]
 
 package_data_spec = {
@@ -35,8 +38,8 @@ package_data_spec = {
 labext_name = "{{ cookiecutter.labextension_name }}"
 
 data_files_spec = [
-    ("share/jupyter/labextensions/%s" % labext_name, lab_path, "**"),
-    ("share/jupyter/labextensions/%s" % labext_name, HERE, "install.json"),
+    ("share/jupyter/labextensions/%s" % labext_name, str(lab_path), "**"),
+    ("share/jupyter/labextensions/%s" % labext_name, str(HERE), "install.json"),
     {%- if cookiecutter.has_server_extension == "y" -%}
     ("etc/jupyter/jupyter_server_config.d",
      "jupyter-config", "{{ cookiecutter.python_name }}.json"),
@@ -53,14 +56,13 @@ js_command = combine_commands(
     ensure_targets(jstargets),
 )
 
-is_repo = os.path.exists(os.path.join(HERE, ".git"))
+is_repo = (HERE / ".git").exists()
 if is_repo:
     cmdclass["jsdeps"] = js_command
 else:
     cmdclass["jsdeps"] = skip_if_exists(jstargets, js_command)
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
+long_description = (HERE / "README.md").read_text()
 
 setup_args = dict(
     name=name,
@@ -68,9 +70,9 @@ setup_args = dict(
     url="{{ cookiecutter.repository }}",
     author="{{ cookiecutter.author_name }}",
     description="{{ cookiecutter.project_short_description }}",
-    long_description= long_description,
+    long_description=(HERE / "README.md").read_text(),
     long_description_content_type="text/markdown",
-    cmdclass= cmdclass,
+    cmdclass=cmdclass,
     packages=setuptools.find_packages(),
     install_requires=[
         "jupyterlab~=3.0",
@@ -88,6 +90,7 @@ setup_args = dict(
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
         "Framework :: Jupyter",
     ],
 )
