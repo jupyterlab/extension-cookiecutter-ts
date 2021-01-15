@@ -6,6 +6,7 @@ include jupyter-config/{{ cookiecutter.python_name }}.json
 include package.json
 include install.json
 include ts*.json
+include yarn.lock
 
 graft {{ cookiecutter.python_name }}/labextension
 
