@@ -57,7 +57,7 @@ jobs:
         cd myextension
         jlpm install && jlpm run eslint:check
         pip install -e .
-        jupyter labextension 2>&1 | grep -ie "myextension.*OK"
+        jupyter labextension list 2>&1 | grep -ie "myextension.*OK"
         python -m jupyterlab.browser_check
         jlpm run install:extension
         jupyter labextension build .
