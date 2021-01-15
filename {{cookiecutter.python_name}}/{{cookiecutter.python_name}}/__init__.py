@@ -14,9 +14,9 @@ def _jupyter_labextension_paths():
         "src": "labextension",
         "dest": data["name"]
     }]
-
-
 {% if cookiecutter.has_server_extension.lower().startswith('y') %}
+
+
 from .handlers import setup_handlers
 
 
@@ -31,7 +31,7 @@ def _load_jupyter_server_extension(server_app):
 
     Parameters
     ----------
-    lab_app: jupyterlab.labapp.LabApp
+    server_app: jupyterlab.labapp.LabApp
         JupyterLab application instance
     """
     setup_handlers(server_app.web_app)
