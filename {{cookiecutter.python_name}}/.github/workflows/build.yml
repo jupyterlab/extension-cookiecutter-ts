@@ -45,14 +45,14 @@ jobs:
           yarn-
     {% endraw %}
     - name: Install dependencies
-      run: python -m pip install jupyterlab
+      run: python -m pip install -U jupyterlab~=3.0 jupyter_packaging~=0.7.9
     - name: Build the extension
       run: |
         jlpm
         jlpm run eslint:check
         python -m pip install .
 {% if cookiecutter.has_server_extension.lower().startswith('y') %}
-        jupyter serverextension list 2>&1 | grep -ie "{{ cookiecutter.python_name }}.*OK"
+        jupyter server extension list 2>&1 | grep -ie "{{ cookiecutter.python_name }}.*OK"
 {% endif %}
         jupyter labextension list 2>&1 | grep -ie "{{ cookiecutter.labextension_name }}.*OK"
         python -m jupyterlab.browser_check
