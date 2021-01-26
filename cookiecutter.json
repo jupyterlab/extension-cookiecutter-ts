@@ -1,9 +1,9 @@
 {
     "author_name": "",
     "python_name": "myextension",
-    "labextension_name": "myextension",
+    "labextension_name": "{{ cookiecutter.python_name }}",
     "project_short_description": "A JupyterLab extension.",
     "has_server_extension": "n",
     "has_binder": "n",
-    "repository": "https://github.com/my_name/myextension"
+    "repository": "https://github.com/github_username/{{ cookiecutter.python_name }}"
 }

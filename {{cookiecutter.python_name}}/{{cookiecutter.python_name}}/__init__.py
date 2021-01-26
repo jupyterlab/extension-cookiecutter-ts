@@ -1,22 +1,22 @@
 
 import json
-import os.path as osp
+from pathlib import Path
 
 from ._version import __version__
 
-HERE = osp.abspath(osp.dirname(__file__))
+HERE = Path(__file__).parent.resolve()
 
-with open(osp.join(HERE, 'labextension', 'package.json')) as fid:
+with (HERE / "labextension" / "package.json").open() as fid:
     data = json.load(fid)
 
 def _jupyter_labextension_paths():
     return [{
-        'src': 'labextension',
-        'dest': data['name']
+        "src": "labextension",
+        "dest": data["name"]
     }]
-
-
 {% if cookiecutter.has_server_extension.lower().startswith('y') %}
+
+
 from .handlers import setup_handlers
 
 
@@ -31,7 +31,7 @@ def _load_jupyter_server_extension(server_app):
 
     Parameters
     ----------
-    lab_app: jupyterlab.labapp.LabApp
+    server_app: jupyterlab.labapp.LabApp
         JupyterLab application instance
     """
     setup_handlers(server_app.web_app)
