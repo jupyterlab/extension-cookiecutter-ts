@@ -18,10 +18,6 @@ HERE = Path(__file__).parent.resolve()
 # The name of the project
 name = "{{ cookiecutter.python_name }}"
 
-# Get our version
-pkg_json = json.loads((HERE / "package.json").read_bytes())
-version = pkg_json["version"]
-
 lab_path = (HERE / name / "labextension")
 
 # Representative files that should exist after a successful build
@@ -61,6 +57,9 @@ else:
     cmdclass["jsdeps"] = skip_if_exists(jstargets, js_command)
 
 long_description = (HERE / "README.md").read_text()
+
+# Get the package info from package.json
+pkg_json = json.loads((HERE / "package.json").read_bytes())
 
 setup_args = dict(
     name=name,
