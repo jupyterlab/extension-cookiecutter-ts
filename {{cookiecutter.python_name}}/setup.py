@@ -4,14 +4,9 @@
 import json
 from pathlib import Path
 
-from jupyter_packaging import (
-    create_cmdclass,
-    install_npm,
-    ensure_targets,
-    combine_commands,
-    skip_if_exists
-)
 import setuptools
+from jupyter_packaging import (combine_commands, create_cmdclass,
+                               ensure_targets, install_npm, skip_if_exists)
 
 HERE = Path(__file__).parent.resolve()
 
@@ -65,8 +60,8 @@ setup_args = dict(
     name=name,
     version=pkg_json["version"],
     url=pkg_json["homepage"],
-    author=pkg_json["author"],
-    author_email=pkg_json["author_email"],
+    author=pkg_json["author"]["name"],
+    author_email=pkg_json["author"]["email"],
     description=pkg_json["description"],
     license=pkg_json["license"],
     long_description=long_description,
