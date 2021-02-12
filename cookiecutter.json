@@ -1,5 +1,6 @@
 {
     "author_name": "",
+    "author_email": "",
     "python_name": "myextension",
     "labextension_name": "{{ cookiecutter.python_name }}",
     "project_short_description": "A JupyterLab extension.",
