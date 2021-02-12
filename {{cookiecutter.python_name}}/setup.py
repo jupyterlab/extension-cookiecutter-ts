@@ -4,9 +4,14 @@
 import json
 from pathlib import Path
 
+from jupyter_packaging import (
+    create_cmdclass,
+    install_npm,
+    ensure_targets,
+    combine_commands,
+    skip_if_exists
+)
 import setuptools
-from jupyter_packaging import (combine_commands, create_cmdclass,
-                               ensure_targets, install_npm, skip_if_exists)
 
 HERE = Path(__file__).parent.resolve()
 
