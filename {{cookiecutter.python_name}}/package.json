@@ -12,7 +12,10 @@
     "url": "{{ cookiecutter.repository }}/issues"
   },
   "license": "BSD-3-Clause",
-  "author": "{{ cookiecutter.author_name }}",
+  "author": {
+    "name": "{{ cookiecutter.author_name }}",
+    "email": "{{ cookiecutter.author_email }}"
+  },
   "files": [
     "lib/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}",
     "style/**/*.{css,.js,eot,gif,html,jpg,json,png,svg,woff2,ttf}"
