@@ -5,11 +5,9 @@ import json
 from pathlib import Path
 
 from jupyter_packaging import (
-    create_cmdclass,
-    install_npm,
-    ensure_targets,
-    combine_commands,
-    skip_if_exists
+    wrap_installers,
+    npm_builder,
+    get_data_files
 )
 import setuptools
 
@@ -21,13 +19,10 @@ name = "{{ cookiecutter.python_name }}"
 lab_path = (HERE / name / "labextension")
 
 # Representative files that should exist after a successful build
-jstargets = [
+ensured_targets = [
     str(lab_path / "package.json"),
+    str(lab_path / "static/style.js")
 ]
-
-package_data_spec = {
-    name: ["*"],
-}
 
 labext_name = "{{ cookiecutter.labextension_name }}"
 
@@ -40,21 +35,10 @@ data_files_spec = [
     {% endif %}
 ]
 
-cmdclass = create_cmdclass("jsdeps",
-    package_data_spec=package_data_spec,
-    data_files_spec=data_files_spec
+post_develop = npm_builder(
+    build_cmd="install:extension", source_dir="src", build_dir=lab_path
 )
-
-js_command = combine_commands(
-    install_npm(HERE, build_cmd="build:prod", npm=["jlpm"]),
-    ensure_targets(jstargets),
-)
-
-is_repo = (HERE / ".git").exists()
-if is_repo:
-    cmdclass["jsdeps"] = js_command
-else:
-    cmdclass["jsdeps"] = skip_if_exists(jstargets, js_command)
+cmdclass = wrap_installers(post_develop=post_develop, ensured_targets=ensured_targets)
 
 long_description = (HERE / "README.md").read_text()
 
@@ -72,9 +56,11 @@ setup_args = dict(
     long_description=long_description,
     long_description_content_type="text/markdown",
     cmdclass=cmdclass,
+    data_files=get_data_files(data_files_spec),
     packages=setuptools.find_packages(),
     install_requires=[
         "jupyterlab~=3.0",
+        "jupyter_packaging~=0.9,<2"
     ],
     zip_safe=False,
     include_package_data=True,

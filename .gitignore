@@ -110,3 +110,6 @@ dmypy.json
 
 # OSX files
 .DS_Store
+
+# Default extension dir
+myextension
