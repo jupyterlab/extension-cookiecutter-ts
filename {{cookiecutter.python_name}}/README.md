@@ -19,8 +19,18 @@ for the frontend extension.
 
 ## Install
 
+To install the extension, execute:
+
 ```bash
 pip install {{ cookiecutter.python_name }}
+```
+
+## Uninstall
+
+To remove the extension, execute:
+
+```bash
+pip uninstall {{ cookiecutter.python_name }}
 ```
 
 {% if cookiecutter.has_server_extension.lower().startswith('y') %}
@@ -59,7 +69,7 @@ pip install -e .
 # Link your development version of the extension with JupyterLab
 jupyter labextension develop . --overwrite{% if cookiecutter.has_server_extension.lower().startswith('y') %}
 # Server extension must be manually installed in develop mode
-jupyter server extension enable <extension_name>{% endif %}
+jupyter server extension enable {{ cookiecutter.python_name }}{% endif %}
 # Rebuild extension Typescript source after making changes
 jlpm run build
 ```
@@ -81,8 +91,14 @@ By default, the `jlpm run build` command generates the source maps for this exte
 jupyter lab build --minimize=False
 ```
 
-### Uninstall
+### Development uninstall
 
-```bash
+```bash{% if cookiecutter.has_server_extension.lower().startswith('y') %}
+# Server extension must be manually disabled in develop mode
+jupyter server extension disable {{ cookiecutter.python_name }}{% endif %}
 pip uninstall {{ cookiecutter.python_name }}
 ```
+
+In development mode, you will also need to remove the symlink created by `jupyter labextension develop`
+command. To find its location, you can run `jupyter labextension list` to figure out where the `labextensions`
+folder is located. Then you can remove the symlink named `{{ cookiecutter.labextension_name }}` within that folder.
