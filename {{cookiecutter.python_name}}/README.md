@@ -57,9 +57,9 @@ The `jlpm` command is JupyterLab's pinned version of
 # Install package in development mode
 pip install -e .
 # Link your development version of the extension with JupyterLab
-jupyter labextension develop . --overwrite
-# If using a server extension, it must be manually installed in develop mode
-jupyter server extension enable <extension_name>
+jupyter labextension develop . --overwrite{% if cookiecutter.has_server_extension.lower().startswith('y') %}
+# Server extension must be manually installed in develop mode
+jupyter server extension enable <extension_name>{% endif %}
 # Rebuild extension Typescript source after making changes
 jlpm run build
 ```
