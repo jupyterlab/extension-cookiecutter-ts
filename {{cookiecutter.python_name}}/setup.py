@@ -4,11 +4,6 @@
 import json
 from pathlib import Path
 
-from jupyter_packaging import (
-    wrap_installers,
-    npm_builder,
-    get_data_files
-)
 import setuptools
 
 HERE = Path(__file__).parent.resolve()
@@ -35,11 +30,6 @@ data_files_spec = [
     {% endif %}
 ]
 
-post_develop = npm_builder(
-    build_cmd="install:extension", source_dir="src", build_dir=lab_path
-)
-cmdclass = wrap_installers(post_develop=post_develop, ensured_targets=ensured_targets)
-
 long_description = (HERE / "README.md").read_text()
 
 # Get the package info from package.json
@@ -55,12 +45,9 @@ setup_args = dict(
     license=pkg_json["license"],
     long_description=long_description,
     long_description_content_type="text/markdown",
-    cmdclass=cmdclass,
-    data_files=get_data_files(data_files_spec),
     packages=setuptools.find_packages(),
     install_requires=[
-        "jupyterlab~=3.0",
-        "jupyter_packaging~=0.9,<2"
+        "jupyter_server>=1.6,<2"
     ],
     zip_safe=False,
     include_package_data=True,
@@ -79,6 +66,19 @@ setup_args = dict(
     ],
 )
 
+try:
+    from jupyter_packaging import (
+        wrap_installers,
+        npm_builder,
+        get_data_files
+    )
+    post_develop = npm_builder(
+        build_cmd="install:extension", source_dir="src", build_dir=lab_path
+    )
+    setup_args['cmdclass'] = wrap_installers(post_develop=post_develop, ensured_targets=ensured_targets)
+    setup_args['data_files'] = get_data_files(data_files_spec)
+except ImportError as e:
+    pass
 
 if __name__ == "__main__":
     setuptools.setup(**setup_args)
