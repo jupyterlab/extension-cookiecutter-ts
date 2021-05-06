@@ -131,6 +131,49 @@ jobs:
         jupyter lab build --dev-build --no-minimize
         python -m jupyterlab.browser_check
 
+        cp dist/*.tar.gz ../myextension.tar.gz
         pip uninstall -y myextension jupyterlab
         popd
         rm -rf myextension
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: myextension-sdist
+        path: myextension.tar.gz
+
+  test_isolated:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Install Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.7'
+        architecture: 'x64'
+    - name: Setup pip cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/pip
+        key: pip-3.7-${{ hashFiles('package.json') }}
+        restore-keys: |
+          pip-3.7-
+          pip-
+    - uses: actions/download-artifact@v2
+      with:
+        name: myextension-sdist
+    - name: Install and Test
+      run: |
+        set -eux
+        # Remove NodeJS, twice to take care of system and locally installed node versions.
+        sudo rm -rf $(which node)
+        sudo rm -rf $(which node)
+
+        pip install myextension.tar.gz
+        pip install jupyterlab
+        jupyter labextension list 2>&1 | grep -ie "my_lab_extension.*OK"
+        jupyter server extension list
+        jupyter server extension list 2>&1 | grep -ie "myextension.*OK"
+        python -m jupyterlab.browser_check --no-chrome-test
