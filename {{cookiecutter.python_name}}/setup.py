@@ -26,7 +26,10 @@ data_files_spec = [
     ("share/jupyter/labextensions/%s" % labext_name, str(HERE), "install.json"),
     {%- if cookiecutter.has_server_extension == "y" -%}
     ("etc/jupyter/jupyter_server_config.d",
-     "jupyter-config", "{{ cookiecutter.python_name }}.json"),
+     "jupyter-config/server-config", "{{ cookiecutter.python_name }}.json"),
+    # For backward compatibility with notebook server
+    ("etc/jupyter/jupyter_notebook_config.d",
+     "jupyter-config/nb-config", "{{ cookiecutter.python_name }}.json"),
     {% endif %}
 ]
 
