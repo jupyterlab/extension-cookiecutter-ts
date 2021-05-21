@@ -21,7 +21,7 @@ const plugin: JupyterFrontEndPlugin<void> = {
       settingRegistry
         .load(plugin.id)
         .then(settings => {
-          console.log('{{ cookiecutter.labextension_name }} settings loaded:', settings);
+          console.log('{{ cookiecutter.labextension_name }} settings loaded:', settings.composite);
         })
         .catch(reason => {
           console.error('Failed to load settings for {{ cookiecutter.labextension_name }}.', reason)
