@@ -17,14 +17,14 @@ const plugin: JupyterFrontEndPlugin<void> = {
   activate: (app: JupyterFrontEnd{% if cookiecutter.has_settings.lower().startswith('y') %}, settingRegistry: ISettingRegistry | null{% endif %}) => {
     console.log('JupyterLab extension {{ cookiecutter.labextension_name }} is activated!');{% if cookiecutter.has_settings.lower().startswith('y') %}
 
-    if(settingRegistry){
+    if (settingRegistry) {
       settingRegistry
         .load(plugin.id)
         .then(settings => {
           console.log('{{ cookiecutter.labextension_name }} settings loaded:', settings.composite);
         })
         .catch(reason => {
-          console.error('Failed to load settings for {{ cookiecutter.labextension_name }}.', reason)
+          console.error('Failed to load settings for {{ cookiecutter.labextension_name }}.', reason);
         });
     }{% endif %}{% if cookiecutter.has_server_extension.lower().startswith('y') %}
 
