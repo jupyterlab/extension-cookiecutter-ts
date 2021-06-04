@@ -11,7 +11,7 @@ HERE = Path(__file__).parent.resolve()
 # The name of the project
 name = "{{ cookiecutter.python_name }}"
 
-lab_path = (HERE / name / "labextension")
+lab_path = (HERE / name.replace("-", "_") / "labextension")
 
 # Representative files that should exist after a successful build
 ensured_targets = [
@@ -26,10 +26,10 @@ data_files_spec = [
     ("share/jupyter/labextensions/%s" % labext_name, str(HERE), "install.json"),
     {%- if cookiecutter.has_server_extension == "y" -%}
     ("etc/jupyter/jupyter_server_config.d",
-     "jupyter-config/server-config", "{{ cookiecutter.python_name }}.json"),
+     "jupyter-config/server-config", "{{ cookiecutter.python_name | replace('-', '_') }}.json"),
     # For backward compatibility with notebook server
     ("etc/jupyter/jupyter_notebook_config.d",
-     "jupyter-config/nb-config", "{{ cookiecutter.python_name }}.json"),
+     "jupyter-config/nb-config", "{{ cookiecutter.python_name | replace('-', '_') }}.json"),
     {% endif %}
 ]
 
