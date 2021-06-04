@@ -120,6 +120,10 @@ jobs:
           restore-keys: |
             yarn-
 
+      - name: Install dependencies
+        run: |
+          python -m pip install cookiecutter check-manifest build
+
       - name: Create server extension pip install
         run: |
           set -eux
