@@ -2,7 +2,7 @@
 
 ![Github Actions Status]({{ cookiecutter.repository }}/workflows/Build/badge.svg)
 {%- if cookiecutter.has_binder.lower().startswith('y') -%}
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/{{ cookiecutter.repository|replace("https://github.com/", "") }}/master?urlpath=lab)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/{{ cookiecutter.repository|replace("https://github.com/", "") }}/main?urlpath=lab)
 {%- endif %}
 
 {{ cookiecutter.project_short_description }}
@@ -19,8 +19,18 @@ for the frontend extension.
 
 ## Install
 
+To install the extension, execute:
+
 ```bash
 pip install {{ cookiecutter.python_name }}
+```
+
+## Uninstall
+
+To remove the extension, execute:
+
+```bash
+pip uninstall {{ cookiecutter.python_name }}
 ```
 
 {% if cookiecutter.has_server_extension.lower().startswith('y') %}
@@ -57,7 +67,9 @@ The `jlpm` command is JupyterLab's pinned version of
 # Install package in development mode
 pip install -e .
 # Link your development version of the extension with JupyterLab
-jupyter labextension develop . --overwrite
+jupyter labextension develop . --overwrite{% if cookiecutter.has_server_extension.lower().startswith('y') %}
+# Server extension must be manually installed in develop mode
+jupyter server extension enable {{ cookiecutter.python_name | replace('-', '_') }}{% endif %}
 # Rebuild extension Typescript source after making changes
 jlpm run build
 ```
@@ -73,9 +85,20 @@ jupyter lab
 
 With the watch command running, every saved change will immediately be built locally and available in your running JupyterLab. Refresh JupyterLab to load the change in your browser (you may need to wait several seconds for the extension to be rebuilt).
 
-### Uninstall
+By default, the `jlpm run build` command generates the source maps for this extension to make it easier to debug using the browser dev tools. To also generate source maps for the JupyterLab core extensions, you can run the following command:
 
 ```bash
-pip uninstall {{ cookiecutter.python_name }}
-jupyter labextension uninstall {{ cookiecutter.labextension_name }}
+jupyter lab build --minimize=False
 ```
+
+### Development uninstall
+
+```bash{% if cookiecutter.has_server_extension.lower().startswith('y') %}
+# Server extension must be manually disabled in develop mode
+jupyter server extension disable {{ cookiecutter.python_name | replace('-', '_') }}{% endif %}
+pip uninstall {{ cookiecutter.python_name }}
+```
+
+In development mode, you will also need to remove the symlink created by `jupyter labextension develop`
+command. To find its location, you can run `jupyter labextension list` to figure out where the `labextensions`
+folder is located. Then you can remove the symlink named `{{ cookiecutter.labextension_name }}` within that folder.

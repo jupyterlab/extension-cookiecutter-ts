@@ -9,7 +9,7 @@ import { requestAPI } from './handler';{% endif %}
  * Initialization data for the {{ cookiecutter.labextension_name }} extension.
  */
 const extension: JupyterFrontEndPlugin<void> = {
-  id: '{{ cookiecutter.labextension_name }}',
+  id: '{{ cookiecutter.labextension_name }}:plugin',
   autoStart: true,
   activate: (app: JupyterFrontEnd) => {
     console.log('JupyterLab extension {{ cookiecutter.labextension_name }} is activated!');{% if cookiecutter.has_server_extension.lower().startswith('y') %}

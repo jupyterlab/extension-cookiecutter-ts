@@ -1,3 +1,17 @@
 [build-system]
-requires = ["jupyter_packaging~=0.7.0", "jupyterlab>=3.0.0rc2,==3.*", "setuptools>=40.8.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["jupyter_packaging~=0.10,<2", "jupyterlab~=3.0"]
+build-backend = "jupyter_packaging.build_api"
+
+[tool.jupyter-packaging.options]
+skip-if-exists = ["{{ cookiecutter.python_name | replace('-', '_') }}/labextension/static/style.js"]
+ensured-targets = ["{{ cookiecutter.python_name | replace('-', '_') }}/labextension/static/style.js", "{{ cookiecutter.python_name | replace('-', '_') }}/labextension/package.json"]
+
+[tool.jupyter-packaging.builder]
+factory = "jupyter_packaging.npm_builder"
+
+[tool.jupyter-packaging.build-args]
+build_cmd = "build:prod"
+npm = ["jlpm"]
+
+[tool.check-manifest]
+ignore = ["{{ cookiecutter.python_name | replace('-', '_') }}/labextension/**", "yarn.lock", ".*", "package-lock.json"]

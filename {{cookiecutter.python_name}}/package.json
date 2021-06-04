@@ -12,10 +12,13 @@
     "url": "{{ cookiecutter.repository }}/issues"
   },
   "license": "BSD-3-Clause",
-  "author": "{{ cookiecutter.author_name }}",
+  "author": {
+    "name": "{{ cookiecutter.author_name }}",
+    "email": "{{ cookiecutter.author_email }}"
+  },
   "files": [
     "lib/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}",
-    "style/**/*.{css,eot,gif,html,jpg,json,png,svg,woff2,ttf}"
+    "style/**/*.{css,.js,eot,gif,html,jpg,json,png,svg,woff2,ttf}"
   ],
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -26,44 +29,45 @@
   },
   "scripts": {
     "build": "jlpm run build:lib && jlpm run build:labextension:dev",
-    "build:prod": "jlpm run build:lib && jlpm run build:labextension",
+    "build:prod": "jlpm run clean && jlpm run build:lib && jlpm run build:labextension",
     "build:labextension": "jupyter labextension build .",
     "build:labextension:dev": "jupyter labextension build --development True .",
     "build:lib": "tsc",
     "clean": "jlpm run clean:lib",
     "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
-    "clean:labextension": "rimraf {{ cookiecutter.python_name }}/static",
+    "clean:labextension": "rimraf {{ cookiecutter.python_name | replace('-', '_') }}/labextension",
     "clean:all": "jlpm run clean:lib && jlpm run clean:labextension",
     "eslint": "eslint . --ext .ts,.tsx --fix",
     "eslint:check": "eslint . --ext .ts,.tsx",
-    "install:extension": "jupyter labextension develop --overwrite .",
-    "prepare": "jlpm run clean && jlpm run build:prod",
+    "install:extension": "jlpm run build",
     "watch": "run-p watch:src watch:labextension",
     "watch:src": "tsc -w",
     "watch:labextension": "jupyter labextension watch ."
   },
   "dependencies": {
-    "@jupyterlab/application": "^3.0.0-rc.2"{% if cookiecutter.has_server_extension.lower().startswith('y') %},
-    "@jupyterlab/coreutils": "^5.0.0-rc.2",
-    "@jupyterlab/services": "^6.0.0-rc.2"
+    "@jupyterlab/application": "^3.0.0"{% if cookiecutter.has_server_extension.lower().startswith('y') %},
+    "@jupyterlab/coreutils": "^5.0.0",
+    "@jupyterlab/services": "^6.0.0"
 {% endif %}
   },
   "devDependencies": {
-    "@jupyterlab/builder": "^3.0.0-rc.2",
-    "@typescript-eslint/eslint-plugin": "^2.27.0",
-    "@typescript-eslint/parser": "^2.27.0",
-    "eslint": "^7.5.0",
-    "eslint-config-prettier": "^6.10.1",
-    "eslint-plugin-prettier": "^3.1.2", {% if cookiecutter.has_server_extension.lower().startswith('y') %}
+    "@jupyterlab/builder": "^3.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.8.1",
+    "@typescript-eslint/parser": "^4.8.1",
+    "eslint": "^7.14.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.1.4", {% if cookiecutter.has_server_extension.lower().startswith('y') %}
     "mkdirp": "^1.0.3", {% endif %}
     "npm-run-all": "^4.1.5",
-    "prettier": "^1.19.0",
+    "prettier": "^2.1.1",
     "rimraf": "^3.0.2",
-    "typescript": "~4.0.3"
+    "typescript": "~4.1.3"
   },
   "sideEffects": [
-    "style/*.css"
+    "style/*.css",
+    "style/index.js"
   ],
+  "styleModule": "style/index.js",
   "jupyterlab": { {% if cookiecutter.has_server_extension.lower().startswith('y') %}
     "discovery": {
         "server": {
@@ -76,6 +80,6 @@
         }
     }, {% endif %}
     "extension": true,
-    "outputDir": "{{cookiecutter.python_name}}/static"
+    "outputDir": "{{cookiecutter.python_name | replace('-', '_')}}/labextension"
   }
 }
