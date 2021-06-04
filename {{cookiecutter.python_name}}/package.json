@@ -18,7 +18,8 @@
   },
   "files": [
     "lib/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}",
-    "style/**/*.{css,.js,eot,gif,html,jpg,json,png,svg,woff2,ttf}"
+    "style/**/*.{css,.js,eot,gif,html,jpg,json,png,svg,woff2,ttf}"{% if cookiecutter.has_settings.lower().startswith('y') %},
+    "schema/*.json"{% endif %}
   ],
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -45,7 +46,8 @@
     "watch:labextension": "jupyter labextension watch ."
   },
   "dependencies": {
-    "@jupyterlab/application": "^3.0.0"{% if cookiecutter.has_server_extension.lower().startswith('y') %},
+    "@jupyterlab/application": "^3.0.0"{% if cookiecutter.has_settings.lower().startswith('y') %},
+    "@jupyterlab/settingregistry": "^3.0.0"{% endif %}{% if cookiecutter.has_server_extension.lower().startswith('y') %},
     "@jupyterlab/coreutils": "^5.0.0",
     "@jupyterlab/services": "^6.0.0"
 {% endif %}
@@ -80,6 +82,7 @@
         }
     }, {% endif %}
     "extension": true,
-    "outputDir": "{{cookiecutter.python_name | replace('-', '_')}}/labextension"
+    "outputDir": "{{cookiecutter.python_name | replace('-', '_')}}/labextension"{% if cookiecutter.has_settings.lower().startswith('y') %},
+    "schemaDir": "schema"{% endif %}
   }
 }
