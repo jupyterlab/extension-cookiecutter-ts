@@ -131,7 +131,7 @@ jobs:
           python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['has_settings']='y'; cookiecutter('.', extra_context=d, no_input=True)"
           pushd myextension
           pip install jupyterlab
-          jlpm install && jlpm run eslint:check
+          jlpm install
           pip install -e .
           jupyter labextension develop . --overwrite
           jupyter labextension list
