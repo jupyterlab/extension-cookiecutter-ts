@@ -136,10 +136,11 @@ jobs:
           jupyter server extension list 2>&1 | grep -ie "myextension.*OK"
           jupyter labextension list
           jupyter labextension list 2>&1 | grep -ie "myextension.*OK"
+          popd
+          # This test should be made outside the extension folder
           python -m jupyterlab.browser_check
 
           pip uninstall -y myextension jupyterlab
-          popd
           rm -rf myextension
 
       - name: Create server extension pip develop
@@ -156,14 +157,18 @@ jobs:
           jupyter server extension list 2>&1 | grep -ie "myextension.*OK"
           jupyter labextension list
           jupyter labextension list 2>&1 | grep -ie "myextension.*OK"
+
+          popd
+
+          # This test should be made outside the extension folder
           python -m jupyterlab.browser_check
 
-          jupyter labextension develop . --overwrite
-          jupyter labextension build .
+          jupyter labextension develop ./myextension --overwrite
+          jupyter labextension build ./myextension
 
           jupyter labextension uninstall myextension
           pip uninstall -y myextension jupyterlab
-          popd
+
           rm -rf myextension
 
       - name: Install server extension from a tarball
@@ -182,11 +187,12 @@ jobs:
           jupyter server extension list 2>&1 | grep -ie "myextension.*OK"
 
           jupyter lab build --dev-build --no-minimize
+          popd
+
           python -m jupyterlab.browser_check
 
-          cp dist/*.tar.gz ../myextension.tar.gz
+          cp myextension/dist/*.tar.gz myextension.tar.gz
           pip uninstall -y myextension jupyterlab
-          popd
           rm -rf myextension
 
       - uses: actions/upload-artifact@v2
