@@ -135,7 +135,7 @@ jobs:
           jupyter server extension list
           jupyter server extension list 2>&1 | grep -ie "myextension.*OK"
           jupyter labextension list
-          jupyter labextension list 2>&1 | grep -ie "my_lab_extension.*OK"
+          jupyter labextension list 2>&1 | grep -ie "myextension.*OK"
           python -m jupyterlab.browser_check
 
           pip uninstall -y myextension jupyterlab
@@ -155,13 +155,13 @@ jobs:
           jupyter server extension list
           jupyter server extension list 2>&1 | grep -ie "myextension.*OK"
           jupyter labextension list
-          jupyter labextension list 2>&1 | grep -ie "my_lab_extension.*OK"
+          jupyter labextension list 2>&1 | grep -ie "myextension.*OK"
           python -m jupyterlab.browser_check
 
           jupyter labextension develop . --overwrite
           jupyter labextension build .
 
-          jupyter labextension uninstall my_lab_extension
+          jupyter labextension uninstall myextension
           pip uninstall -y myextension jupyterlab
           popd
           rm -rf myextension
@@ -177,7 +177,7 @@ jobs:
           python -m build --sdist
           pip install dist/*.tar.gz
           jupyter labextension list
-          jupyter labextension list 2>&1 | grep -ie "my_lab_extension.*OK"
+          jupyter labextension list 2>&1 | grep -ie "myextension.*OK"
           jupyter server extension list
           jupyter server extension list 2>&1 | grep -ie "myextension.*OK"
 
@@ -226,7 +226,7 @@ jobs:
 
           pip install myextension.tar.gz
           pip install jupyterlab
-          jupyter labextension list 2>&1 | grep -ie "my_lab_extension.*OK"
+          jupyter labextension list 2>&1 | grep -ie "myextension.*OK"
           jupyter server extension list
           jupyter server extension list 2>&1 | grep -ie "myextension.*OK"
           python -m jupyterlab.browser_check --no-chrome-test
