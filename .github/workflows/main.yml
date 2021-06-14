@@ -63,7 +63,7 @@ jobs:
         run: |
           set -eux
           # Trick to use custom parameters
-          python -c "from cookiecutter.main import cookiecutter; import json, os; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['python_name']=os.getenv('NAME'); cookiecutter('.', extra_context=d, no_input=True)"
+          python -c "from cookiecutter.main import cookiecutter; import json, os; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['labextension_name']=os.getenv('NAME'); cookiecutter('.', extra_context=d, no_input=True)"
           pushd ${NAME}
           pip install jupyterlab
           jlpm install && jlpm run eslint:check
