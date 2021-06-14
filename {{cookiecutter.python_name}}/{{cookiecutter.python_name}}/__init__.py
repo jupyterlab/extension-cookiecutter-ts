@@ -22,7 +22,7 @@ from .handlers import setup_handlers
 
 def _jupyter_server_extension_points():
     return [{
-        "module": "{{ cookiecutter.python_name | replace('-', '_') }}"
+        "module": "{{ cookiecutter.python_name }}"
     }]
 
 
@@ -35,7 +35,7 @@ def _load_jupyter_server_extension(server_app):
         JupyterLab application instance
     """
     setup_handlers(server_app.web_app)
-    server_app.log.info("Registered HelloWorld extension at URL path /{{ cookiecutter.python_name }}")
+    server_app.log.info("Registered HelloWorld extension at URL path /{{ cookiecutter.python_name | replace('_', '-') }}")
 
 # For backward compatibility with notebook server - useful for Binder/JupyterHub
 load_jupyter_server_extension = _load_jupyter_server_extension
