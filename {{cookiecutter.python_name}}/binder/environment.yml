@@ -2,9 +2,9 @@
 # this environment may also be used locally on Linux/MacOS/Windows, e.g.
 #
 #   conda env update --file binder/environment.yml
-#   conda activate {{ cookiecutter.python_name }}-demo
+#   conda activate {{ cookiecutter.python_name | replace('_', '-') }}-demo
 #
-name: {{ cookiecutter.python_name }}-demo
+name: {{ cookiecutter.python_name | replace('_', '-') }}-demo
 
 channels:
   - conda-forge

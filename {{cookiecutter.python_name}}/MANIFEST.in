@@ -8,7 +8,7 @@ include install.json
 include ts*.json
 include yarn.lock
 
-graft {{ cookiecutter.python_name | replace('-', '_') }}/labextension
+graft {{ cookiecutter.python_name }}/labextension
 
 # Javascript files
 graft src
