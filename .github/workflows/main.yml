@@ -250,7 +250,7 @@ jobs:
           jupyter labextension uninstall myextension
           pip uninstall -y myextension jupyterlab
 
-          rm -rf myextension
+          python -c "import shutil; shutil.rmtree('myextension')"
 
       - name: Install server extension from a tarball
         run: |
