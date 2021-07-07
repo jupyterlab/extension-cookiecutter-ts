@@ -199,7 +199,6 @@ jobs:
 
       - name: Create server extension pip install
         run: |
-          set -eux
           # Trick to use custom parameters
           python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['has_server_extension']='y'; cookiecutter('.', extra_context=d, no_input=True)"
           cd myextension
@@ -208,6 +207,7 @@ jobs:
 
       - name: Check pip install method
         run: |
+          set -eux
           jupyter server extension list
           jupyter server extension list 2>&1 | grep -ie "myextension.*OK"
           jupyter labextension list
@@ -222,7 +222,6 @@ jobs:
 
       - name: Create server extension pip develop
         run: |
-          set -eux
           # Trick to use custom parameters
           python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['has_server_extension']='y'; cookiecutter('.', extra_context=d, no_input=True)"
           cd myextension
@@ -233,6 +232,7 @@ jobs:
 
       - name: Check pip develop method
         run: |
+          set -eux
           jupyter server extension list
           jupyter server extension list 2>&1 | grep -ie "myextension.*OK"
           jupyter labextension list
@@ -254,7 +254,6 @@ jobs:
 
       - name: Install server extension from a tarball
         run: |
-          set -eux
           # Trick to use custom parameters
           python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['has_server_extension']='y'; cookiecutter('.', extra_context=d, no_input=True)"
           cd myextension
@@ -265,6 +264,7 @@ jobs:
 
       - name: Check install tarball method
         run: |
+          set -eux
           jupyter labextension list
           jupyter labextension list 2>&1 | grep -ie "myextension.*OK"
           jupyter server extension list
