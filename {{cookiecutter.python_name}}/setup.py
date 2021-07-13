@@ -49,9 +49,9 @@ setup_args = dict(
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(),
-    install_requires=[
+    install_requires=[{%- if cookiecutter.has_server_extension == "y" -%}
         "jupyter_server>=1.6,<2"
-    ],
+    {% endif %}],
     zip_safe=False,
     include_package_data=True,
     python_requires=">=3.6",

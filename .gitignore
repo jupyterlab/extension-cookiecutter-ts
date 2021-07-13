@@ -113,3 +113,4 @@ dmypy.json
 
 # Default extension dir
 myextension
+.vscode/
