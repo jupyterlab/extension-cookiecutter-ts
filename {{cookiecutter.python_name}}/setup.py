@@ -2,6 +2,7 @@
 {{ cookiecutter.python_name }} setup
 """
 import json
+import sys
 from pathlib import Path
 
 import setuptools
@@ -23,14 +24,12 @@ labext_name = "{{ cookiecutter.labextension_name }}"
 
 data_files_spec = [
     ("share/jupyter/labextensions/%s" % labext_name, str(lab_path.relative_to(HERE)), "**"),
-    ("share/jupyter/labextensions/%s" % labext_name, str('.'), "install.json"),
-    {%- if cookiecutter.has_server_extension == "y" -%}
+    ("share/jupyter/labextensions/%s" % labext_name, str("."), "install.json"),{%- if cookiecutter.has_server_extension == "y" -%}
     ("etc/jupyter/jupyter_server_config.d",
      "jupyter-config/server-config", "{{ cookiecutter.python_name }}.json"),
     # For backward compatibility with notebook server
     ("etc/jupyter/jupyter_notebook_config.d",
-     "jupyter-config/nb-config", "{{ cookiecutter.python_name }}.json"),
-    {% endif %}
+     "jupyter-config/nb-config", "{{ cookiecutter.python_name }}.json"),{% endif %}
 ]
 
 long_description = (HERE / "README.md").read_text()
@@ -78,10 +77,14 @@ try:
     post_develop = npm_builder(
         build_cmd="install:extension", source_dir="src", build_dir=lab_path
     )
-    setup_args['cmdclass'] = wrap_installers(post_develop=post_develop, ensured_targets=ensured_targets)
-    setup_args['data_files'] = get_data_files(data_files_spec)
+    setup_args["cmdclass"] = wrap_installers(post_develop=post_develop, ensured_targets=ensured_targets)
+    setup_args["data_files"] = get_data_files(data_files_spec)
 except ImportError as e:
-    pass
+    import logging
+    logging.basicConfig(format="%(levelname)s: %(message)s")
+    logging.warning("Build tool `jupyter-packaging` is missing. Install it with pip or conda.")
+    if not ("--name" in sys.argv or "--version" in sys.argv):
+        raise e
 
 if __name__ == "__main__":
     setuptools.setup(**setup_args)
