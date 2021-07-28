@@ -18,7 +18,7 @@
   },
   "files": [
     "lib/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}",
-    "style/**/*.{css,.js,eot,gif,html,jpg,json,png,svg,woff2,ttf}"{% if cookiecutter.has_settings.lower().startswith('y') %},
+    "style/**/*.{css,js,eot,gif,html,jpg,json,png,svg,woff2,ttf}"{% if cookiecutter.has_settings.lower().startswith('y') %},
     "schema/*.json"{% endif %}
   ],
   "main": "lib/index.js",
@@ -46,14 +46,14 @@
     "watch:labextension": "jupyter labextension watch ."
   },
   "dependencies": {
-    "@jupyterlab/application": "^3.0.0"{% if cookiecutter.has_settings.lower().startswith('y') %},
-    "@jupyterlab/settingregistry": "^3.0.0"{% endif %}{% if cookiecutter.has_server_extension.lower().startswith('y') %},
-    "@jupyterlab/coreutils": "^5.0.0",
-    "@jupyterlab/services": "^6.0.0"
+    "@jupyterlab/application": "^3.1.0"{% if cookiecutter.has_settings.lower().startswith('y') %},
+    "@jupyterlab/settingregistry": "^3.1.0"{% endif %}{% if cookiecutter.has_server_extension.lower().startswith('y') %},
+    "@jupyterlab/coreutils": "^5.1.0",
+    "@jupyterlab/services": "^6.1.0"
 {% endif %}
   },
   "devDependencies": {
-    "@jupyterlab/builder": "^3.0.0",
+    "@jupyterlab/builder": "^3.1.0",
     "@typescript-eslint/eslint-plugin": "^4.8.1",
     "@typescript-eslint/parser": "^4.8.1",
     "eslint": "^7.14.0",
@@ -88,7 +88,7 @@
   "jupyter-releaser": {
     "hooks": {
       "before-build-npm": [
-        "python -m pip install jupyterlab~=3.0",
+        "python -m pip install jupyterlab~=3.1",
         "jlpm"
       ]
     }
