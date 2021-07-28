@@ -24,7 +24,7 @@ labext_name = "{{ cookiecutter.labextension_name }}"
 
 data_files_spec = [
     ("share/jupyter/labextensions/%s" % labext_name, str(lab_path.relative_to(HERE)), "**"),
-    ("share/jupyter/labextensions/%s" % labext_name, str("."), "install.json"),{%- if cookiecutter.has_server_extension == "y" -%}
+    ("share/jupyter/labextensions/%s" % labext_name, str("."), "install.json"),{% if cookiecutter.has_server_extension == "y" %}
     ("etc/jupyter/jupyter_server_config.d",
      "jupyter-config/server-config", "{{ cookiecutter.python_name }}.json"),
     # For backward compatibility with notebook server
@@ -48,7 +48,7 @@ setup_args = dict(
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(),
-    install_requires=[{%- if cookiecutter.has_server_extension == "y" -%}
+    install_requires=[{% if cookiecutter.has_server_extension == "y" %}
         "jupyter_server>=1.6,<2"
     {% endif %}],
     zip_safe=False,
