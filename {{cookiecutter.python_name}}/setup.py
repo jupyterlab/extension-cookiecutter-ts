@@ -65,6 +65,7 @@ setup_args = dict(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Framework :: Jupyter",
+        # This classifiers will be valid when https://github.com/pypa/warehouse/pull/9882 gets merged
         # "Framework :: Jupyter :: JupyterLab",
         # "Framework :: Jupyter :: JupyterLab :: 3",
         # "Framework :: Jupyter :: JupyterLab :: Extensions",
