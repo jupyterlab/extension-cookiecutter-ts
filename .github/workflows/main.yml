@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: "*"
+    branches: ["*.0"]
   pull_request:
-    branches: "*"
+    branches: ["*"]
   schedule:
     - cron: "0 0 * * *"
 
