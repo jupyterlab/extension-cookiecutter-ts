@@ -1,6 +1,6 @@
 # {{ cookiecutter.python_name }}
 
-![Github Actions Status]({{ cookiecutter.repository }}/workflows/Build/badge.svg)
+[![Github Actions Status]({{ cookiecutter.repository }}/workflows/Build/badge.svg)]({{ cookiecutter.repository }}/actions/workflows/build.yml)
 {%- if cookiecutter.has_binder.lower().startswith('y') -%}
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/{{ cookiecutter.repository|replace("https://github.com/", "") }}/main?urlpath=lab)
 {%- endif %}
