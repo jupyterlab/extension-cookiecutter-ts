@@ -7,5 +7,8 @@
   "has_settings": "n",
   "has_server_extension": "n",
   "has_binder": "n",
-  "repository": "https://github.com/github_username/{{ cookiecutter.labextension_name }}"
+  "repository": "https://github.com/github_username/{{ cookiecutter.labextension_name }}",
+  "_copy_without_render": [
+    ".github/workflows/check-release.yml"
+  ]
 }
