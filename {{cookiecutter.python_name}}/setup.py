@@ -36,10 +36,16 @@ long_description = (HERE / "README.md").read_text()
 
 # Get the package info from package.json
 pkg_json = json.loads((HERE / "package.json").read_bytes())
+version = (
+    pkg_json["version"]
+    .replace("-alpha.", "a")
+    .replace("-beta.", "b")
+    .replace("-rc.", "rc")
+) 
 
 setup_args = dict(
     name=name,
-    version=pkg_json["version"],
+    version=version,
     url=pkg_json["homepage"],
     author=pkg_json["author"]["name"],
     author_email=pkg_json["author"]["email"],

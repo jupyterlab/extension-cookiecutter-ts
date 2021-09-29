@@ -9,7 +9,12 @@ def _fetchVersion():
     for settings in HERE.rglob("package.json"): 
         try:
             with settings.open() as f:
-                return json.load(f)["version"]
+                version = json.load(f)["version"]
+                return (
+                    version.replace("-alpha.", "a")
+                    .replace("-beta.", "b")
+                    .replace("-rc.", "rc")
+                )
         except FileNotFoundError:
             pass
 
