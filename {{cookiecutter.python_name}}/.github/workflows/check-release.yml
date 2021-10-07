@@ -53,3 +53,8 @@ jobs:
         uses: jupyter-server/jupyter_releaser/.github/actions/check-release@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload Distributions
+        uses: actions/upload-artifact@v2
+        with:
+          name: {{ cookiecutter.python_name }}-releaser-dist-${{ github.run_number }}
+          path: .jupyter_releaser_checkout/dist
