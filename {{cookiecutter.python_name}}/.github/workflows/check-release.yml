@@ -25,6 +25,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14.x'
+      {# Escape double curly brace #}
+      {% raw %}
       - name: Get pip cache dir
         id: pip-cache
         run: |
@@ -53,8 +55,9 @@ jobs:
         uses: jupyter-server/jupyter_releaser/.github/actions/check-release@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+      {% endraw %}
       - name: Upload Distributions
         uses: actions/upload-artifact@v2
         with:
-          name: {{ cookiecutter.python_name }}-releaser-dist-${{ github.run_number }}
+          name: {{ cookiecutter.python_name }}-releaser-dist-${{ '{{ github.run_number }}' }}
           path: .jupyter_releaser_checkout/dist
