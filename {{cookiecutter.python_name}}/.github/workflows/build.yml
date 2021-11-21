@@ -63,7 +63,7 @@ jobs:
         pip install build
         python -m build --sdist
         cp dist/*.tar.gz myextension.tar.gz
-        pip uninstall -y myextension jupyterlab
+        pip uninstall -y "{{ cookiecutter.python_name }}" jupyterlab
         rm -rf myextension
 
     - uses: actions/upload-artifact@v2
