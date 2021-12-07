@@ -257,7 +257,7 @@ jobs:
           # Trick to use custom parameters
           python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['has_server_extension']='y'; cookiecutter('.', extra_context=d, no_input=True)"
           cd myextension
-          pip install --pre jupyterlab
+          pip install jupyterlab
           jupyter lab clean --all
           python -m build --sdist
           cd dist
