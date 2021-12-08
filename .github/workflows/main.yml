@@ -60,8 +60,9 @@ jobs:
 
   settings:
     runs-on: ubuntu-latest
-    matrix:
-      python-version: ["3.7", "3.10"]
+    strategy:
+      matrix:
+        python-version: ["3.7", "3.10"]
 
     steps:
       - name: Checkout
@@ -208,8 +209,9 @@ jobs:
   test_isolated:
     needs: server
     runs-on: ubuntu-latest
-    matrix:
-      python-version: ["3.7", "3.10"]
+    strategy:
+      matrix:
+        python-version: ["3.7", "3.10"]
 
     steps:
       - name: Checkout
