@@ -219,7 +219,7 @@ jobs:
       - name: Install Python
         uses: actions/setup-python@v2
         with:
-          python-version: matrix.python-version
+          python-version: ${{ matrix.python-version }}
           architecture: "x64"
       - name: Setup pip cache
         uses: actions/cache@v2
