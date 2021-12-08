@@ -60,6 +60,8 @@ jobs:
 
   settings:
     runs-on: ubuntu-latest
+    matrix:
+      python-version: ["3.7", "3.10"]
 
     steps:
       - name: Checkout
@@ -206,6 +208,8 @@ jobs:
   test_isolated:
     needs: server
     runs-on: ubuntu-latest
+    matrix:
+      python-version: ["3.7", "3.10"]
 
     steps:
       - name: Checkout
@@ -213,7 +217,7 @@ jobs:
       - name: Install Python
         uses: actions/setup-python@v2
         with:
-          python-version: "3.7"
+          python-version: matrix.python-version
           architecture: "x64"
       - name: Setup pip cache
         uses: actions/cache@v2
