@@ -62,6 +62,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
+        // This will be used by the base setup action
         python-version: ["3.7", "3.10"]
 
     steps:
