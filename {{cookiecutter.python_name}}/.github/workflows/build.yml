@@ -52,7 +52,7 @@ jobs:
         jlpm
         jlpm run eslint:check
         python -m pip install .
-{% if cookiecutter.has_server_extension.lower().startswith('y') %}
+{% if cookiecutter.kind.lower() == 'server' %}
         jupyter server extension list 2>&1 | grep -ie "{{ cookiecutter.python_name }}.*OK"
 {% endif %}
         jupyter labextension list 2>&1 | grep -ie "{{ cookiecutter.labextension_name }}.*OK"

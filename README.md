@@ -3,7 +3,10 @@
 ![Github Actions Status](https://github.com/jupyterlab/extension-cookiecutter-ts/workflows/CI/badge.svg)
 
 A [cookiecutter](https://github.com/audreyr/cookiecutter) template for creating
-a JupyterLab extension using TypeScript with optionally a server extension.
+a JupyterLab extensions. Three kinds of extension are supported:
+- _frontend_: Pure frontend extension written in TypeScript.
+- _server_: Extension with frontend (in TypeScript) and backend (in Python) parts.
+- _theme_: Theme for JupyterLab (using CSS variables).
     
 > See also [extension-cookiecutter-js](https://github.com/jupyterlab/extension-cookiecutter-js)
 for an extension in CommonJS.

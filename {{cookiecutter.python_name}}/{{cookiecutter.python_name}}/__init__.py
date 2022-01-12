@@ -2,22 +2,25 @@
 import json
 from pathlib import Path
 
-from ._version import __version__
+from ._version import __version__{% if cookiecutter.kind.lower() == 'server' %}
+from .handlers import setup_handlers
+{% endif %}
+
 
 HERE = Path(__file__).parent.resolve()
 
+
 with (HERE / "labextension" / "package.json").open() as fid:
     data = json.load(fid)
+
 
 def _jupyter_labextension_paths():
     return [{
         "src": "labextension",
         "dest": data["name"]
     }]
-{% if cookiecutter.has_server_extension.lower().startswith('y') %}
+{% if cookiecutter.kind.lower() == 'server' %}
 
-
-from .handlers import setup_handlers
 
 
 def _jupyter_server_extension_points():

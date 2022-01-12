@@ -1,9 +1,11 @@
 import {
   JupyterFrontEnd,
   JupyterFrontEndPlugin
-} from '@jupyterlab/application';{% if cookiecutter.has_settings.lower().startswith('y') %}
+} from '@jupyterlab/application';{% if cookiecutter.kind.lower() == 'theme' %}
 
-import { ISettingRegistry } from '@jupyterlab/settingregistry';{% endif %}{% if cookiecutter.has_server_extension.lower().startswith('y') %}
+import { IThemeManager } from '@jupyterlab/apputils';{% endif %}{% if cookiecutter.has_settings.lower().startswith('y') %}
+
+import { ISettingRegistry } from '@jupyterlab/settingregistry';{% endif %}{% if cookiecutter.kind.lower() == 'server' %}
 
 import { requestAPI } from './handler';{% endif %}
 
@@ -12,10 +14,19 @@ import { requestAPI } from './handler';{% endif %}
  */
 const plugin: JupyterFrontEndPlugin<void> = {
   id: '{{ cookiecutter.labextension_name }}:plugin',
-  autoStart: true,{% if cookiecutter.has_settings.lower().startswith('y') %}
+  autoStart: true,{% if cookiecutter.kind.lower() == 'theme' %}
+  requires: [IThemeManager],{% endif %}{% if cookiecutter.has_settings.lower().startswith('y') %}
   optional: [ISettingRegistry],{% endif %}
-  activate: (app: JupyterFrontEnd{% if cookiecutter.has_settings.lower().startswith('y') %}, settingRegistry: ISettingRegistry | null{% endif %}) => {
-    console.log('JupyterLab extension {{ cookiecutter.labextension_name }} is activated!');{% if cookiecutter.has_settings.lower().startswith('y') %}
+  activate: (app: JupyterFrontEnd{% if cookiecutter.kind.lower() == 'theme' %}, manager: IThemeManager{% endif %}{% if cookiecutter.has_settings.lower().startswith('y') %}, settingRegistry: ISettingRegistry | null{% endif %}) => {
+    console.log('JupyterLab extension {{ cookiecutter.labextension_name }} is activated!');{% if cookiecutter.kind.lower() == 'theme' %}
+    const style = '{{ cookiecutter.labextension_name }}/index.css';
+
+    manager.register({
+      name: '{{ cookiecutter.labextension_name }}',
+      isLight: true,
+      load: () => manager.loadCSS(style),
+      unload: () => Promise.resolve(undefined)
+    });{% endif %}{% if cookiecutter.has_settings.lower().startswith('y') %}
 
     if (settingRegistry) {
       settingRegistry
@@ -26,7 +37,7 @@ const plugin: JupyterFrontEndPlugin<void> = {
         .catch(reason => {
           console.error('Failed to load settings for {{ cookiecutter.labextension_name }}.', reason);
         });
-    }{% endif %}{% if cookiecutter.has_server_extension.lower().startswith('y') %}
+    }{% endif %}{% if cookiecutter.kind.lower() == 'server' %}
 
     requestAPI<any>('get_example')
       .then(data => {
