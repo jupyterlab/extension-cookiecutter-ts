@@ -7,7 +7,7 @@
 
 {{ cookiecutter.project_short_description }}
 
-{% if cookiecutter.has_server_extension.lower().startswith('y') %}
+{% if cookiecutter.kind.lower() == 'server' %}
 This extension is composed of a Python package named `{{ cookiecutter.python_name }}`
 for the server extension and a NPM package named `{{ cookiecutter.labextension_name }}`
 for the frontend extension.
@@ -33,7 +33,7 @@ To remove the extension, execute:
 pip uninstall {{ cookiecutter.python_name }}
 ```
 
-{% if cookiecutter.has_server_extension.lower().startswith('y') %}
+{% if cookiecutter.kind.lower() == 'server' %}
 ## Troubleshoot
 
 If you are seeing the frontend extension, but it is not working, check
@@ -67,7 +67,7 @@ The `jlpm` command is JupyterLab's pinned version of
 # Install package in development mode
 pip install -e .
 # Link your development version of the extension with JupyterLab
-jupyter labextension develop . --overwrite{% if cookiecutter.has_server_extension.lower().startswith('y') %}
+jupyter labextension develop . --overwrite{% if cookiecutter.kind.lower() == 'server' %}
 # Server extension must be manually installed in develop mode
 jupyter server extension enable {{ cookiecutter.python_name }}{% endif %}
 # Rebuild extension Typescript source after making changes
@@ -93,7 +93,7 @@ jupyter lab build --minimize=False
 
 ### Development uninstall
 
-```bash{% if cookiecutter.has_server_extension.lower().startswith('y') %}
+```bash{% if cookiecutter.kind.lower() == 'server' %}
 # Server extension must be manually disabled in develop mode
 jupyter server extension disable {{ cookiecutter.python_name }}{% endif %}
 pip uninstall {{ cookiecutter.python_name }}

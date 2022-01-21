@@ -16,15 +16,15 @@ lab_path = (HERE / name.replace("-", "_") / "labextension")
 
 # Representative files that should exist after a successful build
 ensured_targets = [
-    str(lab_path / "package.json"),
-    str(lab_path / "static/style.js")
+    str(lab_path / "package.json"){% if cookiecutter.kind.lower() != "theme" %},
+    str(lab_path / "static/style.js"){% endif %}
 ]
 
 labext_name = "{{ cookiecutter.labextension_name }}"
 
 data_files_spec = [
     ("share/jupyter/labextensions/%s" % labext_name, str(lab_path.relative_to(HERE)), "**"),
-    ("share/jupyter/labextensions/%s" % labext_name, str("."), "install.json"),{% if cookiecutter.has_server_extension == "y" %}
+    ("share/jupyter/labextensions/%s" % labext_name, str("."), "install.json"),{% if cookiecutter.kind.lower() == "server" %}
     ("etc/jupyter/jupyter_server_config.d",
      "jupyter-config/server-config", "{{ cookiecutter.python_name }}.json"),
     # For backward compatibility with notebook server
@@ -55,7 +55,7 @@ setup_args = dict(
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(),
-    install_requires=[{% if cookiecutter.has_server_extension == "y" %}
+    install_requires=[{% if cookiecutter.kind.lower() == "server" %}
         "jupyter_server>=1.6,<2"
     {% endif %}],
     zip_safe=False,

@@ -22,7 +22,16 @@ if __name__ == "__main__":
     if not "{{ cookiecutter.has_settings }}".lower().startswith("y"):
         remove_path(PROJECT_DIRECTORY / "schema")
 
-    if not "{{ cookiecutter.has_server_extension }}".lower().startswith("y"):
+    if "{{ cookiecutter.kind }}".lower() == "theme":
+        for f in (
+            "style/index.js",
+            "style/base.css"
+        ):
+            remove_path(PROJECT_DIRECTORY / f)
+    else:
+        remove_path(PROJECT_DIRECTORY / "style/variable.css")
+
+    if not "{{ cookiecutter.kind }}".lower() == "server":
         for f in (
             "{{ cookiecutter.python_name }}/handlers.py",
             "src/handler.ts",
