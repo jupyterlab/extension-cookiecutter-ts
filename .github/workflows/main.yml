@@ -42,7 +42,9 @@ jobs:
           python -c "from cookiecutter.main import cookiecutter; import json, os; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['labextension_name']=os.getenv('NAME'); cookiecutter('.', extra_context=d, no_input=True)"
           pushd ${PYNAME}
           pip install jupyterlab
-          jlpm && jlpm lint:check
+          jlpm
+          jlpm lint
+          jlpm lint:check
           pip install -e .
           jupyter labextension develop . --overwrite
           jupyter labextension list
