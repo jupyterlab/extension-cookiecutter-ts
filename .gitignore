@@ -4,6 +4,8 @@ node_modules/
 *.egg-info/
 .ipynb_checkpoints
 *.tsbuildinfo
+.eslintcache
+.stylelintcache
 {{cookiecutter.python_name}}/static
 
 # Created by https://www.gitignore.io/api/python
