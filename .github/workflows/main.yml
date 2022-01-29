@@ -44,6 +44,7 @@ jobs:
           pip install jupyterlab
           jlpm
           jlpm lint
+          jlpm stylelint-config-prettier-check
           jlpm lint:check
           pip install -e .
           jupyter labextension develop . --overwrite
