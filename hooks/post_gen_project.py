@@ -29,7 +29,7 @@ if __name__ == "__main__":
         ):
             remove_path(PROJECT_DIRECTORY / f)
     else:
-        remove_path(PROJECT_DIRECTORY / "style/variable.css")
+        remove_path(PROJECT_DIRECTORY / "style/variables.css")
 
     if not "{{ cookiecutter.kind }}".lower() == "server":
         for f in (
