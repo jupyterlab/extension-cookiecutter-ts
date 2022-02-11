@@ -9,10 +9,13 @@ import setuptools
 
 HERE = Path(__file__).parent.resolve()
 
+# Get the package info from package.json
+pkg_json = json.loads((HERE / "package.json").read_bytes())
+
 # The name of the project
 name = "{{ cookiecutter.python_name }}"
 
-lab_path = (HERE / name.replace("-", "_") / "labextension")
+lab_path = (HERE / pkg_json["jupyterlab"]["outputDir"])
 
 # Representative files that should exist after a successful build
 ensured_targets = [
@@ -20,7 +23,7 @@ ensured_targets = [
     str(lab_path / "static/style.js"){% endif %}
 ]
 
-labext_name = "{{ cookiecutter.labextension_name }}"
+labext_name = pkg_json["name"]
 
 data_files_spec = [
     ("share/jupyter/labextensions/%s" % labext_name, str(lab_path.relative_to(HERE)), "**"),
@@ -34,8 +37,6 @@ data_files_spec = [
 
 long_description = (HERE / "README.md").read_text()
 
-# Get the package info from package.json
-pkg_json = json.loads((HERE / "package.json").read_bytes())
 version = (
     pkg_json["version"]
     .replace("-alpha.", "a")
