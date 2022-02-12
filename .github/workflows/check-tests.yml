@@ -28,6 +28,7 @@ jobs:
           python -m cookiecutter --no-input .
           
       - name: Test the extension
+        working-directory: myextension
         run: |
           set -eux
           jlpm
