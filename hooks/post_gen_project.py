@@ -35,7 +35,9 @@ if __name__ == "__main__":
         for f in (
             "{{ cookiecutter.python_name }}/handlers.py",
             "src/handler.ts",
-            "jupyter-config"
+            "jupyter-config",
+            "conftest.py",
+            "{{ cookiecutter.python_name }}/tests"
         ):
             remove_path(PROJECT_DIRECTORY / f)
 
