@@ -2,10 +2,12 @@ include LICENSE
 include *.md
 include pyproject.toml{% if cookiecutter.kind == "server" %}
 recursive-include jupyter-config *.json{% endif %}
+include jupyter_server_test_config.py
 
 include package.json
 include install.json
 include ts*.json
+include *.config.js
 include yarn.lock
 
 graft {{ cookiecutter.python_name }}/labextension
@@ -14,6 +16,7 @@ graft {{ cookiecutter.python_name }}/labextension
 graft src
 graft style{% if cookiecutter.has_settings.lower().startswith('y') %}
 graft schema{% endif %}
+graft ui-tests
 prune **/node_modules
 prune lib
 prune binder
