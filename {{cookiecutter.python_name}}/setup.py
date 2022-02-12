@@ -55,10 +55,19 @@ setup_args = dict(
     license_file="LICENSE",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    packages=setuptools.find_packages(),
-    install_requires=[{% if cookiecutter.kind.lower() == "server" %}
+    packages=setuptools.find_packages(),{% if cookiecutter.kind.lower() == "server" %}
+    install_requires=[
         "jupyter_server>=1.6,<2"
-    {% endif %}],
+    ],
+    extras_require={
+        "test": [
+            "coverage",
+            "pytest",
+            "pytest-asyncio",
+            "pytest-cov",
+            "pytest-tornasync"
+        ]
+    },{% endif %}
     zip_safe=False,
     include_package_data=True,
     python_requires=">=3.7",

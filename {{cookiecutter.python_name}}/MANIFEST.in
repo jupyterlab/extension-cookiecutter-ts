@@ -3,6 +3,7 @@ include *.md
 include pyproject.toml{% if cookiecutter.kind == "server" %}
 recursive-include jupyter-config *.json{% endif %}
 include jupyter_server_test_config.py
+include conftest.py
 
 include package.json
 include install.json
