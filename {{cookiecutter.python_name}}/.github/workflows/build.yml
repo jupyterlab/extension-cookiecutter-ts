@@ -14,16 +14,24 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Base Setup
-        uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
+      uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
 
     - name: Install dependencies
       run: python -m pip install -U jupyterlab~=3.1 check-manifest
 
-    - name: Build the extension
+    - name: Lint the extension
       run: |
         set -eux
         jlpm
         jlpm run eslint:check
+    
+    - name: Test the extension
+      run: |
+        set -eux
+        jlpm run test
+
+    - name: Build the extension
+      run: |
         python -m pip install .
 {% if cookiecutter.kind.lower() == 'server' %}
         jupyter server extension list 2>&1 | grep -ie "{{ cookiecutter.python_name }}.*OK"
