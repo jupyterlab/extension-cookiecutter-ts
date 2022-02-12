@@ -28,7 +28,7 @@ jobs:
 
     - name: Launch JupyterLab
       run: |
-        jupyter lab --config jupyter_server_test_config.py 2>&1 > /tmp/jupyterlab_server.log &
+        (jupyter lab --config jupyter_server_test_config.py > /tmp/jupyterlab_server.log 2>&1) &
 
     - name: Install browser
       run: |
