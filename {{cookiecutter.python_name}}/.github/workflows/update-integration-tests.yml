@@ -9,6 +9,8 @@ permissions:
   pull-requests: write
 
 jobs:
+  {# Escape double curly brace #}
+  {% raw %}
   update-snapshots:
     if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, 'please update playwright snapshots') }}
     runs-on: ubuntu-latest
@@ -38,3 +40,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           server_url: http-get://localhost:8866/
           test_folder: ui-tests
+      {% endraw %}
