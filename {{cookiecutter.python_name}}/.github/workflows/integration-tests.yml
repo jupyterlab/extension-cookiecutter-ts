@@ -59,3 +59,13 @@ jobs:
         name: {{ cookiecutter.python_name }}-playwright-report
         path: |
           playwright-report
+
+    - name: Stop JupyterLab
+      if: always()
+      run: |
+        kill -s SIGTERM $(pgrep jupyter-lab)
+
+    - name: Print JupyterLab logs
+      if: always()
+      run: |
+        cat /tmp/jupyterlab_server.log
