@@ -1,0 +1,10 @@
+{
+  "name": "{{ cookiecutter.labextension_name }}-ui-tests",
+  "version": "1.0.0",
+  "description": "JupyterLab {{ cookiecutter.labextension_name }} Integration Tests",
+  "private": true,
+  "devDependencies": {
+    "@jupyterlab/galata": "^4.1.0",
+    "@playwright/test": "^1.17.0"
+  }
+}
