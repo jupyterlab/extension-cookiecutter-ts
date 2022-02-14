@@ -43,11 +43,12 @@ jobs:
       - name: Launch JupyterLab
         working-directory: myextension
         run: |
-          jupyter lab --config jupyter_server_test_config.py 2>&1 > /tmp/jupyterlab_server.log &
+          jupyter lab --config ./ui-tests/jupyter_server_test_config.py 2>&1 > /tmp/jupyterlab_server.log &
 
       - name: Install browser
-        working-directory: myextension
+        working-directory: myextension/ui-tests
         run: |
+          jlpm install
           jlpm playwright install chromium
 
       - name: Wait for JupyterLab
@@ -57,9 +58,9 @@ jobs:
           timeout: 360000
 
       - name: Execute integration tests
-        working-directory: myextension
+        working-directory: myextension/ui-tests
         run: |
-          jlpm run playwright test ./ui-tests
+          jlpm run playwright test
 
       - name: Upload Playwright Test assets
         if: always()
@@ -67,7 +68,7 @@ jobs:
         with:
           name: myextension-playwright-test-assets
           path: |
-            myextension/test-results
+            myextension/ui-tests/test-results
 
       - name: Upload Playwright Test report
         if: always()
@@ -75,7 +76,7 @@ jobs:
         with:
           name: myextension-playwright-report
           path: |
-            myextension/playwright-report
+            myextension/ui-tests/playwright-report
 
       - name: Stop JupyterLab
         if: always()

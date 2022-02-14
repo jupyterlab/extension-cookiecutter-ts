@@ -29,7 +29,7 @@ jlpm build:prod
 2. Start JupyterLab
 
 ```sh
-jupyter lab --config jupyter_server_test_config.py
+jupyter lab --config ./ui-tests/jupyter_server_test_config.py
 ```
 
 > This assumes you have installed the extension.
@@ -37,13 +37,17 @@ jupyter lab --config jupyter_server_test_config.py
 3. Execute in another console the [Playwright](https://playwright.dev/docs/intro) tests:
 
 ```sh
-npx playwright install
-npx playwright test ./ui-tests
+cd ./ui-tests
+jlpm install
+jlpm playwright install
+jlpm playwright test
 ```
 
 The report will be opened in your browser at the end of the tests execution.
 
 ## Update the tests snapshots
+
+> All commands are assumed to be executed from the root directory
 
 If you are comparing snapshots to validate your tests, you may need to update
 the reference snapshots stored in the repository. To do that, you need to:
@@ -58,7 +62,7 @@ jlpm build:prod
 2. Start JupyterLab
 
 ```sh
-jupyter lab --config jupyter_server_test_config.py
+jupyter lab --config ./ui-tests/jupyter_server_test_config.py
 ```
 
 > This assumes you have installed the extension.
@@ -66,8 +70,10 @@ jupyter lab --config jupyter_server_test_config.py
 3. Execute in another console the [Playwright](https://playwright.dev/docs/intro) tests:
 
 ```sh
-npx playwright install
-npx playwright test -u ./ui-tests
+cd ./ui-tests
+jlpm install
+jlpm playwright install
+jlpm playwright test -u
 ```
 
 > Some discrepancy may occurs between the snapshots generated on your computer and
@@ -91,7 +97,7 @@ jlpm build:prod
 2. Start JupyterLab
 
 ```sh
-jupyter lab --config jupyter_server_test_config.py
+jupyter lab --config ./ui-tests/jupyter_server_test_config.py
 ```
 
 > This assumes you have installed the extension.
@@ -99,8 +105,10 @@ jupyter lab --config jupyter_server_test_config.py
 3. Execute in another console the [Playwright](https://playwright.dev/docs/intro) code generator:
 
 ```sh
-npx playwright install
-npx playwright codegen localhost:8888
+cd ./ui-tests
+jlpm install
+jlpm playwright install
+jlpm playwright codegen localhost:8888
 ```
 
 ## Debug tests
@@ -119,7 +127,7 @@ jlpm build:prod
 2. Start JupyterLab
 
 ```sh
-jupyter lab --config jupyter_server_test_config.py
+jupyter lab --config ./ui-tests/jupyter_server_test_config.py
 ```
 
 > This assumes you have installed the extension.
@@ -128,6 +136,8 @@ jupyter lab --config jupyter_server_test_config.py
    in debug mode:
 
 ```sh
-npx playwright install
-PWDEBUG=1 npx playwright test ./ui-tests
+cd ./ui-tests
+jlpm install
+jlpm playwright install
+PWDEBUG=1 jlpm playwright test
 ```
