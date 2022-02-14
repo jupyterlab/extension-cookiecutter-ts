@@ -103,8 +103,18 @@ In development mode, you will also need to remove the symlink created by `jupyte
 command. To find its location, you can run `jupyter labextension list` to figure out where the `labextensions`
 folder is located. Then you can remove the symlink named `{{ cookiecutter.labextension_name }}` within that folder.
 
-### Testing the extension
+### Testing the extension{% if cookiecutter.kind.lower() == 'server' %}
 
+#### Server tests
+
+This extension is using [Pytest](https://docs.pytest.org/) for Python code testing.
+
+To execute them, run:
+
+```sh
+    pytest -vv -r ap --cov {{ cookiecutter.python_name }}
+```
+{% endif %}
 #### Frontend tests
 
 This extension is using [Jest](https://jestjs.io/) for JavaScript code testing.
