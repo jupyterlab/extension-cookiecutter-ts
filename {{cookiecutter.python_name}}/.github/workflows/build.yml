@@ -9,9 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ['3.9']
 
     steps:
     - name: Checkout
@@ -54,13 +51,10 @@ jobs:
 
         pip install build
         python -m build
-        cp dist/*.tar.gz myextension.tar.gz
-        cp dist/*.tar.gz myextension.tar.gz
         pip uninstall -y "{{ cookiecutter.python_name }}" jupyterlab
-        rm -rf myextension
 
-    - uses: actions/upload-artifact@v2
-      if: matrix.python-version == '3.9'
+    - name: Upload extension packages
+      uses: actions/upload-artifact@v2
       with:
         name: extension-artifacts
         path: dist/{{ cookiecutter.python_name }}*
@@ -76,7 +70,6 @@ jobs:
     - name: Install Python
       uses: actions/setup-python@v2
       with:
-        # Ensure the python version matches the one in build
         python-version: '3.9'
         architecture: 'x64'
     - uses: actions/download-artifact@v2
@@ -88,8 +81,9 @@ jobs:
         # Remove NodeJS, twice to take care of system and locally installed node versions.
         sudo rm -rf $(which node)
         sudo rm -rf $(which node)
-        pip install ./{{ cookiecutter.python_name }}*.tar.gz
-        pip install jupyterlab
+
+        pip install "jupyterlab~=3.1" {{ cookiecutter.python_name }}*.whl
+
 {% if cookiecutter.kind.lower() == 'server' %}
         jupyter server extension list
         jupyter server extension list 2>&1 | grep -ie "{{ cookiecutter.python_name }}.*OK"
@@ -102,10 +96,9 @@ jobs:
     name: Integration tests
     needs: build
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        # Ensure the python version matches the one in build
-        python-version: ['3.9']
+
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: ${{ "{{ github.workspace }}" }}/pw-browsers
 
     steps:
     - name: Checkout
@@ -114,59 +107,43 @@ jobs:
     - name: Base Setup
       uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
 
-    - uses: actions/download-artifact@v2
+    - name: Download extension package
+      uses: actions/download-artifact@v2
       with:
         name: extension-artifacts
-
+        
     - name: Install the extension
       run: |
         set -eux
-        python -m pip install jupyterlab~=3.1 ./{{ cookiecutter.python_name }}*.whl
+        python -m pip install "jupyterlab~=3.1" {{ cookiecutter.python_name }}*.whl
 
-    - name: Launch JupyterLab
+    - name: Install dependencies
       working-directory: ui-tests
-      run: |
-        (jupyter lab --config jupyter_server_test_config.py > /tmp/jupyterlab_server.log 2>&1) &
-
-    - name: Install browser
-      working-directory: ui-tests
-      run: |
-        jlpm install
-        jlpm playwright install chromium
-
-    - name: Wait for JupyterLab
-      uses: ifaxity/wait-on-action@v1
+      env:
+        PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+      run: jlpm install
+{% raw %}
+    - name: Set up browser cache
+      uses: actions/cache@v2
       with:
-        resource: http-get://localhost:8888/lab
-        timeout: 360000
+        path: |
+          ${{ github.workspace }}/pw-browsers
+        key: ${{ runner.os }}-${{ hashFiles('ui-tests/yarn.lock') }}
+{% endraw %}
+    - name: Install browser
+      run: jlpm playwright install chromium
+      working-directory: ui-tests
 
     - name: Execute integration tests
       working-directory: ui-tests
       run: |
-        jlpm run playwright test
-
-    - name: Upload Playwright Test assets
-      if: always()
-      uses: actions/upload-artifact@v2
-      with:
-        name: {{ cookiecutter.python_name }}-playwright-test-assets
-        path: |
-          ui-tests/test-results
+        jlpm playwright test
 
     - name: Upload Playwright Test report
       if: always()
       uses: actions/upload-artifact@v2
       with:
-        name: {{ cookiecutter.python_name }}-playwright-report
+        name: {{ cookiecutter.python_name }}-playwright-tests
         path: |
+          ui-tests/test-results
           ui-tests/playwright-report
-
-    - name: Stop JupyterLab
-      if: always()
-      run: |
-        kill -s SIGTERM $(pgrep jupyter-lab)
-
-    - name: Print JupyterLab logs
-      if: always()
-      run: |
-        cat /tmp/jupyterlab_server.log
