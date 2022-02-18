@@ -4,7 +4,7 @@ on:
   push:
     branches: ["*.0"]
   pull_request:
-    branches: "*"
+    branches: ["*"]
   schedule:
     - cron: "0 0 * * *"
 
@@ -40,50 +40,33 @@ jobs:
           set -eux
           python -m pip install .
 
-      - name: Launch JupyterLab
-        working-directory: myextension
-        run: |
-          jupyter lab --config ./ui-tests/jupyter_server_test_config.py 2>&1 > /tmp/jupyterlab_server.log &
-
-      - name: Install browser
+      - name: Install dependencies
         working-directory: myextension/ui-tests
-        run: |
-          jlpm install
-          jlpm playwright install chromium
-
-      - name: Wait for JupyterLab
-        uses: ifaxity/wait-on-action@v1
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+        run: jlpm install
+        
+      - name: Set up browser cache
+        uses: actions/cache@v2
         with:
-          resource: http-get://localhost:8888/lab
-          timeout: 360000
+          path: |
+            ${{ github.workspace }}/pw-browsers
+          key: ${{ runner.os }}-${{ hashFiles('myextension/ui-tests/yarn.lock') }}
+          
+      - name: Install browser
+        run: jlpm playwright install chromium
+        working-directory: myextension/ui-tests
 
       - name: Execute integration tests
         working-directory: myextension/ui-tests
         run: |
-          jlpm run playwright test
-
-      - name: Upload Playwright Test assets
-        if: always()
-        uses: actions/upload-artifact@v2
-        with:
-          name: myextension-playwright-test-assets
-          path: |
-            myextension/ui-tests/test-results
+          jlpm playwright test
 
       - name: Upload Playwright Test report
         if: always()
         uses: actions/upload-artifact@v2
         with:
-          name: myextension-playwright-report
+          name: myextension-playwright-tests
           path: |
+            myextension/ui-tests/test-results
             myextension/ui-tests/playwright-report
-
-      - name: Stop JupyterLab
-        if: always()
-        run: |
-          kill -s SIGTERM $(pgrep jupyter-lab)
-
-      - name: Print JupyterLab logs
-        if: always()
-        run: |
-          cat /tmp/jupyterlab_server.log
