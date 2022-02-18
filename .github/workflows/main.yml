@@ -147,14 +147,13 @@ jobs:
           # Trick to use custom parameters
           python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']='server'; cookiecutter('.', extra_context=d, no_input=True)"
           cd myextension
+          pip install -e .[test]
           pip install jupyterlab
-          pip install -e .
-          # pip install -e .[test]
           jupyter labextension develop . --overwrite
           jupyter server extension enable myextension
 
           # Check unit tests are passing
-          # pytest -vv -r ap --cov myextension
+          pytest -vv -r ap --cov myextension
 
       - name: Check pip develop method
         run: |
