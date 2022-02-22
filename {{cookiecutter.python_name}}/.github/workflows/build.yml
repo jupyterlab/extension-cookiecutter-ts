@@ -23,7 +23,7 @@ jobs:
       run: |
         set -eux
         jlpm
-        jlpm run eslint:check
+        jlpm lint:check
         python -m pip install .
 {% if cookiecutter.kind.lower() == 'server' %}
         jupyter server extension list 2>&1 | grep -ie "{{ cookiecutter.python_name }}.*OK"
