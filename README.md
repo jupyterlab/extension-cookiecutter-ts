@@ -1,6 +1,6 @@
 # JupyterLab extension-cookiecutter-ts
 
-![Github Actions Status](https://github.com/jupyterlab/extension-cookiecutter-ts/workflows/CI/badge.svg)
+[![Github Actions Status](https://github.com/jupyterlab/extension-cookiecutter-ts/workflows/CI/badge.svg)](https://github.com/jupyterlab/extension-cookiecutter-ts/actions/workflows/main.yml)
 
 A [cookiecutter](https://github.com/audreyr/cookiecutter) template for creating
 a JupyterLab extension. Three kinds of extension are supported:

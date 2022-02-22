@@ -42,7 +42,10 @@ jobs:
           python -c "from cookiecutter.main import cookiecutter; import json, os; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['labextension_name']=os.getenv('NAME'); cookiecutter('.', extra_context=d, no_input=True)"
           pushd ${PYNAME}
           pip install jupyterlab
-          jlpm install && jlpm run eslint:check
+          jlpm
+          jlpm lint
+          jlpm stylelint-config-prettier-check
+          jlpm lint:check
           pip install -e .
           jupyter labextension develop . --overwrite
           jupyter labextension list
@@ -83,7 +86,7 @@ jobs:
           python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['has_settings']='y'; cookiecutter('.', extra_context=d, no_input=True)"
           pushd myextension
           pip install jupyterlab
-          jlpm install
+          jlpm
           pip install -e .
           jupyter labextension develop . --overwrite
           jupyter labextension list
@@ -276,7 +279,7 @@ jobs:
           python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']='theme'; cookiecutter('.', extra_context=d, no_input=True)"
           pushd mytheme
           pip install jupyterlab
-          jlpm install
+          jlpm
           pip install -e .
           jupyter labextension develop . --overwrite
           jupyter labextension list
