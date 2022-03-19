@@ -7,5 +7,6 @@
   "project_short_description": "A JupyterLab extension.",
   "has_settings": "n",
   "has_binder": "n",
+  "has_tests": "n",
   "repository": "https://github.com/github_username/{{ cookiecutter.labextension_name }}"
 }

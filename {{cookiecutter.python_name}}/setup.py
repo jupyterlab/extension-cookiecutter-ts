@@ -59,6 +59,13 @@ setup_args = dict(
     install_requires=[{% if cookiecutter.kind.lower() == "server" %}
         "jupyter_server>=1.6,<2"
     {% endif %}],
+    extras_require={
+        "test": [{% if cookiecutter.kind.lower() == "server" and cookiecutter.has_tests.lower() == "y" %}
+            {% raw -%}        
+            "pytest", "pytest-tornasync"
+            {%- endraw %}
+        {% endif %}]
+    },
     zip_safe=False,
     include_package_data=True,
     python_requires=">=3.7",

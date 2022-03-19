@@ -39,6 +39,13 @@ if __name__ == "__main__":
         ):
             remove_path(PROJECT_DIRECTORY / f)
 
+        if not "{{ cookiecutter.has_tests }}".lower() == "y":
+            for f in (
+                "{{ cookiecutter.python_name }}/tests",
+                "conftest.py"
+            ):
+                remove_path(PROJECT_DIRECTORY / f)
+
     if not "{{ cookiecutter.has_binder }}".lower().startswith("y"):
         remove_path(PROJECT_DIRECTORY / "binder")
         remove_path(PROJECT_DIRECTORY / ".github/workflows/binder-on-pr.yml")
