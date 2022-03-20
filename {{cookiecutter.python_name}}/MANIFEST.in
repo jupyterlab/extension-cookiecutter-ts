@@ -1,6 +1,7 @@
 include LICENSE
 include *.md
-include pyproject.toml{% if cookiecutter.kind == "server" %}
+include pyproject.toml{% if cookiecutter.kind.lower() == "server" and cookiecutter.has_tests.lower() == "y" %}
+include conftest.py{% endif %}{% if cookiecutter.kind == "server" %}
 recursive-include jupyter-config *.json{% endif %}
 
 include package.json
