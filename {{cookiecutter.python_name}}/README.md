@@ -45,7 +45,6 @@ the frontend extension, check the frontend extension is installed:
 ```bash
 jupyter labextension list
 ```
-
 {% endif %}
 ## Contributing
 

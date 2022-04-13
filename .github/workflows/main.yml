@@ -86,6 +86,8 @@ jobs:
           pushd myextension
           pip install jupyterlab
           jlpm
+          # It is not easily possible to get this version compatible with linter rules
+          jlpm lint
           jlpm lint:check
           pip install -e .
           jupyter labextension develop . --overwrite
