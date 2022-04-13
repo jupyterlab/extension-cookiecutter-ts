@@ -86,6 +86,7 @@ jobs:
           pushd myextension
           pip install jupyterlab
           jlpm
+          jlpm lint:check
           pip install -e .
           jupyter labextension develop . --overwrite
           jupyter labextension list
@@ -128,6 +129,8 @@ jobs:
           cd myextension
           pip install .
           pip install jupyterlab
+          jlpm
+          jlpm lint:check
 
       - name: Check pip install method
         run: |
@@ -276,6 +279,7 @@ jobs:
           pushd mytheme
           pip install jupyterlab
           jlpm
+          jlpm lint:check
           pip install -e .
           jupyter labextension develop . --overwrite
           jupyter labextension list
