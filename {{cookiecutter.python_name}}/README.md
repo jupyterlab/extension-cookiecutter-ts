@@ -4,18 +4,15 @@
 {%- if cookiecutter.has_binder.lower().startswith('y') -%}
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/{{ cookiecutter.repository|replace("https://github.com/", "") }}/main?urlpath=lab)
 {%- endif %}
-
 {{ cookiecutter.project_short_description }}
-
 {% if cookiecutter.kind.lower() == 'server' %}
 This extension is composed of a Python package named `{{ cookiecutter.python_name }}`
 for the server extension and a NPM package named `{{ cookiecutter.labextension_name }}`
 for the frontend extension.
 {% endif %}
-
 ## Requirements
 
-* JupyterLab >= 3.0
+- JupyterLab >= 3.0
 
 ## Install
 
@@ -32,7 +29,6 @@ To remove the extension, execute:
 ```bash
 pip uninstall {{ cookiecutter.python_name }}
 ```
-
 {% if cookiecutter.kind.lower() == 'server' %}
 ## Troubleshoot
 
@@ -49,7 +45,6 @@ the frontend extension, check the frontend extension is installed:
 ```bash
 jupyter labextension list
 ```
-
 {% endif %}
 ## Contributing
 

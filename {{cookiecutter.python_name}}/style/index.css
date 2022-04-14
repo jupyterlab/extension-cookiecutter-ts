@@ -9,6 +9,4 @@ pre {
   font-family: var(--jp-code-font-family);
   font-size: var(--jp-code-font-size);
   line-height: var(--jp-code-line-height);
-}{% else %}
-@import url('base.css');
-{% endif %}
+}{% else %}@import url('base.css');{% endif %}
