@@ -11,7 +11,6 @@ factory = "jupyter_packaging.npm_builder"
 
 [tool.jupyter-packaging.build-args]
 build_cmd = "build:prod"
-npm = ["jlpm"]
 
 [tool.check-manifest]
 ignore = ["{{ cookiecutter.python_name }}/labextension/**", "yarn.lock", ".*", "package-lock.json"]
