@@ -43,7 +43,7 @@ jobs:
           pushd ${PYNAME}
           pip install jupyterlab
           npm install
-          npm run stylelint-config-prettier-check
+          npx stylelint-config-prettier-check
           npm run lint:check
           pip install -e .
           jupyter labextension develop . --overwrite
