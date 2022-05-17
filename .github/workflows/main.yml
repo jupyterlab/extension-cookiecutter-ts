@@ -42,9 +42,9 @@ jobs:
           python -c "from cookiecutter.main import cookiecutter; import json, os; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['labextension_name']=os.getenv('NAME'); cookiecutter('.', extra_context=d, no_input=True)"
           pushd ${PYNAME}
           pip install jupyterlab
-          jlpm
-          jlpm stylelint-config-prettier-check
-          jlpm lint:check
+          npm install
+          npx stylelint-config-prettier-check
+          npm run lint:check
           pip install -e .
           jupyter labextension develop . --overwrite
           jupyter labextension list
@@ -85,10 +85,10 @@ jobs:
           python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['has_settings']='y'; cookiecutter('.', extra_context=d, no_input=True)"
           pushd myextension
           pip install jupyterlab
-          jlpm
+          npm install
           # It is not easily possible to get this version compatible with linter rules
-          jlpm lint
-          jlpm lint:check
+          npm run lint
+          npm run lint:check
           pip install -e .
           jupyter labextension develop . --overwrite
           jupyter labextension list
@@ -131,8 +131,8 @@ jobs:
           cd myextension
           pip install .
           pip install jupyterlab
-          jlpm
-          jlpm lint:check
+          npm install
+          npm run lint:check
 
       - name: Check pip install method
         run: |
@@ -280,8 +280,8 @@ jobs:
           python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']='theme'; cookiecutter('.', extra_context=d, no_input=True)"
           pushd mytheme
           pip install jupyterlab
-          jlpm
-          jlpm lint:check
+          npm install
+          npm run lint:check
           pip install -e .
           jupyter labextension develop . --overwrite
           jupyter labextension list

@@ -22,8 +22,8 @@ jobs:
     - name: Build the extension
       run: |
         set -eux
-        jlpm
-        jlpm lint:check
+        npm install
+        npm run lint:check
         python -m pip install .
 {% if cookiecutter.kind.lower() == 'server' %}
         jupyter server extension list 2>&1 | grep -ie "{{ cookiecutter.python_name }}.*OK"
