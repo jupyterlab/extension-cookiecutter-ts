@@ -43,7 +43,6 @@ jobs:
           pushd ${PYNAME}
           pip install jupyterlab
           jlpm
-          jlpm lint
           jlpm stylelint-config-prettier-check
           jlpm lint:check
           pip install -e .
@@ -87,6 +86,9 @@ jobs:
           pushd myextension
           pip install jupyterlab
           jlpm
+          # It is not easily possible to get this version compatible with linter rules
+          jlpm lint
+          jlpm lint:check
           pip install -e .
           jupyter labextension develop . --overwrite
           jupyter labextension list
@@ -129,6 +131,8 @@ jobs:
           cd myextension
           pip install .
           pip install jupyterlab
+          jlpm
+          jlpm lint:check
 
       - name: Check pip install method
         run: |
@@ -280,6 +284,7 @@ jobs:
           pushd mytheme
           pip install jupyterlab
           jlpm
+          jlpm lint:check
           pip install -e .
           jupyter labextension develop . --overwrite
           jupyter labextension list

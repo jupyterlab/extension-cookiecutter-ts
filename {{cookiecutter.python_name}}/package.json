@@ -23,7 +23,7 @@
   ],
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "style": "style/index.css",
+  {% if cookiecutter.kind != 'theme' %}"style": "style/index.css",{% endif %}
   "repository": {
     "type": "git",
     "url": "{{ cookiecutter.repository }}.git"
