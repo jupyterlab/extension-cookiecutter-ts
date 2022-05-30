@@ -108,8 +108,8 @@ To execute them, run:
 
 ```sh
     pytest -vv -r ap --cov {{ cookiecutter.python_name }}
-```
-{% endif %}
+```{% endif %}
+
 #### Frontend tests
 
 This extension is using [Jest](https://jestjs.io/) for JavaScript code testing.
