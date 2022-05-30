@@ -41,18 +41,18 @@ jobs:
           # Trick to use custom parameters
           python -c "from cookiecutter.main import cookiecutter; import json, os; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['labextension_name']=os.getenv('NAME'); cookiecutter('.', extra_context=d, no_input=True)"
           pushd ${PYNAME}
-          pip install jupyterlab
+          python -m pip install jupyterlab
           jlpm
           jlpm stylelint-config-prettier-check
           jlpm lint:check
-          pip install -e .
+          python -m pip install -e .
           jupyter labextension develop . --overwrite
           jupyter labextension list
           jupyter labextension list 2>&1 | grep -ie "${NAME}.*OK"
           python -m jupyterlab.browser_check
 
           jupyter labextension uninstall ${NAME}
-          pip uninstall -y ${NAME} jupyterlab
+          python -m pip uninstall -y ${NAME} jupyterlab
 
           git init && git add .
           check-manifest -v
@@ -154,13 +154,13 @@ jobs:
           # Trick to use custom parameters
           python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']='server'; cookiecutter('.', extra_context=d, no_input=True)"
           cd myextension
-          pip install -e .[test]
-          pip install jupyterlab
+          python -m pip install -e .[test]
+          python -m pip install jupyterlab
           jupyter labextension develop . --overwrite
           jupyter server extension enable myextension
 
           # Check unit tests are passing
-          pytest -vv -r ap --cov myextension
+          python -m pytest -vv -r ap --cov myextension
 
       - name: Check pip develop method
         run: |
@@ -180,7 +180,7 @@ jobs:
           jupyter labextension build ./myextension
 
           jupyter labextension uninstall myextension
-          pip uninstall -y myextension jupyterlab
+          python -m pip uninstall -y myextension jupyterlab
 
           python -c "import shutil; shutil.rmtree('myextension')"
 
@@ -189,11 +189,11 @@ jobs:
           # Trick to use custom parameters
           python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']='server'; cookiecutter('.', extra_context=d, no_input=True)"
           cd myextension
-          pip install jupyterlab
+          python -m pip install jupyterlab
           jupyter lab clean --all
           python -m build --sdist
           cd dist
-          pip install myextension-0.1.0.tar.gz
+          python -m pip install myextension-0.1.0.tar.gz
 
       - name: Check install tarball method
         run: |
@@ -208,7 +208,7 @@ jobs:
           python -m jupyterlab.browser_check
 
           cp myextension/dist/*.tar.gz myextension.tar.gz
-          pip uninstall -y myextension jupyterlab
+          python -m pip uninstall -y myextension jupyterlab
           rm -rf myextension
         shell: bash
 
@@ -251,8 +251,8 @@ jobs:
           sudo rm -rf $(which node)
           sudo rm -rf $(which node)
 
-          pip install myextension.tar.gz
-          pip install jupyterlab
+          python -m pip install myextension.tar.gz
+          python -m pip install jupyterlab
           jupyter labextension list 2>&1 | grep -ie "myextension.*OK"
           jupyter server extension list
           jupyter server extension list 2>&1 | grep -ie "myextension.*OK"
@@ -282,17 +282,17 @@ jobs:
           # Trick to use custom parameters
           python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']='theme'; cookiecutter('.', extra_context=d, no_input=True)"
           pushd mytheme
-          pip install jupyterlab
+          python -m pip install jupyterlab
           jlpm
           jlpm lint:check
-          pip install -e .
+          python -m pip install -e .
           jupyter labextension develop . --overwrite
           jupyter labextension list
           jupyter labextension list 2>&1 | grep -ie "mytheme.*OK"
           python -m jupyterlab.browser_check
 
           jupyter labextension uninstall mytheme
-          pip uninstall -y mytheme jupyterlab
+          python -m pip uninstall -y mytheme jupyterlab
 
           git init && git add .
           check-manifest -v
