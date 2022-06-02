@@ -104,10 +104,16 @@ folder is located. Then you can remove the symlink named `{{ cookiecutter.labext
 
 This extension is using [Pytest](https://docs.pytest.org/) for Python code testing.
 
+Install test dependencies (needed only once):
+
+```sh
+pip install -e ".[test]"
+```
+
 To execute them, run:
 
 ```sh
-    pytest -vv -r ap --cov {{ cookiecutter.python_name }}
+pytest -vv -r ap --cov {{ cookiecutter.python_name }}
 ```{% endif %}
 
 #### Frontend tests
