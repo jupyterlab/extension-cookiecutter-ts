@@ -25,12 +25,12 @@ jobs:
         set -eux
         jlpm
         jlpm run lint:check
-    
+{% if cookiecutter.test.lower().startswith('y') %}    
     - name: Test the extension
       run: |
         set -eux
         jlpm run test
-
+{% endif %}
     - name: Build the extension
       run: |
         set -eux
@@ -91,7 +91,7 @@ jobs:
         jupyter labextension list
         jupyter labextension list 2>&1 | grep -ie "{{ cookiecutter.labextension_name }}.*OK"
         python -m jupyterlab.browser_check --no-chrome-test
-
+{% if cookiecutter.test.lower().startswith('y') %}
   integration-tests:
     name: Integration tests
     needs: build
@@ -146,4 +146,4 @@ jobs:
         name: {{ cookiecutter.python_name }}-playwright-tests
         path: |
           ui-tests/test-results
-          ui-tests/playwright-report
+          ui-tests/playwright-report{% endif %}

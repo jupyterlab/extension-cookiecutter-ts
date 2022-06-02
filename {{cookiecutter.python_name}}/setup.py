@@ -60,13 +60,13 @@ setup_args = dict(
         "jupyter_server>=1.6,<2"
     ],
     extras_require={
-        "test": [
+        "test": [{% if cookiecutter.test.lower().startswith('y') %}
             "coverage",
             "pytest",
             "pytest-asyncio",
             "pytest-cov",
             "pytest-tornasync"
-        ]
+        {% endif %}]
     },{% endif %}
     zip_safe=False,
     include_package_data=True,

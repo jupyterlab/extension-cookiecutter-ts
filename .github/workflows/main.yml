@@ -30,7 +30,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install cookiecutter check-manifest build
+          python -m pip install cookiecutter check-manifest
 
       - name: Create pure frontend extension
         env:
@@ -60,6 +60,48 @@ jobs:
           popd
           rm -rf ${NAME}
 
+  no-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # This will be used by the base setup action
+        python-version: ["3.10"]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Base Setup
+        uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
+
+      - name: Install dependencies
+        run: |
+          python -m pip install cookiecutter check-manifest
+
+      - name: Create pure frontend extension
+        run: |
+          set -eux
+          # Trick to use custom parameters
+          python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['test']='n'; cookiecutter('.', extra_context=d, no_input=True)"
+          pushd myextension
+          pip install jupyterlab
+          jlpm
+          jlpm lint:check
+          pip install -e .
+          jupyter labextension develop . --overwrite
+          jupyter labextension list
+          jupyter labextension list 2>&1 | grep -ie "myextension.*OK"
+          python -m jupyterlab.browser_check
+
+          jupyter labextension uninstall myextension
+          pip uninstall -y myextension jupyterlab
+
+          git init && git add .
+          check-manifest -v
+
+          popd
+          rm -rf myextension
+
   settings:
     runs-on: ubuntu-latest
     strategy:
@@ -76,7 +118,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install cookiecutter check-manifest build
+          python -m pip install cookiecutter check-manifest
 
       - name: Create pure frontend extension
         run: |
