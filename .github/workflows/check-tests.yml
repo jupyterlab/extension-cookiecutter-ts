@@ -24,7 +24,6 @@ jobs:
       - name: Create the extension
         run: |
           set -eux
-          # Trick to use custom parameters
           python -m cookiecutter --no-input .
 
       - name: Test the extension
