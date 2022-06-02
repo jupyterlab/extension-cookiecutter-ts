@@ -39,7 +39,7 @@ jobs:
         run: |
           set -eux
           # Trick to use custom parameters
-          python -c "from cookiecutter.main import cookiecutter; import json, os; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['labextension_name']=os.getenv('NAME'); cookiecutter('.', extra_context=d, no_input=True)"
+          python -c "from cookiecutter.main import cookiecutter; import json, os; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']=d['kind'][0]; d['labextension_name']=os.getenv('NAME'); cookiecutter('.', extra_context=d, no_input=True)"
           pushd ${PYNAME}
           python -m pip install jupyterlab
           jlpm
@@ -82,7 +82,7 @@ jobs:
         run: |
           set -eux
           # Trick to use custom parameters
-          python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['test']='n'; cookiecutter('.', extra_context=d, no_input=True)"
+          python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']=d['kind'][0]; d['test']='n'; cookiecutter('.', extra_context=d, no_input=True)"
           pushd myextension
           pip install jupyterlab
           jlpm
@@ -124,7 +124,7 @@ jobs:
         run: |
           set -eux
           # Trick to use custom parameters
-          python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['has_settings']='y'; cookiecutter('.', extra_context=d, no_input=True)"
+          python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']=d['kind'][0]; d['has_settings']='y'; cookiecutter('.', extra_context=d, no_input=True)"
           pushd myextension
           pip install jupyterlab
           jlpm
