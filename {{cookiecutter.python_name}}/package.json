@@ -62,10 +62,10 @@
     "@jupyterlab/services": "^6.1.0"
 {% endif %}
   },
-  "devDependencies": {{% if cookiecutter.test.lower().startswith('y') %}
-    "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",{% endif %}
-    "@jupyterlab/builder": "^3.1.0",{% if cookiecutter.test.lower().startswith('y') %}
+  "devDependencies": {
+    {% if cookiecutter.test.lower().startswith('y') %}"@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    {% endif %}"@jupyterlab/builder": "^3.1.0",{% if cookiecutter.test.lower().startswith('y') %}
     "@jupyterlab/testutils": "^3.0.0",
     "@types/jest": "^26.0.0",{% endif %}
     "@typescript-eslint/eslint-plugin": "^4.8.1",
