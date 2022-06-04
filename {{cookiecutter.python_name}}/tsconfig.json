@@ -18,7 +18,7 @@
     "strict": true,
     "strictNullChecks": true,
     "target": "es2017",
-    "types": []
+    "types": [{% if cookiecutter.test.lower().startswith('y') %}"jest"{% endif %}]
   },
   "include": ["src/*"]
 }

@@ -1,11 +1,13 @@
 include LICENSE
 include *.md
 include pyproject.toml{% if cookiecutter.kind == "server" %}
-recursive-include jupyter-config *.json{% endif %}
+recursive-include jupyter-config *.json{% endif %}{% if cookiecutter.test.lower().startswith('y') %}
+include conftest.py{% endif %}
 
 include package.json
 include install.json
-include ts*.json
+include ts*.json{% if cookiecutter.test.lower().startswith('y') %}
+include *.config.js{% endif %}
 include yarn.lock
 
 graft {{ cookiecutter.python_name }}/labextension
@@ -13,7 +15,8 @@ graft {{ cookiecutter.python_name }}/labextension
 # Javascript files
 graft src
 graft style{% if cookiecutter.has_settings.lower().startswith('y') %}
-graft schema{% endif %}
+graft schema{% endif %}{% if cookiecutter.test.lower().startswith('y') %}
+graft ui-tests{% endif %}
 prune **/node_modules
 prune lib
 prune binder

@@ -8,6 +8,10 @@ node_modules/
 *.tsbuildinfo
 {{cookiecutter.python_name}}/labextension
 
+# Integration tests
+ui-tests/test-results/
+ui-tests/playwright-report/
+
 # Created by https://www.gitignore.io/api/python
 # Edit at https://www.gitignore.io/?templates=python
 
