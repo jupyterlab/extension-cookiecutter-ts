@@ -83,7 +83,7 @@ build-function = "hatch_jupyter_builder.npm_builder"
 ensured-targets = [
 {% if cookiecutter.kind.lower() != "theme" %}
     "{{ cookiecutter.python_name }}/labextension/static/style.js",
-{% endif % }
+{% endif %}
     "{{ cookiecutter.python_name }}/labextension/package.json",
 ]
 skip-if-exists = [
