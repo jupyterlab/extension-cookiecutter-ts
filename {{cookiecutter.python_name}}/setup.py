@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """
 {{ cookiecutter.python_name }} setup
 """
