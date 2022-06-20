@@ -6,10 +6,17 @@ from .handlers import setup_handlers
 {% endif %}
 
 
+HERE = Path(__file__).parent.resolve()
+
+
+with (HERE / "labextension" / "package.json").open() as fid:
+    data = json.load(fid)
+
+
 def _jupyter_labextension_paths():
     return [{
         "src": "labextension",
-        "dest": "{{ cookiecutter.labextension_name }}"
+        "dest": data["name"]
     }]
 {% if cookiecutter.kind.lower() == 'server' %}
 

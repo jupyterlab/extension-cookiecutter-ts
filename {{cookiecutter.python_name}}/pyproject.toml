@@ -58,10 +58,11 @@ artifacts = ["{{ cookiecutter.python_name }}/labextension"]
 exclude = [".github"]
 
 [tool.hatch.build.hooks.jupyter-builder]
-dependencies = ["hatch-jupyter-builder>=0.3.3"]
+dependencies = ["hatch-jupyter-builder>=0.5"]
 build-function = "hatch_jupyter_builder.npm_builder"
 ensured-targets = [{% if cookiecutter.kind.lower() != "theme" %}
     "{{ cookiecutter.python_name }}/labextension/static/style.js",{% endif %}
+    "{{ cookiecutter.python_name }}//labextension/package.json",
 ]
 skip-if-exists = ["{{ cookiecutter.python_name }}/labextension/static/style.js"]
 
