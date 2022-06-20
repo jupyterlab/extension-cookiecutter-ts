@@ -33,7 +33,11 @@ classifiers = [
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
 ]
-dependencies = []
+dependencies = [
+{% if cookiecutter.kind.lower() == "server" %}
+    jupyter_server>=1.6,<2"
+{% endif %}
+]
 
 [project.optional-dependencies]
 test = [
