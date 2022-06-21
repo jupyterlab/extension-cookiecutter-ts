@@ -40,6 +40,10 @@ jobs:
           set -eux
           python -m pip install -v .
 
+      - name: List extensions
+        run: |
+          jupyter labexension list
+
       - name: Install dependencies
         working-directory: myextension/ui-tests
         env:
