@@ -30,7 +30,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install cookiecutter check-manifest
+          python -m pip install cookiecutter
 
       - name: Create pure frontend extension
         env:
@@ -54,9 +54,6 @@ jobs:
           jupyter labextension uninstall ${NAME}
           python -m pip uninstall -y ${NAME} jupyterlab
 
-          git init && git add .
-          check-manifest -v
-
           popd
           rm -rf ${NAME}
 
@@ -76,7 +73,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install cookiecutter check-manifest
+          python -m pip install cookiecutter
 
       - name: Create pure frontend extension
         run: |
@@ -95,9 +92,6 @@ jobs:
 
           jupyter labextension uninstall myextension
           pip uninstall -y myextension jupyterlab
-
-          git init && git add .
-          check-manifest -v
 
           popd
           rm -rf myextension
@@ -118,7 +112,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install cookiecutter check-manifest
+          python -m pip install cookiecutter
 
       - name: Create pure frontend extension
         run: |
@@ -139,9 +133,6 @@ jobs:
 
           jupyter labextension uninstall myextension
           pip uninstall -y myextension jupyterlab
-
-          git init && git add .
-          check-manifest -v
 
           popd
           rm -rf myextension
@@ -164,7 +155,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install cookiecutter check-manifest build
+          python -m pip install cookiecutter build
 
       - name: Create server extension pip install
         run: |
@@ -317,7 +308,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install cookiecutter check-manifest build
+          python -m pip install cookiecutter build
 
       - name: Create pure frontend extension
         run: |
@@ -336,9 +327,6 @@ jobs:
 
           jupyter labextension uninstall mytheme
           python -m pip uninstall -y mytheme jupyterlab
-
-          git init && git add .
-          check-manifest -v
 
           popd
           rm -rf mytheme
