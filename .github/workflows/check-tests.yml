@@ -42,7 +42,7 @@ jobs:
 
       - name: List extensions
         run: |
-          jupyter labexension list
+          jupyter labextension list
 
       - name: Install dependencies
         working-directory: myextension/ui-tests
