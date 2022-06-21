@@ -25,6 +25,7 @@ jobs:
         run: |
           set -eux
           python -m cookiecutter --no-input .
+          cat myextension/pyproject.toml
 
       - name: Test the extension
         working-directory: myextension
@@ -37,7 +38,7 @@ jobs:
         working-directory: myextension
         run: |
           set -eux
-          python -m pip install .
+          python -m pip install -v .
 
       - name: Install dependencies
         working-directory: myextension/ui-tests
