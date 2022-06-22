@@ -39,11 +39,11 @@ jobs:
         run: |
           set -eux
           python -m pip install -v .
+          cat myextension/labextension/package.json
 
       - name: List extensions
         run: |
           jupyter labextension list
-          jupyter server extension list
 
       - name: Install dependencies
         working-directory: myextension/ui-tests
