@@ -46,13 +46,11 @@ Homepage = "{{ cookiecutter.repository }}"
 [tool.hatch.build]
 artifacts = ["{{ cookiecutter.python_name }}/labextension"]
 
-[tool.hatch.build.targets.wheel.shared-data]{% if cookiecutter.has_settings.lower().startswith('y') %}
-"{{ cookiecutter.python_name }}/labextension/schemas/{{ cookiecutter.python_name }}" = "share/jupyter/labextensions/{{ cookiecutter.python_name }}/schemas/{{ cookiecutter.python_name }}"{% endif %}
+[tool.hatch.build.targets.wheel.shared-data]
+"{{ cookiecutter.python_name }}/labextension" = "share/jupyter/labextensions/{{ cookiecutter.python_name }}"
 "install.json" = "share/jupyter/labextensions/{{ cookiecutter.python_name }}/install.json"{% if cookiecutter.kind.lower() == "server" %}
 "jupyter-config/server-config" = "etc/jupyter/jupyter_server_config.d"
 "jupyter-config/nb-config" = "etc/jupyter/jupyter_notebook_config.d"{% endif %}
-"package.json" = "share/jupyter/labextensions/{{ cookiecutter.python_name }}/package.json"
-"{{ cookiecutter.python_name }}/labextension/static" = "share/jupyter/labextensions/{{ cookiecutter.python_name }}/static"
 
 [tool.hatch.build.targets.sdist]
 exclude = [".github"]
