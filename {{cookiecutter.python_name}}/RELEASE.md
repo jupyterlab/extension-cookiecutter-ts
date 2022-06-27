@@ -15,7 +15,7 @@ Python package. Before generating a package, we first need to install `build`.
 pip install build twine tbump
 ```
 
-Bump the version using `tbump`.  By default this will create a tag.
+Bump the version using `tbump`. By default this will create a tag.
 
 ```bash
 tbump <new-version>
