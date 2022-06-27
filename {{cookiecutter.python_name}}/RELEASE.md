@@ -19,7 +19,7 @@ Bump the version using `tbump`.  By default this will create a tag.
 
 ```bash
 tbump <new-version>
-````
+```
 
 To create a Python source package (`.tar.gz`) and the binary package (`.whl`) in the `dist/` directory, do:
 
