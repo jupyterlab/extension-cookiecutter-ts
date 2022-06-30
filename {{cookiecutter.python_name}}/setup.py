@@ -35,14 +35,14 @@ data_files_spec = [
      "jupyter-config/nb-config", "{{ cookiecutter.python_name }}.json"),{% endif %}
 ]
 
-long_description = (HERE / "README.md").read_text()
+long_description = (HERE / "README.md").read_text(encoding="utf8")
 
 version = (
     pkg_json["version"]
     .replace("-alpha.", "a")
     .replace("-beta.", "b")
     .replace("-rc.", "rc")
-) 
+)
 
 setup_args = dict(
     name=name,
