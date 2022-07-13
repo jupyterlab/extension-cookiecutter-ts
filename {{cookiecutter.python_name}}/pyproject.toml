@@ -79,7 +79,7 @@ field = [
     { name = "release", default = "" },
 ]
 file = [
-    { src = "pyproject.toml" },
+    { src = "pyproject.toml", version_template = "version = \"{major}.{minor}.{patch}{channel}{release}\"" },
     { src = "{{ cookiecutter.python_name }}/_version.py" },
     { src = "package.json" },
 ]
