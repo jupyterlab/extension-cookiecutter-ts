@@ -31,7 +31,8 @@ _(sys.executable, "-m", "pip", "check")
 
 # install the labextension
 _(sys.executable, "-m", "pip", "install", "-e", ".")
-_(sys.executable, "-m", "jupyter", "labextension", "develop", "--overwrite", ".")
+_(sys.executable, "-m", "jupyter", "labextension", "develop", "--overwrite", "."){% if cookiecutter.kind.lower() == 'server' %}
+_(sys.executable, "-m", "jupyter", "server", "extension", "enable", "{{ cookiecutter.python_name }}"){% endif %}
 
 # verify the environment the extension didn't break anything
 _(sys.executable, "-m", "pip", "check")
