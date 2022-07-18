@@ -38,7 +38,7 @@ _(
     "jupyter",
     "serverextension",
     "enable",
-    "{{ cookiecutter.python_name }}"
+    "{{ cookiecutter.python_name }}",
 )
 _(
     sys.executable,
@@ -47,7 +47,7 @@ _(
     "server",
     "extension",
     "enable",
-    "{{ cookiecutter.python_name }}"
+    "{{ cookiecutter.python_name }}",
 ){% endif %}
 
 # verify the environment the extension didn't break anything
