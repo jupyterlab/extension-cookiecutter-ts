@@ -1,7 +1,7 @@
 {
   "kind": ["frontend", "server", "theme"],
-  "author_name": "",
-  "author_email": "",
+  "author_name": "My Name",
+  "author_email": "me@test.com",
   "labextension_name": "{% if cookiecutter.kind == 'theme' %}mytheme{% else %}myextension{% endif %}",
   "python_name": "{{ cookiecutter.labextension_name | replace('-', '_') }}",
   "project_short_description": "A JupyterLab extension.",

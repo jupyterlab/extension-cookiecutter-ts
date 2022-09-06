@@ -19,12 +19,13 @@ jobs:
         uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
 
       - name: Install dependencies
-        run: python -m pip install -U cookiecutter check-manifest jupyterlab~=3.1
+        run: python -m pip install -U cookiecutter jupyterlab~=3.1
 
       - name: Create the extension
         run: |
           set -eux
           python -m cookiecutter --no-input .
+          cat myextension/pyproject.toml
 
       - name: Test the extension
         working-directory: myextension
@@ -37,7 +38,12 @@ jobs:
         working-directory: myextension
         run: |
           set -eux
-          python -m pip install .
+          python -m pip install -v .
+          cat myextension/labextension/package.json
+
+      - name: List extensions
+        run: |
+          jupyter labextension list
 
       - name: Install dependencies
         working-directory: myextension/ui-tests

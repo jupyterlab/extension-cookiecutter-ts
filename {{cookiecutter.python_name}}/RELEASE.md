@@ -12,7 +12,13 @@ packaging instructions in the `pyproject.toml` file to wrap your extension in a
 Python package. Before generating a package, we first need to install `build`.
 
 ```bash
-pip install build twine
+pip install build twine tbump
+```
+
+Bump the version using `tbump`. By default this will create a tag.
+
+```bash
+tbump <new-version>
 ```
 
 To create a Python source package (`.tar.gz`) and the binary package (`.whl`) in the `dist/` directory, do:
