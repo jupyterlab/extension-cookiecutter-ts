@@ -70,6 +70,7 @@ npm = ["jlpm"]
 
 [tool.hatch.build.hooks.jupyter-builder.editable-build-kwargs]
 build_cmd = "install:extension"
+npm = ["jlpm"]
 source_dir = "src"
 build_dir = "{{cookiecutter.python_name}}/labextension"
 
