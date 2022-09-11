@@ -15,8 +15,8 @@ Python package. Before generating a package, we first need to install `build`.
 pip install build twine hatch
 ```
 
-Bump the version using `hatch`. By default this will create a tag.  See the
-docs on [hatch-nodejs-version](https://github.com/agoose77/hatch-nodejs-version#semver) for details.
+Bump the version using `hatch`. By default this will create a tag.
+See the docs on [hatch-nodejs-version](https://github.com/agoose77/hatch-nodejs-version#semver) for details.
 
 ```bash
 hatch version <new-version>
