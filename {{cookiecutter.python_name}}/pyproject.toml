@@ -24,6 +24,7 @@ classifiers = [
 dependencies = [{% if cookiecutter.kind.lower() == "server" %}
     "jupyter_server>=1.6,<2"{% endif %}
 ]
+dynamic = ["version"]
 
 [project.optional-dependencies]
 test = [{% if cookiecutter.test.lower().startswith('y') %}
