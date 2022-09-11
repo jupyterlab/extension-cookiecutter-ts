@@ -40,7 +40,7 @@ test = [{% if cookiecutter.test.lower().startswith('y') %}
 source = "nodejs"
 
 [tool.hatch.metadata.hooks.nodejs]
-fields = ["description", "author", "homepage", "repository"]
+fields = ["description", "authors", "urls"]
 
 [tool.hatch.build]
 artifacts = ["{{ cookiecutter.python_name }}/labextension"]
