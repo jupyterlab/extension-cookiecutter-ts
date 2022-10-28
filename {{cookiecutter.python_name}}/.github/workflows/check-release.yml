@@ -19,4 +19,11 @@ jobs:
       - name: Check Release
         uses: jupyter-server/jupyter_releaser/.github/actions/check-release@v2
         with:
+{% raw %}
           token: ${{ secrets.GITHUB_TOKEN }}
+{% endraw %}
+      - name: Upload Distributions
+        uses: actions/upload-artifact@v2
+        with:
+          name: {{ cookiecutter.python_name }}-releaser-dist-${{ '{{ github.run_number }}' }}
+          path: .jupyter_releaser_checkout/dist
