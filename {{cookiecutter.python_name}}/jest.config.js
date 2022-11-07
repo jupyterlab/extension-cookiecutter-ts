@@ -29,7 +29,11 @@ module.exports = {
   testPathIgnorePatterns,
   transform,
   automock: false,
-  collectCoverageFrom: ['src/**/*.{ts,tsx}', '!src/**/*.d.ts'],
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx}',
+    '!src/**/*.d.ts',
+    '!src/**/.ipynb_checkpoints/*'
+  ],
   coverageDirectory: 'coverage',
   coverageReporters: ['lcov', 'text'],
   globals: {

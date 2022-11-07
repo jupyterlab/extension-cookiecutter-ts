@@ -1,3 +1,4 @@
+# WARNING: MANIFEST.in has no effect for hatch backend
 include LICENSE
 include *.md
 include pyproject.toml{% if cookiecutter.kind == "server" %}
