@@ -43,7 +43,8 @@ jobs:
           pushd ${PYNAME}
           python -m pip install jupyterlab
           jlpm
-          jlpm stylelint-config-prettier-check
+          # Bug in the CLI tool
+          # jlpm stylelint-config-prettier-check
           jlpm lint:check
           python -m pip install -e .
           jupyter labextension develop . --overwrite
