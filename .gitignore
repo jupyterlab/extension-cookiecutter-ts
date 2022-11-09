@@ -62,6 +62,8 @@ coverage.xml
 *.cover
 .hypothesis/
 .pytest_cache/
+coverage/lcov-report/
+coverage/lcov.info
 
 # Translations
 *.mo
