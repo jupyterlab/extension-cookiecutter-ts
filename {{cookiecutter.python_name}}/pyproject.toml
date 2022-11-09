@@ -45,14 +45,18 @@ fields = ["description", "authors", "urls"]
 [tool.hatch.build]
 artifacts = ["{{ cookiecutter.python_name }}/labextension"]
 
+[tool.hatch.build.targets.sdist]
+exclude = [".github", "binder"]
+
+[tool.hatch.build.targets.wheel]
+# Exclude the JavaScript assets in the Python package to include them only once as shared data
+exclude = ["{{ cookiecutter.python_name }}/labextension"]
+
 [tool.hatch.build.targets.wheel.shared-data]
 "{{ cookiecutter.python_name }}/labextension" = "share/jupyter/labextensions/{{ cookiecutter.labextension_name }}"
 "install.json" = "share/jupyter/labextensions/{{ cookiecutter.labextension_name }}/install.json"{% if cookiecutter.kind.lower() == "server" %}
 "jupyter-config/server-config" = "etc/jupyter/jupyter_server_config.d"
 "jupyter-config/nb-config" = "etc/jupyter/jupyter_notebook_config.d"{% endif %}
-
-[tool.hatch.build.targets.sdist]
-exclude = [".github", "binder"]
 
 [tool.hatch.build.hooks.version]
 path = "{{ cookiecutter.python_name }}/_version.py"
