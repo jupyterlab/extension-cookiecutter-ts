@@ -42,10 +42,8 @@ source = "nodejs"
 [tool.hatch.metadata.hooks.nodejs]
 fields = ["description", "authors", "urls"]
 
-[tool.hatch.build]
-artifacts = ["{{ cookiecutter.python_name }}/labextension"]
-
 [tool.hatch.build.targets.sdist]
+artifacts = ["{{ cookiecutter.python_name }}/labextension"]
 exclude = [".github", "binder"]
 
 [tool.hatch.build.targets.wheel]
