@@ -46,10 +46,6 @@ fields = ["description", "authors", "urls"]
 artifacts = ["{{ cookiecutter.python_name }}/labextension"]
 exclude = [".github", "binder"]
 
-[tool.hatch.build.targets.wheel]
-# Exclude the JavaScript assets in the Python package to include them only once as shared data
-exclude = ["{{ cookiecutter.python_name }}/labextension"]
-
 [tool.hatch.build.targets.wheel.shared-data]
 "{{ cookiecutter.python_name }}/labextension" = "share/jupyter/labextensions/{{ cookiecutter.labextension_name }}"
 "install.json" = "share/jupyter/labextensions/{{ cookiecutter.labextension_name }}/install.json"{% if cookiecutter.kind.lower() == "server" %}
