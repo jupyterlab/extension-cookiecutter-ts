@@ -52,7 +52,7 @@ artifacts = ["{{ cookiecutter.python_name }}/labextension"]
 "jupyter-config/nb-config" = "etc/jupyter/jupyter_notebook_config.d"{% endif %}
 
 [tool.hatch.build.targets.sdist]
-exclude = [".github"]
+exclude = [".github", "binder"]
 
 [tool.hatch.build.hooks.version]
 path = "{{ cookiecutter.python_name }}/_version.py"
