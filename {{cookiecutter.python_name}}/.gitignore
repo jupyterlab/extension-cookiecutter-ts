@@ -7,6 +7,8 @@ node_modules/
 .ipynb_checkpoints
 *.tsbuildinfo
 {{cookiecutter.python_name}}/labextension
+# Version file is handled by hatchling
+{{cookiecutter.python_name}}/_version.py
 
 # Integration tests
 ui-tests/test-results/
