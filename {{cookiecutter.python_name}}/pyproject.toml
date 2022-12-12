@@ -76,3 +76,10 @@ build_dir = "{{cookiecutter.python_name}}/labextension"
 
 [tool.jupyter-releaser.options]
 version_cmd = "hatch version"
+
+[tool.jupyter-releaser.hooks]
+before-build-npm = [
+    "python -m pip install jupyterlab>=4.0.0a29,<5",
+    "jlpm"
+]
+before-build-python = ["jlpm clean:all"]
