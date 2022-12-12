@@ -109,16 +109,5 @@
     "outputDir": "{{cookiecutter.python_name}}/labextension"{% if cookiecutter.has_settings.lower().startswith('y') %},
     "schemaDir": "schema"{% endif %}{% if cookiecutter.kind.lower() == 'theme' %},
     "themePath": "style/index.css"{% endif %}
-  },
-  "jupyter-releaser": {
-    "hooks": {
-      "before-build-npm": [
-        "python -m pip install jupyterlab~=3.1",
-        "jlpm"
-      ],
-      "before-build-python": [
-        "jlpm clean:all"
-      ]
-    }
   }
 }
