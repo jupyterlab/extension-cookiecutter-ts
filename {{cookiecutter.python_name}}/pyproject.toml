@@ -33,8 +33,7 @@ test = [{% if cookiecutter.test.lower().startswith('y') %}
     "pytest",
     "pytest-asyncio",
     "pytest-cov",
-    "pytest-jupyter[server]>=0.6.0",
-    "pytest-tornasync"{% endif %}
+    "pytest-jupyter[server]>=0.6.0"{% endif %}
 ]
 
 [tool.hatch.version]
