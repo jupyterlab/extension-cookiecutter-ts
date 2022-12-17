@@ -93,7 +93,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "jupyterlab": { {% if cookiecutter.kind.lower() == 'server' %}
+  "jupyterlab": { {%- if cookiecutter.kind.lower() == 'server' %}
     "discovery": {
       "server": {
         "managers": [
