@@ -95,14 +95,14 @@
   },
   "jupyterlab": { {% if cookiecutter.kind.lower() == 'server' %}
     "discovery": {
-        "server": {
-          "managers": [
-            "pip"
-          ],
-          "base": {
-            "name": "{{ cookiecutter.python_name }}"
-          }
+      "server": {
+        "managers": [
+          "pip"
+        ],
+        "base": {
+          "name": "{{ cookiecutter.python_name }}"
         }
+      }
     },{% endif %}
     "extension": true,
     "outputDir": "{{cookiecutter.python_name}}/labextension"{% if cookiecutter.has_settings.lower().startswith('y') %},
