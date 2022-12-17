@@ -89,7 +89,8 @@
     "style/*.css"{% if cookiecutter.kind.lower() != 'theme' %},
     "style/index.js"
   ],
-  "styleModule": "style/index.js",{% else %}],{% endif %}
+  "styleModule": "style/index.js",{% else %}
+  ],{% endif %}
   "publishConfig": {
     "access": "public"
   },
