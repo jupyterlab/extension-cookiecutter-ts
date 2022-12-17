@@ -22,8 +22,8 @@
     "schema/*.json"{% endif %}
   ],
   "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  {% if cookiecutter.kind != 'theme' %}"style": "style/index.css",{% endif %}
+  "types": "lib/index.d.ts",{% if cookiecutter.kind != 'theme' %}
+  "style": "style/index.css",{% endif %}
   "repository": {
     "type": "git",
     "url": "{{ cookiecutter.repository }}.git"
