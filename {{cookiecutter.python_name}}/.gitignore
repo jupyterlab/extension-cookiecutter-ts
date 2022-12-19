@@ -1,6 +1,7 @@
 *.bundle.*
 lib/
 node_modules/
+yarn-error.log
 .eslintcache
 .stylelintcache
 *.egg-info/
