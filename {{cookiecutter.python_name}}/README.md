@@ -109,6 +109,8 @@ Install test dependencies (needed only once):
 
 ```sh
 pip install -e ".[test]"
+# Each time you install the Python package, you need to restore the front-end extension link
+jupyter labextension develop . --overwrite
 ```
 
 To execute them, run:
