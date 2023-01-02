@@ -3,6 +3,7 @@
 [![Github Actions Status]({{ cookiecutter.repository }}/workflows/Build/badge.svg)]({{ cookiecutter.repository }}/actions/workflows/build.yml)
 {%- if cookiecutter.has_binder.lower().startswith('y') -%}
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/{{ cookiecutter.repository|replace("https://github.com/", "") }}/main?urlpath=lab)
+
 {%- endif %}
 {{ cookiecutter.project_short_description }}
 {% if cookiecutter.kind.lower() == 'server' %}
@@ -60,7 +61,7 @@ The `jlpm` command is JupyterLab's pinned version of
 # Clone the repo to your local environment
 # Change directory to the {{ cookiecutter.python_name }} directory
 # Install package in development mode
-pip install -e .
+pip install -e ".{% if cookiecutter.test.lower().startswith('y') and cookiecutter.kind.lower() == 'server' %}[test]{% endif %}"
 # Link your development version of the extension with JupyterLab
 jupyter labextension develop . --overwrite{% if cookiecutter.kind.lower() == 'server' %}
 # Server extension must be manually installed in develop mode
@@ -108,6 +109,8 @@ Install test dependencies (needed only once):
 
 ```sh
 pip install -e ".[test]"
+# Each time you install the Python package, you need to restore the front-end extension link
+jupyter labextension develop . --overwrite
 ```
 
 To execute them, run:
