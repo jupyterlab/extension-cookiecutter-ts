@@ -22,8 +22,8 @@
     "schema/*.json"{% endif %}
   ],
   "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  {% if cookiecutter.kind != 'theme' %}"style": "style/index.css",{% endif %}
+  "types": "lib/index.d.ts",{% if cookiecutter.kind != 'theme' %}
+  "style": "style/index.css",{% endif %}
   "repository": {
     "type": "git",
     "url": "{{ cookiecutter.repository }}.git"
@@ -59,8 +59,7 @@
     "@jupyterlab/apputils": "^4.0.0-alpha.14"{% endif %}{% if cookiecutter.has_settings.lower().startswith('y') %},
     "@jupyterlab/settingregistry": "^4.0.0-alpha.14"{% endif %}{% if cookiecutter.kind.lower() == 'server' %},
     "@jupyterlab/coreutils": "^6.0.0-alpha.14",
-    "@jupyterlab/services": "^7.0.0-alpha.14"
-{% endif %}
+    "@jupyterlab/services": "^7.0.0-alpha.14"{% endif %}
   },
   "devDependencies": {
     {% if cookiecutter.test.lower().startswith('y') %}"@babel/core": "^7.0.0",
@@ -90,20 +89,21 @@
     "style/*.css"{% if cookiecutter.kind.lower() != 'theme' %},
     "style/index.js"
   ],
-  "styleModule": "style/index.js",{% else %}],{% endif %}
+  "styleModule": "style/index.js",{% else %}
+  ],{% endif %}
   "publishConfig": {
     "access": "public"
   },
-  "jupyterlab": { {% if cookiecutter.kind.lower() == 'server' %}
+  "jupyterlab": { {%- if cookiecutter.kind.lower() == 'server' %}
     "discovery": {
-        "server": {
-          "managers": [
-            "pip"
-          ],
-          "base": {
-            "name": "{{ cookiecutter.python_name }}"
-          }
+      "server": {
+        "managers": [
+          "pip"
+        ],
+        "base": {
+          "name": "{{ cookiecutter.python_name }}"
         }
+      }
     },{% endif %}
     "extension": true,
     "outputDir": "{{cookiecutter.python_name}}/labextension"{% if cookiecutter.has_settings.lower().startswith('y') %},
