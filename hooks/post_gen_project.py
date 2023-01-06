@@ -56,3 +56,4 @@ if __name__ == "__main__":
         remove_path(PROJECT_DIRECTORY / "babel.config.js")
         remove_path(PROJECT_DIRECTORY / "conftest.py")
         remove_path(PROJECT_DIRECTORY / "jest.config.js")
+        remove_path(PROJECT_DIRECTORY / "tsconfig.test.json")
