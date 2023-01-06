@@ -55,24 +55,21 @@
     "watch:labextension": "jupyter labextension watch ."
   },
   "dependencies": {
-    "@jupyterlab/application": "^4.0.0-alpha.14"{% if cookiecutter.kind.lower() == 'theme' %},
-    "@jupyterlab/apputils": "^4.0.0-alpha.14"{% endif %}{% if cookiecutter.has_settings.lower().startswith('y') %},
-    "@jupyterlab/settingregistry": "^4.0.0-alpha.14"{% endif %}{% if cookiecutter.kind.lower() == 'server' %},
-    "@jupyterlab/coreutils": "^6.0.0-alpha.14",
-    "@jupyterlab/services": "^7.0.0-alpha.14"{% endif %}
+    "@jupyterlab/application": "^4.0.0-alpha.17"{% if cookiecutter.kind.lower() == 'theme' %},
+    "@jupyterlab/apputils": "^4.0.0-alpha.17"{% endif %}{% if cookiecutter.has_settings.lower().startswith('y') %},
+    "@jupyterlab/settingregistry": "^4.0.0-alpha.17"{% endif %}{% if cookiecutter.kind.lower() == 'server' %},
+    "@jupyterlab/coreutils": "^6.0.0-alpha.17",
+    "@jupyterlab/services": "^7.0.0-alpha.17"{% endif %}
   },
   "devDependencies": {
-    {% if cookiecutter.test.lower().startswith('y') %}"@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    {% endif %}"@jupyterlab/builder": "^4.0.0-alpha.14",{% if cookiecutter.test.lower().startswith('y') %}
-    "@jupyterlab/testutils": "^4.0.0-alpha.14",
-    "@types/jest": "^26.0.0",{% endif %}
+    "@jupyterlab/builder": "^4.0.0-alpha.17",{% if cookiecutter.test.lower().startswith('y') %}
+    "@jupyterlab/testutils": "^4.0.0-alpha.17",
+    "@types/jest": "^29.2.0",{% endif %}
     "@typescript-eslint/eslint-plugin": "^4.8.1",
     "@typescript-eslint/parser": "^4.8.1",
     "eslint": "^7.14.0",
     "eslint-config-prettier": "^6.15.0",
-    "eslint-plugin-prettier": "^3.1.4",{% if cookiecutter.test.lower().startswith('y') %}
-    "jest": "^26.0.0",{% endif %}{% if cookiecutter.kind.lower() == 'server' %}
+    "eslint-plugin-prettier": "^3.1.4",{% if cookiecutter.kind.lower() == 'server' %}
     "mkdirp": "^1.0.3",{% endif %}
     "npm-run-all": "^4.1.5",
     "prettier": "^2.1.1",
@@ -82,8 +79,7 @@
     "stylelint-config-recommended": "^6.0.0",
     "stylelint-config-standard": "~24.0.0",
     "stylelint-prettier": "^2.0.0",
-    "typescript": "~4.7.3"{% if cookiecutter.test.lower().startswith('y') %},
-    "ts-jest": "^26.0.0"{% endif %}
+    "typescript": "~4.7.3"
   },
   "sideEffects": [
     "style/*.css"{% if cookiecutter.kind.lower() != 'theme' %},
