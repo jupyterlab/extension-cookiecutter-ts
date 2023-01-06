@@ -1,8 +1,6 @@
 const jestJupyterLab = require('@jupyterlab/testutils/lib/jest-config');
 
-const esModules = [
-  '@jupyterlab/'
-].join('|');
+const esModules = ['@jupyterlab/'].join('|');
 
 const baseConfig = jestJupyterLab(__dirname);
 
