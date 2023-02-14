@@ -56,15 +56,15 @@
     "watch:labextension": "jupyter labextension watch ."
   },
   "dependencies": {
-    "@jupyterlab/application": "^4.0.0-alpha.17"{% if cookiecutter.kind.lower() == 'theme' %},
-    "@jupyterlab/apputils": "^4.0.0-alpha.17"{% endif %}{% if cookiecutter.has_settings.lower().startswith('y') %},
-    "@jupyterlab/settingregistry": "^4.0.0-alpha.17"{% endif %}{% if cookiecutter.kind.lower() == 'server' %},
-    "@jupyterlab/coreutils": "^6.0.0-alpha.17",
-    "@jupyterlab/services": "^7.0.0-alpha.17"{% endif %}
+    "@jupyterlab/application": "^4.0.0-alpha.19"{% if cookiecutter.kind.lower() == 'theme' %},
+    "@jupyterlab/apputils": "^4.0.0-alpha.19"{% endif %}{% if cookiecutter.has_settings.lower().startswith('y') %},
+    "@jupyterlab/settingregistry": "^4.0.0-alpha.19"{% endif %}{% if cookiecutter.kind.lower() == 'server' %},
+    "@jupyterlab/coreutils": "^6.0.0-alpha.19",
+    "@jupyterlab/services": "^7.0.0-alpha.19"{% endif %}
   },
   "devDependencies": {
-    "@jupyterlab/builder": "^4.0.0-alpha.17",{% if cookiecutter.test.lower().startswith('y') %}
-    "@jupyterlab/testutils": "^4.0.0-alpha.17",
+    "@jupyterlab/builder": "^4.0.0-alpha.19",{% if cookiecutter.test.lower().startswith('y') %}
+    "@jupyterlab/testutils": "^4.0.0-alpha.19",
     "@types/jest": "^29.2.0",{% endif %}
     "@typescript-eslint/eslint-plugin": "^4.8.1",
     "@typescript-eslint/parser": "^4.8.1",

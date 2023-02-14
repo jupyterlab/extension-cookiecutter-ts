@@ -18,7 +18,7 @@ jobs:
       uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
 
     - name: Install dependencies
-      run: python -m pip install -U "jupyterlab>=4.0.0a29,<5"
+      run: python -m pip install -U "jupyterlab>=4.0.0a34,<5"
 
     - name: Lint the extension
       run: |
@@ -81,7 +81,7 @@ jobs:
         sudo rm -rf $(which node)
         sudo rm -rf $(which node)
 
-        pip install "jupyterlab>=4.0.0a29,<5" {{ cookiecutter.python_name }}*.whl
+        pip install "jupyterlab>=4.0.0a34,<5" {{ cookiecutter.python_name }}*.whl
 
 {% if cookiecutter.kind.lower() == 'server' %}
         jupyter server extension list
@@ -114,7 +114,7 @@ jobs:
     - name: Install the extension
       run: |
         set -eux
-        python -m pip install "jupyterlab>=4.0.0a29,<5" {{ cookiecutter.python_name }}*.whl
+        python -m pip install "jupyterlab>=4.0.0a34,<5" {{ cookiecutter.python_name }}*.whl
 
     - name: Install dependencies
       working-directory: ui-tests
