@@ -1,8 +1,10 @@
 #!/usr/bin/env python
+import sys
 from pathlib import Path
+from subprocess import CalledProcessError, check_call
 
 PROJECT_DIRECTORY = Path.cwd()
-
+TEMPLATE_URI = "https://github.com/jupyterlab/extension-cookiecutter-ts.git"
 
 def remove_path(path: Path) -> None:
     """Remove the provided path.
@@ -22,38 +24,19 @@ def remove_path(path: Path) -> None:
 
 if __name__ == "__main__":
 
-    if not "{{ cookiecutter.has_settings }}".lower().startswith("y"):
-        remove_path(PROJECT_DIRECTORY / "schema")
+    remove_path(PROJECT_DIRECTORY / "template")
+    remove_path(PROJECT_DIRECTORY / "copier.yml")
 
-    if "{{ cookiecutter.kind }}".lower() == "theme":
-        for f in (
-            "style/index.js",
-            "style/base.css"
-        ):
-            remove_path(PROJECT_DIRECTORY / f)
-    else:
-        remove_path(PROJECT_DIRECTORY / "style/variables.css")
+    try:
+        import copier
+    except ImportError:
+        try:
+            check_call([sys.executable, "-m", "pip", "install", "copier>=6.2.0"])
+        except CalledProcessError:
+            check_call([sys.executable, "-m", "pip", "install", "--pre", "copier>=6.2.0"])
 
-    if not "{{ cookiecutter.kind }}".lower() == "server":
-        for f in (
-            "{{ cookiecutter.python_name }}/handlers.py",
-            "src/handler.ts",
-            "jupyter-config",
-            "conftest.py",
-            "{{ cookiecutter.python_name }}/tests"
-        ):
-            remove_path(PROJECT_DIRECTORY / f)
+    from copier import run_copy
 
-    if not "{{ cookiecutter.has_binder }}".lower().startswith("y"):
-        remove_path(PROJECT_DIRECTORY / "binder")
-        remove_path(PROJECT_DIRECTORY / ".github/workflows/binder-on-pr.yml")
-
-    if not "{{ cookiecutter.test }}".lower().startswith("y"):
-        remove_path(PROJECT_DIRECTORY / ".github" / "workflows" / "update-integration-tests.yml")
-        remove_path(PROJECT_DIRECTORY / "src" / "__tests__")
-        remove_path(PROJECT_DIRECTORY / "ui-tests")
-        remove_path(PROJECT_DIRECTORY / "{{ cookiecutter.python_name }}" / "tests")
-        remove_path(PROJECT_DIRECTORY / "babel.config.js")
-        remove_path(PROJECT_DIRECTORY / "conftest.py")
-        remove_path(PROJECT_DIRECTORY / "jest.config.js")
-        remove_path(PROJECT_DIRECTORY / "tsconfig.test.json")
+    extension_name = input("What is your extension name?")
+    module_name = extension_name.replace("-", "_")
+    run_copy(TEMPLATE_URI, PROJECT_DIRECTORY / module_name, data={ "labextension_name": extension_name, "python_name": module_name})

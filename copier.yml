@@ -1,0 +1,61 @@
+_min_copier_version: "6.2.0"
+_subdirectory: template
+_exclude:
+  - ".github"
+  - "hooks"
+  - "cookiecutter.json"
+  - "LICENSE"
+  - "README.md"
+
+kind:
+  type: str
+  help: What is your extension kind?
+  choices:
+    - frontend
+    - server
+    - theme
+
+author_name:
+  type: str
+  help: Author name?
+  placeholder: "My Name"
+
+author_email:
+  type: str
+  help: Author email?
+  placeholder: "me@test.com"
+
+labextension_name:
+  type: str
+  help: JavaScript extension name?
+  default: "{% if kind == 'theme' %}mytheme{% else %}myextension{% endif %}"
+
+python_name:
+  type: str
+  help: Python package name?
+  default: "{{ labextension_name | replace('-', '_') }}"
+
+project_short_description:
+  type: str
+  help: Extension short description
+  default: "A JupyterLab extension."
+
+has_settings:
+  type: bool
+  help: Does the extension have settings?
+  default: no
+
+has_binder:
+  type: bool
+  help: Do you want to set up a Binder example?
+  default: no
+
+test:
+  type: bool
+  help: Do you want to set up tests for the extension?
+  default: yes
+
+repository:
+  type: str
+  help: Git remote repository URL?
+  placeholder: https://github.com/github_username/my-extension

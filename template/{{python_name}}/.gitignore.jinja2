@@ -1,12 +1,20 @@
 *.bundle.*
 lib/
 node_modules/
+*.log
+.eslintcache
+.stylelintcache
 *.egg-info/
 .ipynb_checkpoints
 *.tsbuildinfo
-.eslintcache
-.stylelintcache
-
+{{python_name}}/labextension
+# Version file is handled by hatchling
+{{cookiecutter.python_name}}/_version.py
+{% if cookiecutter.test.lower().startswith('y') %}
+# Integration tests
+ui-tests/test-results/
+ui-tests/playwright-report/
+{% endif %}
 # Created by https://www.gitignore.io/api/python
 # Edit at https://www.gitignore.io/?templates=python
 
@@ -57,12 +65,11 @@ htmlcov/
 .coverage.*
 .cache
 nosetests.xml
+coverage/
 coverage.xml
 *.cover
 .hypothesis/
 .pytest_cache/
-coverage/lcov-report/
-coverage/lcov.info
 
 # Translations
 *.mo
@@ -114,6 +121,5 @@ dmypy.json
 # OSX files
 .DS_Store
 
-# Default extension dir
-myextension
-.vscode/
+# Yarn cache
+.yarn/
