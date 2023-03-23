@@ -65,6 +65,7 @@
   "devDependencies": {
     "@jupyterlab/builder": "^4.0.0-alpha.19",{% if cookiecutter.test.lower().startswith('y') %}
     "@jupyterlab/testutils": "^4.0.0-alpha.19",
+    "jest": "^29.5.0",
     "@types/jest": "^29.2.0",{% endif %}
     "@typescript-eslint/eslint-plugin": "^4.8.1",
     "@typescript-eslint/parser": "^4.8.1",
