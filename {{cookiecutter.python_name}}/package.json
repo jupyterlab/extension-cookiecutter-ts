@@ -66,8 +66,11 @@
     "@jupyterlab/builder": "^4.0.0-alpha.22",{% if cookiecutter.test.lower().startswith('y') %}
     "@jupyterlab/testutils": "^4.0.0-alpha.22",
     "@types/jest": "^29.2.0",{% endif %}
+    "@types/json-schema": "^7.0.11",
+    "@types/react": "^18.0.26",
     "@typescript-eslint/eslint-plugin": "^4.8.1",
     "@typescript-eslint/parser": "^4.8.1",
+    "css-loader": "^6.7.1",
     "eslint": "^7.14.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-prettier": "^3.1.4",{% if cookiecutter.test.lower().startswith('y') %}
@@ -76,12 +79,15 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^2.1.1",
     "rimraf": "^3.0.2",
+    "source-map-loader": "^1.0.2",
+    "style-loader": "^3.3.1",
     "stylelint": "^14.3.0",
     "stylelint-config-prettier": "^9.0.4",
     "stylelint-config-recommended": "^6.0.0",
     "stylelint-config-standard": "~24.0.0",
     "stylelint-prettier": "^2.0.0",
-    "typescript": "~5.0.2"
+    "typescript": "~5.0.2",
+    "yjs": "^13.5.0"
   },
   "sideEffects": [
     "style/*.css"{% if cookiecutter.kind.lower() != 'theme' %},
