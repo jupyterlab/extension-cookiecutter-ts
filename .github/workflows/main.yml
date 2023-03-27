@@ -333,3 +333,36 @@ jobs:
 
           popd
           rm -rf mytheme
+
+  pnpm_linker:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        kind: ["frontend", "server", "theme"]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Base Setup
+        uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
+
+      - name: Install dependencies
+        run: |
+          python -m pip install cookiecutter
+
+      - name: Create pure frontend extension
+        env:
+          KIND: ${{ matrix.kind }}
+        run: |
+          set -eux
+          # Trick to use custom parameters
+          python -c "from cookiecutter.main import cookiecutter; import json, os; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']=os.getenv('KIND'); d['labextension_name']='myextension'; cookiecutter('.', extra_context=d, no_input=True)"
+          pushd myextension
+          sed -i 's/^\(nodeLinker:\s\).*$/\1pnpm/' .yarnrc.yml
+          python -m pip install "jupyterlab>=4.0.0b0,<5"
+          jlpm
+          if [ ! -d node_modules/.store ] ; then echo 'nodes_module directory should contain a .store directory when using pnpm nodeLinker'; exit 1; fi;
+          jlpm build
+          popd
+          rm -rf myextension
