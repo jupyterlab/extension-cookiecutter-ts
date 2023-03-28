@@ -19,7 +19,7 @@ jobs:
         uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
 
       - name: Install dependencies
-        run: python -m pip install -U cookiecutter "jupyterlab>=4.0.0a34,<5"
+        run: python -m pip install -U cookiecutter "jupyterlab>=4.0.0b0,<5"
 
       - name: Create the extension
         run: |
@@ -50,14 +50,14 @@ jobs:
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
         run: jlpm install
-        
+
       - name: Set up browser cache
         uses: actions/cache@v3
         with:
           path: |
             ${{ github.workspace }}/pw-browsers
           key: ${{ runner.os }}-${{ hashFiles('myextension/ui-tests/yarn.lock') }}
-          
+
       - name: Install browser
         run: jlpm playwright install chromium
         working-directory: myextension/ui-tests

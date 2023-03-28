@@ -13,7 +13,7 @@ for the frontend extension.
 {% endif %}
 ## Requirements
 
-- JupyterLab >= 4.0.0a29
+- JupyterLab >= 4.0.0b0
 
 ## Install
 

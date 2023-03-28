@@ -41,7 +41,7 @@ jobs:
           # Trick to use custom parameters
           python -c "from cookiecutter.main import cookiecutter; import json, os; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']=d['kind'][0]; d['labextension_name']=os.getenv('NAME'); cookiecutter('.', extra_context=d, no_input=True)"
           pushd ${PYNAME}
-          python -m pip install "jupyterlab>=4.0.0a34,<5"
+          python -m pip install "jupyterlab>=4.0.0b0,<5"
           jlpm
           jlpm stylelint-config-prettier-check
           jlpm lint:check
@@ -81,7 +81,7 @@ jobs:
           # Trick to use custom parameters
           python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']=d['kind'][0]; d['test']='n'; cookiecutter('.', extra_context=d, no_input=True)"
           pushd myextension
-          pip install "jupyterlab>=4.0.0a34,<5"
+          pip install "jupyterlab>=4.0.0b0,<5"
           jlpm
           jlpm lint:check
           pip install -e .
@@ -120,7 +120,7 @@ jobs:
           # Trick to use custom parameters
           python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']=d['kind'][0]; d['has_settings']='y'; cookiecutter('.', extra_context=d, no_input=True)"
           pushd myextension
-          pip install "jupyterlab>=4.0.0a34,<5"
+          pip install "jupyterlab>=4.0.0b0,<5"
           jlpm
           # It is not easily possible to get this version compatible with linter rules
           jlpm lint
@@ -164,7 +164,7 @@ jobs:
           cd myextension
           cat pyproject.toml
           pip install .
-          pip install "jupyterlab>=4.0.0a34,<5"
+          pip install "jupyterlab>=4.0.0b0,<5"
           jlpm
           jlpm lint:check
 
@@ -189,7 +189,7 @@ jobs:
           python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']='server'; cookiecutter('.', extra_context=d, no_input=True)"
           cd myextension
           python -m pip install -e .[test]
-          python -m pip install "jupyterlab>=4.0.0a34,<5"
+          python -m pip install "jupyterlab>=4.0.0b0,<5"
           jupyter labextension develop . --overwrite
           jupyter server extension enable myextension
 
@@ -223,7 +223,7 @@ jobs:
           # Trick to use custom parameters
           python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']='server'; cookiecutter('.', extra_context=d, no_input=True)"
           cd myextension
-          python -m pip install "jupyterlab>=4.0.0a34,<5"
+          python -m pip install "jupyterlab>=4.0.0b0,<5"
           jupyter lab clean --all
           python -m build
           cd dist
@@ -289,7 +289,7 @@ jobs:
           sudo rm -rf $(which node)
 
           python -m pip install myextension.tar.gz
-          python -m pip install "jupyterlab>=4.0.0a34,<5"
+          python -m pip install "jupyterlab>=4.0.0b0,<5"
           jupyter labextension list 2>&1 | grep -ie "myextension.*OK"
           jupyter server extension list
           jupyter server extension list 2>&1 | grep -ie "myextension.*OK"
@@ -319,7 +319,7 @@ jobs:
           # Trick to use custom parameters
           python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']='theme'; cookiecutter('.', extra_context=d, no_input=True)"
           pushd mytheme
-          python -m pip install "jupyterlab>=4.0.0a34,<5"
+          python -m pip install "jupyterlab>=4.0.0b0,<5"
           jlpm
           jlpm lint:check
           python -m pip install -e .
@@ -333,3 +333,36 @@ jobs:
 
           popd
           rm -rf mytheme
+
+  pnpm_linker:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        kind: ["frontend", "server", "theme"]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Base Setup
+        uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
+
+      - name: Install dependencies
+        run: |
+          python -m pip install cookiecutter
+
+      - name: Create pure frontend extension
+        env:
+          KIND: ${{ matrix.kind }}
+        run: |
+          set -eux
+          # Trick to use custom parameters
+          python -c "from cookiecutter.main import cookiecutter; import json, os; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']=os.getenv('KIND'); d['labextension_name']='myextension'; cookiecutter('.', extra_context=d, no_input=True)"
+          pushd myextension
+          sed -i 's/^\(nodeLinker:\s\).*$/\1pnpm/' .yarnrc.yml
+          python -m pip install "jupyterlab>=4.0.0b0,<5"
+          jlpm
+          if [ ! -d node_modules/.store ] ; then echo 'nodes_module directory should contain a .store directory when using pnpm nodeLinker'; exit 1; fi;
+          jlpm build
+          popd
+          rm -rf myextension
