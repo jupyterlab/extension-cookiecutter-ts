@@ -22,7 +22,7 @@ pip install cookiecutter
 Use cookiecutter to generate a package, following the prompts to fill in the name and authorship of your new JupyterLab extension.
 
 ```
-cookiecutter https://github.com/jupyterlab/extension-cookiecutter-ts
+cookiecutter https://github.com/jupyterlab/extension-cookiecutter-ts --checkout 4.0
 ```
 
 The available options are:
@@ -47,6 +47,7 @@ If you'd like to generate a package for a specific JupyterLab release, use the `
 ```
 cookiecutter https://github.com/jupyterlab/extension-cookiecutter-ts --checkout v1.0
 cookiecutter https://github.com/jupyterlab/extension-cookiecutter-ts --checkout v2.0
+cookiecutter https://github.com/jupyterlab/extension-cookiecutter-ts --checkout 3.0
 ```
 
 ## A simple example
