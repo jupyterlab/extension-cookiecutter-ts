@@ -48,7 +48,7 @@ npm publish --access public
 
 The extension repository should already be compatible with the Jupyter Releaser.
 
-Check out the [workflow documentation](https://jupyter-releaser.readthedocs.io/en/latest/how_to_guides/convert_repo_from_repo.html) for more information.
+Check out the [workflow documentation](https://jupyter-releaser.readthedocs.io/en/latest/get_started/making_release_from_repo.html) for more information.
 
 Here is a summary of the steps to cut a new release:
 
