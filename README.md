@@ -25,6 +25,23 @@ Use cookiecutter to generate a package, following the prompts to fill in the nam
 cookiecutter https://github.com/jupyterlab/extension-cookiecutter-ts
 ```
 
+The available options are:
+
+- `kind`:
+  * frontend --> Extension has only a frontend (TypeScript + CSS) part
+  * server --> Extension has frontend and backend (new Python endpoint handlers for the server) parts
+  * theme --> Extension provides a new theme (and nothing else)
+- `author_name`: The extension author name
+- `author_email`: The extension author email
+- `labextension_name`: Extension name
+- `python_name`: Pythonic extension name (if your extension has no server part, it will only be used to distribute the extension as a Python package)
+- `project_short_description`: Extension short description
+- `has_settings`: Whether the extension will have user settings or not.
+- `has_binder`: Whether to set up [binder](https://mybinder.readthedocs.io/en/latest/) for the extension or not.
+- `test`: Whether to add test set ups and skeletons for the extension or not
+- `repository`: Version Control System repository URI
+
+
 If you'd like to generate a package for a specific JupyterLab release, use the `--checkout` option and give a tag or commit from this repository.
 
 ```
