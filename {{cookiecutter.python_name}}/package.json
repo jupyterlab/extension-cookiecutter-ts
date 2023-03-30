@@ -27,7 +27,10 @@
   "repository": {
     "type": "git",
     "url": "{{ cookiecutter.repository }}.git"
-  },
+  },{% if cookiecutter.test.lower().startswith('y') %}
+  "workspaces": [
+    "ui-tests"
+  ],{% endif %}
   "scripts": {
     "build": "jlpm build:lib && jlpm build:labextension:dev",
     "build:prod": "jlpm clean && jlpm build:lib:prod && jlpm build:labextension",
