@@ -110,5 +110,14 @@
     "outputDir": "{{cookiecutter.python_name}}/labextension"{% if cookiecutter.has_settings.lower().startswith('y') %},
     "schemaDir": "schema"{% endif %}{% if cookiecutter.kind.lower() == 'theme' %},
     "themePath": "style/index.css"{% endif %}
-  }
+  },
+  "eslintIgnore": [
+    "node_modules",
+    "dist",
+    "coverage",
+    "**/*.d.ts",
+    "tests",
+    "**/__tests__",
+    "ui-tests"
+  ],
 }
