@@ -178,4 +178,5 @@
       "alpha-value-notation": null,
       "color-function-notation": null{% endif %}
     }
+  }
 }
