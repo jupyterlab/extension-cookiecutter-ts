@@ -10,11 +10,11 @@ node_modules/
 {{cookiecutter.python_name}}/labextension
 # Version file is handled by hatchling
 {{cookiecutter.python_name}}/_version.py
-
+{% if cookiecutter.test.lower().startswith('y') %}
 # Integration tests
 ui-tests/test-results/
 ui-tests/playwright-report/
-
+{% endif %}
 # Created by https://www.gitignore.io/api/python
 # Edit at https://www.gitignore.io/?templates=python
 
