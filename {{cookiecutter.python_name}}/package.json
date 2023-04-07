@@ -110,5 +110,88 @@
     "outputDir": "{{cookiecutter.python_name}}/labextension"{% if cookiecutter.has_settings.lower().startswith('y') %},
     "schemaDir": "schema"{% endif %}{% if cookiecutter.kind.lower() == 'theme' %},
     "themePath": "style/index.css"{% endif %}
+  },
+  "eslintIgnore": [
+    "node_modules",
+    "dist",
+    "coverage",
+    "**/*.d.ts"{% if cookiecutter.test.lower().startswith('y') %},
+    "tests",
+    "**/__tests__",
+    "ui-tests"{% endif %}
+  ],
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:prettier/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "tsconfig.json",
+      "sourceType": "module"
+    },
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "rules": {
+      "@typescript-eslint/naming-convention": [
+        "error",
+        {
+          "selector": "interface",
+          "format": [
+            "PascalCase"
+          ],
+          "custom": {
+            "regex": "^I[A-Z]",
+            "match": true
+          }
+        }
+      ],
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          "args": "none"
+        }
+      ],
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-namespace": "off",
+      "@typescript-eslint/no-use-before-define": "off",
+      "@typescript-eslint/quotes": [
+        "error",
+        "single",
+        {
+          "avoidEscape": true,
+          "allowTemplateLiterals": false
+        }
+      ],
+      "curly": [
+        "error",
+        "all"
+      ],
+      "eqeqeq": "error",
+      "prefer-arrow-callback": "error"
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "none",
+    "arrowParens": "avoid",
+    "endOfLine": "auto"
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-recommended",
+      "stylelint-config-standard",
+      "stylelint-prettier/recommended"
+    ],
+    "rules": {
+      "property-no-vendor-prefix": null,
+      "selector-no-vendor-prefix": null,
+      "value-no-vendor-prefix": null{% if cookiecutter.kind.lower() == "theme" %},
+      "alpha-value-notation": null,
+      "color-function-notation": null{% endif %}
+    }
   }
 }
