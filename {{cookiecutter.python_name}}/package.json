@@ -132,13 +132,17 @@
       "project": "tsconfig.json",
       "sourceType": "module"
     },
-    "plugins": ["@typescript-eslint"],
+    "plugins": [
+      "@typescript-eslint"
+    ],
     "rules": {
       "@typescript-eslint/naming-convention": [
         "error",
         {
           "selector": "interface",
-          "format": ["PascalCase"],
+          "format": [
+            "PascalCase"
+          ],
           "custom": {
             "regex": "^I[A-Z]",
             "match": true
