@@ -36,14 +36,6 @@ _(
     sys.executable,
     "-m",
     "jupyter",
-    "serverextension",
-    "enable",
-    "{{ cookiecutter.python_name }}",
-)
-_(
-    sys.executable,
-    "-m",
-    "jupyter",
     "server",
     "extension",
     "enable",
