@@ -1,28 +1,32 @@
-# JupyterLab extension-cookiecutter-ts
+# JupyterLab extension template
 
 [![Github Actions Status](https://github.com/jupyterlab/extension-cookiecutter-ts/workflows/CI/badge.svg)](https://github.com/jupyterlab/extension-cookiecutter-ts/actions/workflows/main.yml)
 
-A [cookiecutter](https://github.com/audreyr/cookiecutter) template for creating
+A [copier](https://copier.readthedocs.io) template for creating
 a JupyterLab extension. Three kinds of extension are supported:
 - _frontend_: Pure frontend extension written in TypeScript.
 - _server_: Extension with frontend (in TypeScript) and backend (in Python) parts.
 - _theme_: Theme for JupyterLab (using CSS variables).
-    
-> See also [extension-cookiecutter-js](https://github.com/jupyterlab/extension-cookiecutter-js)
-for an extension in CommonJS.
 
 ## Use the template to create package
 
-Install cookiecutter.
+1. Install copier and some plugins.
+
+```sh
+pip install "copier>=7.1.0" jinja2-time
+```
+
+2. Go into the extension directory
+
+```sh
+mkdir myextension
+cd myextension
+```
+
+3. Use copier to generate a package, following the prompts to fill in the name and authorship of your new JupyterLab extension.
 
 ```
-pip install cookiecutter
-```
-
-Use cookiecutter to generate a package, following the prompts to fill in the name and authorship of your new JupyterLab extension.
-
-```
-cookiecutter https://github.com/jupyterlab/extension-cookiecutter-ts --checkout 4.0
+copier https://github.com/jupyterlab/extension-cookiecutter-ts .
 ```
 
 The available options are:
@@ -41,14 +45,14 @@ The available options are:
 - `test`: Whether to add test set ups and skeletons for the extension or not
 - `repository`: Version Control System repository URI
 
+If you'd like to generate a package for a older release, use the `--vcs-ref` option and give a tag or commit from this repository.
 
-If you'd like to generate a package for a specific JupyterLab release, use the `--checkout` option and give a tag or commit from this repository.
+```sh
+copier --vcs-ref v4.0.0 https://github.com/jupyterlab/extension-cookiecutter-ts
+```
 
-```
-cookiecutter https://github.com/jupyterlab/extension-cookiecutter-ts --checkout v1.0
-cookiecutter https://github.com/jupyterlab/extension-cookiecutter-ts --checkout v2.0
-cookiecutter https://github.com/jupyterlab/extension-cookiecutter-ts --checkout 3.0
-```
+> If you are looking for a template compatible with JupyterLab version prior to 4.0.0, look at 
+> the [cookiecutter template](https://github.com/jupyterlab/extension-cookiecutter-ts).
 
 ## A simple example
 
