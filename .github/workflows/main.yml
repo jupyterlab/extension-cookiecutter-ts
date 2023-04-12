@@ -30,7 +30,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install copier>=7.1.0
+          python -m pip install copier>=7.1.0 jinja2-time
 
       - name: Create pure frontend extension
         env:
@@ -39,8 +39,9 @@ jobs:
         run: |
           set -eux
           # Trick to use custom parameters
-          python -c "from cookiecutter.main import cookiecutter; import json, os; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']=d['kind'][0]; d['labextension_name']=os.getenv('NAME'); cookiecutter('.', extra_context=d, no_input=True)"
-          pushd ${PYNAME}
+          mkdir ${NAME}
+          python -c "from copier import run_auto; import json, os; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']=d['kind'][0]; d['labextension_name']=os.getenv('NAME'); run_all('.', os.getenv('NAME'), data=d, vcs_ref='HEAD')"
+          pushd ${NAME}
           python -m pip install "jupyterlab>=4.0.0b0,<5"
           jlpm
           jlpm stylelint-config-prettier-check
@@ -73,13 +74,14 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install cookiecutter
+          python -m pip install copier>=7.1.0 jinja2-time
 
       - name: Create pure frontend extension
         run: |
           set -eux
           # Trick to use custom parameters
-          python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']=d['kind'][0]; d['test']='n'; cookiecutter('.', extra_context=d, no_input=True)"
+          mkdir myextension
+          python -c "from copier import run_auto; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']=d['kind'][0]; d['test']='n'; run_all('.', 'myextension', data=d, vcs_ref='HEAD')"
           pushd myextension
           pip install "jupyterlab>=4.0.0b0,<5"
           jlpm
@@ -112,13 +114,14 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install cookiecutter
+          python -m pip install copier>=7.1.0 jinja2-time
 
       - name: Create pure frontend extension
         run: |
           set -eux
+          mkdir myextension
           # Trick to use custom parameters
-          python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']=d['kind'][0]; d['has_settings']='y'; cookiecutter('.', extra_context=d, no_input=True)"
+          python -c "from copier import run_auto; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']=d['kind'][0]; d['has_settings']='y'; run_all('.', 'myextension', data=d, vcs_ref='HEAD')"
           pushd myextension
           pip install "jupyterlab>=4.0.0b0,<5"
           jlpm
@@ -155,12 +158,14 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install cookiecutter build
+          python -m pip install "copier>=7.1.0" jinja2-time build
 
       - name: Create server extension pip install
         run: |
+          set -eux
+          mkdir myextension
           # Trick to use custom parameters
-          python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']='server'; cookiecutter('.', extra_context=d, no_input=True)"
+          python -c "from copier import run_auto; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']='server'; run_all('.', 'myextension', data=d, vcs_ref='HEAD')"
           cd myextension
           cat pyproject.toml
           pip install .
@@ -185,8 +190,10 @@ jobs:
 
       - name: Create server extension pip develop
         run: |
+          set -eux
+          mkdir myextension
           # Trick to use custom parameters
-          python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']='server'; cookiecutter('.', extra_context=d, no_input=True)"
+          python -c "from copier import run_auto; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']='server'; run_all('.', 'myextension', data=d, vcs_ref='HEAD')"
           cd myextension
           python -m pip install -e .[test]
           python -m pip install "jupyterlab>=4.0.0b0,<5"
@@ -216,12 +223,14 @@ jobs:
           jupyter labextension uninstall myextension
           python -m pip uninstall -y myextension jupyterlab
 
-          python -c "import shutil; shutil.rmtree('myextension')"
+          rm -rf myextension
 
       - name: Install server extension from a tarball
         run: |
+          set -eux
+          mkdir myextension
           # Trick to use custom parameters
-          python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']='server'; cookiecutter('.', extra_context=d, no_input=True)"
+          python -c "from copier import run_auto; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']='server'; run_all('.', 'myextension', data=d, vcs_ref='HEAD')"
           cd myextension
           python -m pip install "jupyterlab>=4.0.0b0,<5"
           jupyter lab clean --all
@@ -316,8 +325,9 @@ jobs:
       - name: Create pure frontend extension
         run: |
           set -eux
+          mkdir mytheme
           # Trick to use custom parameters
-          python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']='theme'; cookiecutter('.', extra_context=d, no_input=True)"
+          python -c "from copier import run_auto; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']='theme'; run_all('.', 'mytheme', data=d, vcs_ref='HEAD')"
           pushd mytheme
           python -m pip install "jupyterlab>=4.0.0b0,<5"
           jlpm
