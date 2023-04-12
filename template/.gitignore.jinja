@@ -9,8 +9,8 @@ node_modules/
 *.tsbuildinfo
 {{python_name}}/labextension
 # Version file is handled by hatchling
-{{cookiecutter.python_name}}/_version.py
-{% if cookiecutter.test.lower().startswith('y') %}
+{{python_name}}/_version.py
+{% if test %}
 # Integration tests
 ui-tests/test-results/
 ui-tests/playwright-report/

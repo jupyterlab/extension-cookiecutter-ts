@@ -27,7 +27,7 @@
   "repository": {
     "type": "git",
     "url": "{{ repository }}.git"
-  },{% if test.lower().startswith('y') %}
+  },{% if test %}
   "workspaces": [
     "ui-tests"
   ],{% endif %}
@@ -60,13 +60,13 @@
   },
   "dependencies": {
     "@jupyterlab/application": "^4.0.0-beta.0"{% if kind.lower() == 'theme' %},
-    "@jupyterlab/apputils": "^4.0.0-beta.0"{% endif %}{% if has_settings.lower().startswith('y') %},
+    "@jupyterlab/apputils": "^4.0.0-beta.0"{% endif %}{% if has_settings %},
     "@jupyterlab/settingregistry": "^4.0.0-beta.0"{% endif %}{% if kind.lower() == 'server' %},
     "@jupyterlab/coreutils": "^6.0.0-beta.0",
     "@jupyterlab/services": "^7.0.0-beta.0"{% endif %}
   },
   "devDependencies": {
-    "@jupyterlab/builder": "^4.0.0-beta.0",{% if test.lower().startswith('y') %}
+    "@jupyterlab/builder": "^4.0.0-beta.0",{% if test %}
     "@jupyterlab/testutils": "^4.0.0-beta.0",
     "@types/jest": "^29.2.0",{% endif %}
     "@types/json-schema": "^7.0.11",
@@ -76,7 +76,7 @@
     "css-loader": "^6.7.1",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.7.0",
-    "eslint-plugin-prettier": "^4.2.1",{% if test.lower().startswith('y') %}
+    "eslint-plugin-prettier": "^4.2.1",{% if test %}
     "jest": "^29.2.0",{% endif %}{% if kind.lower() == 'server' %}
     "mkdirp": "^1.0.3",{% endif %}
     "npm-run-all": "^4.1.5",
@@ -121,7 +121,7 @@
     "node_modules",
     "dist",
     "coverage",
-    "**/*.d.ts"{% if test.lower().startswith('y') %},
+    "**/*.d.ts"{% if test %},
     "tests",
     "**/__tests__",
     "ui-tests"{% endif %}
