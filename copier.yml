@@ -1,5 +1,7 @@
 _min_copier_version: "7.1.0"
 _subdirectory: template
+_jinja_extensions:
+    - jinja2_time.TimeExtension
 
 kind:
   type: str
