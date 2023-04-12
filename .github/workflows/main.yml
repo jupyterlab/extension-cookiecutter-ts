@@ -30,7 +30,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install cookiecutter
+          python -m pip install copier>=7.1.0
 
       - name: Create pure frontend extension
         env:

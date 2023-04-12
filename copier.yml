@@ -1,11 +1,5 @@
-_min_copier_version: "6.2.0"
+_min_copier_version: "7.1.0"
 _subdirectory: template
-_exclude:
-  - ".github"
-  - "hooks"
-  - "cookiecutter.json"
-  - "LICENSE"
-  - "README.md"
 
 kind:
   type: str
