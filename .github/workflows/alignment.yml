@@ -31,7 +31,7 @@ jobs:
         run: |
           set -eux
           # Create template from cookiecutter
-          python -c "from cookiecutter.main import cookiecutter; import json, os; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']=os.getenv('KIND'); d['labextension_name']='cookiecutterext'; cookiecutter('.', extra_context=d, no_input=True)"
+          python -c "from cookiecutter.main import cookiecutter; import json, os; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']=os.getenv('KIND'); cookiecutter('.', extra_context=d, no_input=True)"
           
           # Create template from copier
           mkdir copierext
@@ -39,4 +39,4 @@ jobs:
           copier -l -d kind=${KIND} -d author_name="My Name" -d repository="https://github.com/test/lab-extension" gh:jupyterlab/extension-template .
           popd
 
-          diff cookiecutterext copierext
+          diff myextension copierext
