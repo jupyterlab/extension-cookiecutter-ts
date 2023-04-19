@@ -36,7 +36,8 @@ jobs:
           # Create template from copier
           mkdir copierext
           pushd copierext
-          copier -l -d kind=${KIND} -d labextension=myextension -d author_name="My Name" -d author_email="me@test.com" -d repository="https://github.com/github_username/myextension" gh:jupyterlab/extension-template .
+          copier -l -d kind=${KIND} -d labextension_name=myextension -d author_name="My Name" -d author_email="me@test.com" -d repository="https://github.com/github_username/myextension" gh:jupyterlab/extension-template .
+          rm .copier-answers.yml
           popd
 
           diff -r myextension copierext
