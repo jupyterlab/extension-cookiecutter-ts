@@ -39,4 +39,4 @@ jobs:
           copier -l -d kind=${KIND} -d labextension=myextension -d author_name="My Name" -d author_email="me@test.com" -d repository="https://github.com/github_username/myextension" gh:jupyterlab/extension-template .
           popd
 
-          diff -rsy myextension copierext
+          diff -ry myextension copierext
