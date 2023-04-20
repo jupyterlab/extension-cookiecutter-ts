@@ -1,14 +1,12 @@
 from ._version import __version__{% if cookiecutter.kind.lower() == 'server' %}
-from .handlers import setup_handlers
-{% endif %}
+from .handlers import setup_handlers{% endif %}
 
 
 def _jupyter_labextension_paths():
     return [{
         "src": "labextension",
         "dest": "{{ cookiecutter.labextension_name }}"
-    }]
-{% if cookiecutter.kind.lower() == 'server' %}
+    }]{% if cookiecutter.kind.lower() == 'server' %}
 
 
 def _jupyter_server_extension_points():
@@ -31,5 +29,4 @@ def _load_jupyter_server_extension(server_app):
 
 
 # For backward compatibility with notebook server - useful for Binder/JupyterHub
-load_jupyter_server_extension = _load_jupyter_server_extension
-{% endif %}
+load_jupyter_server_extension = _load_jupyter_server_extension{% endif %}

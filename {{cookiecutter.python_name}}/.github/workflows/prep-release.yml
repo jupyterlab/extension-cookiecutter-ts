@@ -24,7 +24,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
-
 {% raw %}
       - name: Prep Release
         id: prep-release
@@ -40,5 +39,4 @@ jobs:
 
       - name: "** Next Step **"
         run: |
-          echo "Optional): Review Draft Release: ${{ steps.prep-release.outputs.release_url }}"
-{% endraw %}
+          echo "Optional): Review Draft Release: ${{ steps.prep-release.outputs.release_url }}"{% endraw %}

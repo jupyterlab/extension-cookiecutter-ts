@@ -14,6 +14,7 @@ import { requestAPI } from './handler';{% endif %}
  */
 const plugin: JupyterFrontEndPlugin<void> = {
   id: '{{ cookiecutter.labextension_name }}:plugin',
+  description: '{{ cookiecutter.project_short_description }}',
   autoStart: true,{% if cookiecutter.kind.lower() == 'theme' %}
   requires: [IThemeManager],{% endif %}{% if cookiecutter.has_settings.lower().startswith('y') %}
   optional: [ISettingRegistry],{% endif %}
@@ -39,7 +40,7 @@ const plugin: JupyterFrontEndPlugin<void> = {
         });
     }{% endif %}{% if cookiecutter.kind.lower() == 'server' %}
 
-    requestAPI<any>('get_example')
+    requestAPI<any>('get-example')
       .then(data => {
         console.log(data);
       })

@@ -1,0 +1,43 @@
+name: Check alignment with copier template
+
+on:
+  push:
+    branches: ["*.0"]
+  pull_request:
+    branches: ["*"]
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  template-alignment:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        kind: ["frontend", "server", "theme"]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install Python
+        uses: actions/setup-python@v4
+      - name: Install dependencies
+        run: |
+          python -m pip install cookiecutter copier jinja2-time
+
+      - name: Create from template
+        env:
+          KIND: ${{ matrix.kind }}
+        run: |
+          set -eux
+          # Create template from cookiecutter
+          python -c "from cookiecutter.main import cookiecutter; import json, os; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']=os.getenv('KIND'); d['labextension_name']='myextension'; cookiecutter('.', extra_context=d, no_input=True)"
+          
+          # Create template from copier
+          mkdir copierext
+          pushd copierext
+          copier -l -d kind=${KIND} -d labextension_name=myextension -d author_name="My Name" -d author_email="me@test.com" -d repository="https://github.com/github_username/myextension" gh:jupyterlab/extension-template .
+          rm .copier-answers.yml
+          popd
+
+          diff -r myextension copierext
