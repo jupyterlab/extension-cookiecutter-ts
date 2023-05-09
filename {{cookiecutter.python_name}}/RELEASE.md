@@ -28,7 +28,7 @@ Make sure to clean up all the development files before building the package:
 jlpm clean:all
 ```
 
-And also clean up the local git repository:
+You could also clean up the local git repository:
 
 ```bash
 git clean -dfX
