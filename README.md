@@ -2,6 +2,8 @@
 
 [![Github Actions Status](https://github.com/jupyterlab/extension-cookiecutter-ts/workflows/CI/badge.svg)](https://github.com/jupyterlab/extension-cookiecutter-ts/actions/workflows/main.yml)
 
+⚠️ **We strongly advice to use the template next generation: https://github.com/jupyterlab/extension-template**
+
 A [cookiecutter](https://github.com/audreyr/cookiecutter) template for creating
 a JupyterLab extension. Three kinds of extension are supported:
 - _frontend_: Pure frontend extension written in TypeScript.
