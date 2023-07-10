@@ -89,7 +89,7 @@
   "resolutions": {
     "@lumino/coreutils": "^1.11.0",
     "@lumino/widgets": "^1.37.2"
-  }
+  },
   "sideEffects": [
     "style/*.css"{% if cookiecutter.kind.lower() != 'theme' %},
     "style/index.js"
